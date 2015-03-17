@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		055CB49F1AB7CB4C0077D02A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB49E1AB7CB4C0077D02A /* AppDelegate.swift */; };
+		055CB4A11AB7CB4C0077D02A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4A01AB7CB4C0077D02A /* ViewController.swift */; };
+		055CB4A41AB7CB4C0077D02A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055CB4A21AB7CB4C0077D02A /* Main.storyboard */; };
+		055CB4A61AB7CB4C0077D02A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055CB4A51AB7CB4C0077D02A /* Images.xcassets */; };
+		055CB4A91AB7CB4C0077D02A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055CB4A71AB7CB4C0077D02A /* LaunchScreen.xib */; };
+		055CB4B51AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4B41AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		055CB4AF1AB7CB4C0077D02A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 055CB4911AB7CB4C0077D02A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 055CB4981AB7CB4C0077D02A;
+			remoteInfo = RoaringBitmapConversion;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		055CB4991AB7CB4C0077D02A /* RoaringBitmapConversion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoaringBitmapConversion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		055CB49D1AB7CB4C0077D02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		055CB49E1AB7CB4C0077D02A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		055CB4A01AB7CB4C0077D02A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		055CB4A31AB7CB4C0077D02A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		055CB4A51AB7CB4C0077D02A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		055CB4A81AB7CB4C0077D02A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		055CB4AE1AB7CB4C0077D02A /* RoaringBitmapConversionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoaringBitmapConversionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		055CB4B31AB7CB4C0077D02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		055CB4B41AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoaringBitmapConversionTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		055CB4961AB7CB4C0077D02A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		055CB4AB1AB7CB4C0077D02A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		055CB4901AB7CB4C0077D02A = {
+			isa = PBXGroup;
+			children = (
+				055CB49B1AB7CB4C0077D02A /* RoaringBitmapConversion */,
+				055CB4B11AB7CB4C0077D02A /* RoaringBitmapConversionTests */,
+				055CB49A1AB7CB4C0077D02A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		055CB49A1AB7CB4C0077D02A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				055CB4991AB7CB4C0077D02A /* RoaringBitmapConversion.app */,
+				055CB4AE1AB7CB4C0077D02A /* RoaringBitmapConversionTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		055CB49B1AB7CB4C0077D02A /* RoaringBitmapConversion */ = {
+			isa = PBXGroup;
+			children = (
+				055CB49E1AB7CB4C0077D02A /* AppDelegate.swift */,
+				055CB4A01AB7CB4C0077D02A /* ViewController.swift */,
+				055CB4A21AB7CB4C0077D02A /* Main.storyboard */,
+				055CB4A51AB7CB4C0077D02A /* Images.xcassets */,
+				055CB4A71AB7CB4C0077D02A /* LaunchScreen.xib */,
+				055CB49C1AB7CB4C0077D02A /* Supporting Files */,
+			);
+			path = RoaringBitmapConversion;
+			sourceTree = "<group>";
+		};
+		055CB49C1AB7CB4C0077D02A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				055CB49D1AB7CB4C0077D02A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		055CB4B11AB7CB4C0077D02A /* RoaringBitmapConversionTests */ = {
+			isa = PBXGroup;
+			children = (
+				055CB4B41AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift */,
+				055CB4B21AB7CB4C0077D02A /* Supporting Files */,
+			);
+			path = RoaringBitmapConversionTests;
+			sourceTree = "<group>";
+		};
+		055CB4B21AB7CB4C0077D02A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				055CB4B31AB7CB4C0077D02A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		055CB4981AB7CB4C0077D02A /* RoaringBitmapConversion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 055CB4B81AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmapConversion" */;
+			buildPhases = (
+				055CB4951AB7CB4C0077D02A /* Sources */,
+				055CB4961AB7CB4C0077D02A /* Frameworks */,
+				055CB4971AB7CB4C0077D02A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RoaringBitmapConversion;
+			productName = RoaringBitmapConversion;
+			productReference = 055CB4991AB7CB4C0077D02A /* RoaringBitmapConversion.app */;
+			productType = "com.apple.product-type.application";
+		};
+		055CB4AD1AB7CB4C0077D02A /* RoaringBitmapConversionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 055CB4BB1AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmapConversionTests" */;
+			buildPhases = (
+				055CB4AA1AB7CB4C0077D02A /* Sources */,
+				055CB4AB1AB7CB4C0077D02A /* Frameworks */,
+				055CB4AC1AB7CB4C0077D02A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				055CB4B01AB7CB4C0077D02A /* PBXTargetDependency */,
+			);
+			name = RoaringBitmapConversionTests;
+			productName = RoaringBitmapConversionTests;
+			productReference = 055CB4AE1AB7CB4C0077D02A /* RoaringBitmapConversionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		055CB4911AB7CB4C0077D02A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Regwez, Inc.";
+				TargetAttributes = {
+					055CB4981AB7CB4C0077D02A = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					055CB4AD1AB7CB4C0077D02A = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 055CB4981AB7CB4C0077D02A;
+					};
+				};
+			};
+			buildConfigurationList = 055CB4941AB7CB4C0077D02A /* Build configuration list for PBXProject "RoaringBitmapConversion" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 055CB4901AB7CB4C0077D02A;
+			productRefGroup = 055CB49A1AB7CB4C0077D02A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				055CB4981AB7CB4C0077D02A /* RoaringBitmapConversion */,
+				055CB4AD1AB7CB4C0077D02A /* RoaringBitmapConversionTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		055CB4971AB7CB4C0077D02A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				055CB4A41AB7CB4C0077D02A /* Main.storyboard in Resources */,
+				055CB4A91AB7CB4C0077D02A /* LaunchScreen.xib in Resources */,
+				055CB4A61AB7CB4C0077D02A /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		055CB4AC1AB7CB4C0077D02A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		055CB4951AB7CB4C0077D02A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				055CB4A11AB7CB4C0077D02A /* ViewController.swift in Sources */,
+				055CB49F1AB7CB4C0077D02A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		055CB4AA1AB7CB4C0077D02A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				055CB4B51AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		055CB4B01AB7CB4C0077D02A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 055CB4981AB7CB4C0077D02A /* RoaringBitmapConversion */;
+			targetProxy = 055CB4AF1AB7CB4C0077D02A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		055CB4A21AB7CB4C0077D02A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				055CB4A31AB7CB4C0077D02A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		055CB4A71AB7CB4C0077D02A /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				055CB4A81AB7CB4C0077D02A /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		055CB4B61AB7CB4C0077D02A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		055CB4B71AB7CB4C0077D02A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		055CB4B91AB7CB4C0077D02A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RoaringBitmapConversion/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		055CB4BA1AB7CB4C0077D02A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RoaringBitmapConversion/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		055CB4BC1AB7CB4C0077D02A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = RoaringBitmapConversionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoaringBitmapConversion.app/RoaringBitmapConversion";
+			};
+			name = Debug;
+		};
+		055CB4BD1AB7CB4C0077D02A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = RoaringBitmapConversionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoaringBitmapConversion.app/RoaringBitmapConversion";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		055CB4941AB7CB4C0077D02A /* Build configuration list for PBXProject "RoaringBitmapConversion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				055CB4B61AB7CB4C0077D02A /* Debug */,
+				055CB4B71AB7CB4C0077D02A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		055CB4B81AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmapConversion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				055CB4B91AB7CB4C0077D02A /* Debug */,
+				055CB4BA1AB7CB4C0077D02A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		055CB4BB1AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmapConversionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				055CB4BC1AB7CB4C0077D02A /* Debug */,
+				055CB4BD1AB7CB4C0077D02A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 055CB4911AB7CB4C0077D02A /* Project object */;
+}
