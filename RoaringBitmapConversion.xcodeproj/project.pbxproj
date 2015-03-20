@@ -13,6 +13,20 @@
 		055CB4A61AB7CB4C0077D02A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055CB4A51AB7CB4C0077D02A /* Images.xcassets */; };
 		055CB4A91AB7CB4C0077D02A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055CB4A71AB7CB4C0077D02A /* LaunchScreen.xib */; };
 		055CB4B51AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4B41AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift */; };
+		055CB4C01AB7CB6A0077D02A /* RoaringBitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4BF1AB7CB6A0077D02A /* RoaringBitmap.swift */; };
+		055CB4C21AB7CC4E0077D02A /* ImmutableBitmapDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4C11AB7CC4E0077D02A /* ImmutableBitmapDataProvider.swift */; };
+		055CB4C41AB7D5610077D02A /* BitmapDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4C31AB7D5610077D02A /* BitmapDataProvider.swift */; };
+		055CB4C61AB7D6BB0077D02A /* RoaringBitmapUtilFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4C51AB7D6BB0077D02A /* RoaringBitmapUtilFunctions.swift */; };
+		055CB4C81AB8176A0077D02A /* RoaringArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4C71AB8176A0077D02A /* RoaringArray.swift */; };
+		055CB4CA1AB8BFA00077D02A /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4C91AB8BFA00077D02A /* Container.swift */; };
+		055CB4CC1AB8C4C70077D02A /* BitmapContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4CB1AB8C4C70077D02A /* BitmapContainer.swift */; };
+		055CB4CE1AB8C5080077D02A /* ArrayContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4CD1AB8C5080077D02A /* ArrayContainer.swift */; };
+		056004F31ABB7C2A0056945D /* RoaringBitmapPart1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056004F21ABB7C2A0056945D /* RoaringBitmapPart1Tests.swift */; };
+		05A93BD91AB96AE900EAA8DC /* FastAggregation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A93BD81AB96AE900EAA8DC /* FastAggregation.swift */; };
+		05A93BDB1AB970CB00EAA8DC /* ContainerPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A93BDA1AB970CB00EAA8DC /* ContainerPointer.swift */; };
+		05A93BE11AB9EA6400EAA8DC /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A93BE01AB9EA6400EAA8DC /* PriorityQueue.swift */; };
+		05A93BE41ABA764800EAA8DC /* ArrayHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A93BE31ABA764800EAA8DC /* ArrayHelpers.swift */; };
+		05DCFFCE1ABB70C800E58794 /* ContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DCFFCD1ABB70C800E58794 /* ContainerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +50,20 @@
 		055CB4AE1AB7CB4C0077D02A /* RoaringBitmapConversionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoaringBitmapConversionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		055CB4B31AB7CB4C0077D02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		055CB4B41AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoaringBitmapConversionTests.swift; sourceTree = "<group>"; };
+		055CB4BF1AB7CB6A0077D02A /* RoaringBitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoaringBitmap.swift; sourceTree = "<group>"; };
+		055CB4C11AB7CC4E0077D02A /* ImmutableBitmapDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImmutableBitmapDataProvider.swift; sourceTree = "<group>"; };
+		055CB4C31AB7D5610077D02A /* BitmapDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitmapDataProvider.swift; sourceTree = "<group>"; };
+		055CB4C51AB7D6BB0077D02A /* RoaringBitmapUtilFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoaringBitmapUtilFunctions.swift; sourceTree = "<group>"; };
+		055CB4C71AB8176A0077D02A /* RoaringArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoaringArray.swift; sourceTree = "<group>"; };
+		055CB4C91AB8BFA00077D02A /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		055CB4CB1AB8C4C70077D02A /* BitmapContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitmapContainer.swift; sourceTree = "<group>"; };
+		055CB4CD1AB8C5080077D02A /* ArrayContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayContainer.swift; sourceTree = "<group>"; };
+		056004F21ABB7C2A0056945D /* RoaringBitmapPart1Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoaringBitmapPart1Tests.swift; sourceTree = "<group>"; };
+		05A93BD81AB96AE900EAA8DC /* FastAggregation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FastAggregation.swift; sourceTree = "<group>"; };
+		05A93BDA1AB970CB00EAA8DC /* ContainerPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerPointer.swift; sourceTree = "<group>"; };
+		05A93BE01AB9EA6400EAA8DC /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		05A93BE31ABA764800EAA8DC /* ArrayHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayHelpers.swift; sourceTree = "<group>"; };
+		05DCFFCD1ABB70C800E58794 /* ContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +105,9 @@
 		055CB49B1AB7CB4C0077D02A /* RoaringBitmapConversion */ = {
 			isa = PBXGroup;
 			children = (
+				05A93BE21ABA762C00EAA8DC /* Core */,
+				05A93BDF1AB9EA3100EAA8DC /* OpenSource */,
+				055CB4BE1AB7CB5D0077D02A /* RoaringBitmap */,
 				055CB49E1AB7CB4C0077D02A /* AppDelegate.swift */,
 				055CB4A01AB7CB4C0077D02A /* ViewController.swift */,
 				055CB4A21AB7CB4C0077D02A /* Main.storyboard */,
@@ -98,8 +129,10 @@
 		055CB4B11AB7CB4C0077D02A /* RoaringBitmapConversionTests */ = {
 			isa = PBXGroup;
 			children = (
+				056004F21ABB7C2A0056945D /* RoaringBitmapPart1Tests.swift */,
 				055CB4B41AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift */,
 				055CB4B21AB7CB4C0077D02A /* Supporting Files */,
+				05DCFFCD1ABB70C800E58794 /* ContainerTests.swift */,
 			);
 			path = RoaringBitmapConversionTests;
 			sourceTree = "<group>";
@@ -110,6 +143,39 @@
 				055CB4B31AB7CB4C0077D02A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		055CB4BE1AB7CB5D0077D02A /* RoaringBitmap */ = {
+			isa = PBXGroup;
+			children = (
+				055CB4BF1AB7CB6A0077D02A /* RoaringBitmap.swift */,
+				055CB4C11AB7CC4E0077D02A /* ImmutableBitmapDataProvider.swift */,
+				055CB4C31AB7D5610077D02A /* BitmapDataProvider.swift */,
+				055CB4C51AB7D6BB0077D02A /* RoaringBitmapUtilFunctions.swift */,
+				055CB4C71AB8176A0077D02A /* RoaringArray.swift */,
+				055CB4C91AB8BFA00077D02A /* Container.swift */,
+				055CB4CB1AB8C4C70077D02A /* BitmapContainer.swift */,
+				055CB4CD1AB8C5080077D02A /* ArrayContainer.swift */,
+				05A93BD81AB96AE900EAA8DC /* FastAggregation.swift */,
+				05A93BDA1AB970CB00EAA8DC /* ContainerPointer.swift */,
+			);
+			path = RoaringBitmap;
+			sourceTree = "<group>";
+		};
+		05A93BDF1AB9EA3100EAA8DC /* OpenSource */ = {
+			isa = PBXGroup;
+			children = (
+				05A93BE01AB9EA6400EAA8DC /* PriorityQueue.swift */,
+			);
+			name = OpenSource;
+			sourceTree = "<group>";
+		};
+		05A93BE21ABA762C00EAA8DC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				05A93BE31ABA764800EAA8DC /* ArrayHelpers.swift */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,8 +278,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055CB4C61AB7D6BB0077D02A /* RoaringBitmapUtilFunctions.swift in Sources */,
+				055CB4C81AB8176A0077D02A /* RoaringArray.swift in Sources */,
+				055CB4CC1AB8C4C70077D02A /* BitmapContainer.swift in Sources */,
+				05A93BE41ABA764800EAA8DC /* ArrayHelpers.swift in Sources */,
+				055CB4C01AB7CB6A0077D02A /* RoaringBitmap.swift in Sources */,
 				055CB4A11AB7CB4C0077D02A /* ViewController.swift in Sources */,
+				05A93BD91AB96AE900EAA8DC /* FastAggregation.swift in Sources */,
+				055CB4CE1AB8C5080077D02A /* ArrayContainer.swift in Sources */,
+				055CB4C41AB7D5610077D02A /* BitmapDataProvider.swift in Sources */,
+				055CB4CA1AB8BFA00077D02A /* Container.swift in Sources */,
+				05A93BDB1AB970CB00EAA8DC /* ContainerPointer.swift in Sources */,
+				055CB4C21AB7CC4E0077D02A /* ImmutableBitmapDataProvider.swift in Sources */,
 				055CB49F1AB7CB4C0077D02A /* AppDelegate.swift in Sources */,
+				05A93BE11AB9EA6400EAA8DC /* PriorityQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +299,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				056004F31ABB7C2A0056945D /* RoaringBitmapPart1Tests.swift in Sources */,
 				055CB4B51AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift in Sources */,
+				05DCFFCE1ABB70C800E58794 /* ContainerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +491,7 @@
 				055CB4BA1AB7CB4C0077D02A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		055CB4BB1AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmapConversionTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +500,7 @@
 				055CB4BD1AB7CB4C0077D02A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
