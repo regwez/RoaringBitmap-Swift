@@ -12,7 +12,6 @@
 		055CB4A41AB7CB4C0077D02A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055CB4A21AB7CB4C0077D02A /* Main.storyboard */; };
 		055CB4A61AB7CB4C0077D02A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055CB4A51AB7CB4C0077D02A /* Images.xcassets */; };
 		055CB4A91AB7CB4C0077D02A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055CB4A71AB7CB4C0077D02A /* LaunchScreen.xib */; };
-		055CB4B51AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4B41AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift */; };
 		055CB4C01AB7CB6A0077D02A /* RoaringBitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4BF1AB7CB6A0077D02A /* RoaringBitmap.swift */; };
 		055CB4C21AB7CC4E0077D02A /* ImmutableBitmapDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4C11AB7CC4E0077D02A /* ImmutableBitmapDataProvider.swift */; };
 		055CB4C41AB7D5610077D02A /* BitmapDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4C31AB7D5610077D02A /* BitmapDataProvider.swift */; };
@@ -22,11 +21,13 @@
 		055CB4CC1AB8C4C70077D02A /* BitmapContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4CB1AB8C4C70077D02A /* BitmapContainer.swift */; };
 		055CB4CE1AB8C5080077D02A /* ArrayContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4CD1AB8C5080077D02A /* ArrayContainer.swift */; };
 		056004F31ABB7C2A0056945D /* RoaringBitmapPart1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056004F21ABB7C2A0056945D /* RoaringBitmapPart1Tests.swift */; };
+		059936A71ABCE34300582F10 /* RoaringBitmapPart2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059936A61ABCE34300582F10 /* RoaringBitmapPart2Tests.swift */; };
 		05A93BD91AB96AE900EAA8DC /* FastAggregation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A93BD81AB96AE900EAA8DC /* FastAggregation.swift */; };
 		05A93BDB1AB970CB00EAA8DC /* ContainerPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A93BDA1AB970CB00EAA8DC /* ContainerPointer.swift */; };
 		05A93BE11AB9EA6400EAA8DC /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A93BE01AB9EA6400EAA8DC /* PriorityQueue.swift */; };
 		05A93BE41ABA764800EAA8DC /* ArrayHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A93BE31ABA764800EAA8DC /* ArrayHelpers.swift */; };
 		05DCFFCE1ABB70C800E58794 /* ContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DCFFCD1ABB70C800E58794 /* ContainerTests.swift */; };
+		05DD69F31ABCA6D200E2ED7B /* BitsMathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD69F21ABCA6D200E2ED7B /* BitsMathTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +50,6 @@
 		055CB4A81AB7CB4C0077D02A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		055CB4AE1AB7CB4C0077D02A /* RoaringBitmapConversionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoaringBitmapConversionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		055CB4B31AB7CB4C0077D02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		055CB4B41AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoaringBitmapConversionTests.swift; sourceTree = "<group>"; };
 		055CB4BF1AB7CB6A0077D02A /* RoaringBitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoaringBitmap.swift; sourceTree = "<group>"; };
 		055CB4C11AB7CC4E0077D02A /* ImmutableBitmapDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImmutableBitmapDataProvider.swift; sourceTree = "<group>"; };
 		055CB4C31AB7D5610077D02A /* BitmapDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitmapDataProvider.swift; sourceTree = "<group>"; };
@@ -59,11 +59,13 @@
 		055CB4CB1AB8C4C70077D02A /* BitmapContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitmapContainer.swift; sourceTree = "<group>"; };
 		055CB4CD1AB8C5080077D02A /* ArrayContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayContainer.swift; sourceTree = "<group>"; };
 		056004F21ABB7C2A0056945D /* RoaringBitmapPart1Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoaringBitmapPart1Tests.swift; sourceTree = "<group>"; };
+		059936A61ABCE34300582F10 /* RoaringBitmapPart2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoaringBitmapPart2Tests.swift; sourceTree = "<group>"; };
 		05A93BD81AB96AE900EAA8DC /* FastAggregation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FastAggregation.swift; sourceTree = "<group>"; };
 		05A93BDA1AB970CB00EAA8DC /* ContainerPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerPointer.swift; sourceTree = "<group>"; };
 		05A93BE01AB9EA6400EAA8DC /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		05A93BE31ABA764800EAA8DC /* ArrayHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayHelpers.swift; sourceTree = "<group>"; };
 		05DCFFCD1ABB70C800E58794 /* ContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerTests.swift; sourceTree = "<group>"; };
+		05DD69F21ABCA6D200E2ED7B /* BitsMathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitsMathTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,10 +131,11 @@
 		055CB4B11AB7CB4C0077D02A /* RoaringBitmapConversionTests */ = {
 			isa = PBXGroup;
 			children = (
+				059936A61ABCE34300582F10 /* RoaringBitmapPart2Tests.swift */,
 				056004F21ABB7C2A0056945D /* RoaringBitmapPart1Tests.swift */,
-				055CB4B41AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift */,
 				055CB4B21AB7CB4C0077D02A /* Supporting Files */,
 				05DCFFCD1ABB70C800E58794 /* ContainerTests.swift */,
+				05DD69F21ABCA6D200E2ED7B /* BitsMathTests.swift */,
 			);
 			path = RoaringBitmapConversionTests;
 			sourceTree = "<group>";
@@ -300,8 +303,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				056004F31ABB7C2A0056945D /* RoaringBitmapPart1Tests.swift in Sources */,
-				055CB4B51AB7CB4C0077D02A /* RoaringBitmapConversionTests.swift in Sources */,
+				05DD69F31ABCA6D200E2ED7B /* BitsMathTests.swift in Sources */,
 				05DCFFCE1ABB70C800E58794 /* ContainerTests.swift in Sources */,
+				059936A71ABCE34300582F10 /* RoaringBitmapPart2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
