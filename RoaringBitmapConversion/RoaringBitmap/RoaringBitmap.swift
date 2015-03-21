@@ -60,8 +60,7 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     * @return result of the operation
     * @see FastAggregation#and(RoaringBitmap...)
     */
-    public static func and(lhs x1: RoaringBitmap,
-        rhs x2:  RoaringBitmap) -> RoaringBitmap{
+    public static func and(lhs x1: RoaringBitmap,rhs x2:  RoaringBitmap) -> RoaringBitmap{
             var answer = RoaringBitmap()
             var pos1 = 0
             var pos2 = 0
@@ -113,8 +112,7 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     * @param x2 other bitmap
     * @return result of the operation
     */
-    public static func andNot(lhs x1: RoaringBitmap,
-        rhs x2:  RoaringBitmap) -> RoaringBitmap{
+    public static func andNot(lhs x1: RoaringBitmap,rhs x2:  RoaringBitmap) -> RoaringBitmap{
         var answer = RoaringBitmap()
         var pos1 = 0
         var pos2 = 0
@@ -241,8 +239,7 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     * @see FastAggregation#or(RoaringBitmap...)
     * @see FastAggregation#horizontal_or(RoaringBitmap...)
     */    
-    public static func or(lhs x1: RoaringBitmap,
-        rhs x2:  RoaringBitmap) -> RoaringBitmap{
+    public static func or(lhs x1: RoaringBitmap, rhs x2:  RoaringBitmap) -> RoaringBitmap{
             var answer = RoaringBitmap()
             var pos1 = 0
             var pos2 = 0
@@ -317,15 +314,15 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     *
     * @return the value
     */
-    public func select(atIndex index:Int) -> UInt32{
+    public func select(atIndex index:Int) -> Int{
         var leftover = index
         for (key,container) in highLowContainer.array {
             
             let thiscard = container.cardinality
             if(thiscard > leftover) {
-                let  keycontrib = key << 16
-                let lowcontrib = container.select(leftover)
-                return  UInt32(lowcontrib + keycontrib)
+                let  keycontrib = UInt64(key) << UInt64(16)
+                let  lowcontrib = container.select(leftover)
+                return  lowcontrib + Int(keycontrib)
             }
             leftover -= thiscard
         }
@@ -402,6 +399,7 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     * @param x integer value
     */
     public func add(value:Int) {
+      //  _cachedCardinality = nil
         let iValue = Int(value)
         let hb:UInt16 = highbits(iValue)
         let index = highLowContainer.getIndex(hb)
@@ -421,6 +419,7 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     * @param x2 other bitmap
     */
     public func and(rhs x2:  RoaringBitmap){
+      //  _cachedCardinality = nil
         var pos1 = 0
         var pos2 = 0
         var length1 = highLowContainer.size
@@ -477,6 +476,7 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     * @param x2 other bitmap
     */
     public func andNot(rhs x2:  RoaringBitmap){
+        //_cachedCardinality = nil
         var pos1 = 0
         var pos2 = 0
         var length1 = highLowContainer.size
@@ -532,6 +532,8 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     */
     public func clear() {
         highLowContainer = RoaringArray() // lose references
+        //_cachedCardinality = nil
+        _sizeInBytes = nil
     }
 
     public func clone() -> RoaringBitmap{
@@ -580,6 +582,7 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     * @param rangeEnd   exclusive ending of range
     */
     public func flip(rangeStart:Int, rangeEnd:Int){
+     //   _cachedCardinality = nil
         if (rangeStart >= rangeEnd) {
             return // empty range
         }
@@ -623,16 +626,17 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     *
     * @return the cardinality
     */
-    public var cardinality:UInt32 {
-        if let uw_cardinality = _cardinality{
-            return uw_cardinality
-        }
+    public var cardinality:Int {
+//        if let uw_cardinality = _cachedCardinality{
+//            return uw_cardinality
+//        }
         var size = highLowContainer.array.reduce(0) { $0 + $1.value.cardinality }
-        _cardinality = UInt32(size)
-        return _cardinality!
+        return size
+//        _cachedCardinality = size
+//        return _cachedCardinality!
     }
     
-    private var _cardinality:UInt32? = nil
+   // private var _cachedCardinality:Int? = nil
     
 //FIXME:    /**
 //    * @return a custom iterator over set bits, the bits are traversed
@@ -739,47 +743,48 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     * @param x2 other bitmap
     */
     public func or(rhs x2:  RoaringBitmap){
-            var pos1 = 0
-            var pos2 = 0
-            var length1 = highLowContainer.size
-            let length2 = x2.highLowContainer.size
-            
-            main: while (pos1 < length1 && pos2 < length2) {
-                var element1 = highLowContainer.array[pos1]
-                var element2 = x2.highLowContainer.array[pos2]
-                do {
-                    if (element1.key < element2.key) {
-                        pos1++
-                        if (pos1 == length1){
-                            break main
-                        }
-                        element1 = highLowContainer.array[pos1]
-                    } else if (element1.key > element2.key) {
-                        highLowContainer.insertNewKeyValueAt(pos1, element: element2)
-                        pos1++
-                        length1++
-                        pos2++
-                        if (pos2 == length2) {
-                            break main
-                        }
-                        element2 = x2.highLowContainer.array[pos2]
-                    } else {
-                        let c = ContainerDispatcher.ior(element1.value,rhs: element2.value)
-                        
-                        highLowContainer.array[pos1].value = c
-                        pos1++
-                        pos2++
-                        if ((pos1 == length1) || (pos2 == length2)){
-                            break main
-                        }
-                        element1 = highLowContainer.array[pos1]
-                        element2 = x2.highLowContainer.array[pos2]
+        //_cachedCardinality = nil
+        var pos1 = 0
+        var pos2 = 0
+        var length1 = highLowContainer.size
+        let length2 = x2.highLowContainer.size
+        
+        main: while (pos1 < length1 && pos2 < length2) {
+            var element1 = highLowContainer.array[pos1]
+            var element2 = x2.highLowContainer.array[pos2]
+            do {
+                if (element1.key < element2.key) {
+                    pos1++
+                    if (pos1 == length1){
+                        break main
                     }
-                } while (true)
-            }
-            if (pos1 == length1) {
-                highLowContainer.appendCopy(x2.highLowContainer, startingIndex: pos2, end: length2)
-            }
+                    element1 = highLowContainer.array[pos1]
+                } else if (element1.key > element2.key) {
+                    highLowContainer.insertNewKeyValueAt(pos1, element: element2)
+                    pos1++
+                    length1++
+                    pos2++
+                    if (pos2 == length2) {
+                        break main
+                    }
+                    element2 = x2.highLowContainer.array[pos2]
+                } else {
+                    let c = ContainerDispatcher.ior(element1.value,rhs: element2.value)
+                    
+                    highLowContainer.array[pos1].value = c
+                    pos1++
+                    pos2++
+                    if ((pos1 == length1) || (pos2 == length2)){
+                        break main
+                    }
+                    element1 = highLowContainer.array[pos1]
+                    element2 = x2.highLowContainer.array[pos2]
+                }
+            } while (true)
+        }
+        if (pos1 == length1) {
+            highLowContainer.appendCopy(x2.highLowContainer, startingIndex: pos2, end: length2)
+        }
     }
     
 //FIXME:    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -793,6 +798,7 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     * @param x integer value representing the index in a bitmap
     */
     public func remove(value:Int) {
+        //_cachedCardinality = nil
         let hb = highbits(value)
         let i = highLowContainer.getIndex(hb)
         if (i < 0){
@@ -859,8 +865,11 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     *
     * @return array representing the set values.
     */
-    public var arrayRepresentation:[Int64] {
-        var array = [Int64](count:Int(self.cardinality),repeatedValue:0)
+    public var asArray:[UInt64] {
+        if self.cardinality == 0{
+            return []
+        }
+        var array = [UInt64](count:Int(self.cardinality),repeatedValue:0)
         var pos = 0
         var pos2 = 0
         
@@ -897,6 +906,7 @@ public class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     * @param x2 other bitmap
     */
     public func xor(rhs x2:  RoaringBitmap){
+        //_cachedCardinality = nil
         var pos1 = 0
         var pos2 = 0
         var length1 = highLowContainer.size

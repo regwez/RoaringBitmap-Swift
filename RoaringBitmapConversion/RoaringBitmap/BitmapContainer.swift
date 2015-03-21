@@ -1,4 +1,4 @@
-//
+	//
 //  BitmapContainer.swift
 //  RoaringBitmapConversion
 //
@@ -8,16 +8,22 @@
 
 import UIKit
 
+extension UInt64{
+   // static var maxBit: UInt64 { return 0x8000000000000000 }
+    static var allBitsOn: UInt64 { return 0xFFFFFFFFFFFFFFFF }
+}
 
+public let oneUInt64 = UInt64(1)
+    
 /**
 * Simple bitset-like container.
 */
 public class BitmapContainer:Container, Equatable, Printable, Hashable{
-    internal static let MAX_CAPACITY = 1 << 16
+    internal static let MAX_CAPACITY = Int(oneUInt64 << 16)
     
     private static var USE_IN_PLACE = true // optimization flag
     
-    var _bitmap:[Int64]
+    var _bitmap:[UInt64]
     
     var _cardinality:Int
     
@@ -26,7 +32,7 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     */
     public init() {
         _cardinality = 0;
-        _bitmap = [Int64](count:BitmapContainer.MAX_CAPACITY / 64,repeatedValue:0)
+        _bitmap = [UInt64](count:BitmapContainer.MAX_CAPACITY / 64,repeatedValue:0)
     }
     
     /**
@@ -41,39 +47,46 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
         self._cardinality = lastOfRun - firstOfRun + 1;
         
         if (_cardinality == BitmapContainer.MAX_CAPACITY){ // perhaps a common case
-            self._bitmap = [Int64](count:BitmapContainer.MAX_CAPACITY / 64,repeatedValue:-1)
+            self._bitmap = [UInt64](count:BitmapContainer.MAX_CAPACITY / 64,repeatedValue:0)
         }else {
             let firstWord = firstOfRun / 64
             let lastWord = lastOfRun / 64
-            let zeroPrefixLength = Int64(firstOfRun & 63)
-            let zeroSuffixLength = Int64(63 - (lastOfRun & 63))
+            let zeroPrefixLength = UInt64(firstOfRun & 63)
+            let zeroSuffixLength = UInt64(63 - (lastOfRun & 63))
             
-            _bitmap = [Int64](count:BitmapContainer.MAX_CAPACITY / 64,repeatedValue:0)
+            var newBitmap = [UInt64](count:BitmapContainer.MAX_CAPACITY / 64,repeatedValue:0)
             for n in firstWord...lastWord{
-                _bitmap[n] = -1
+                newBitmap[n] = UInt64.max
             }
-            _bitmap[firstWord] ^= ((Int64(1) << zeroPrefixLength) - 1)
-            let blockOfOnes = (Int64(1) << zeroSuffixLength) - 1
+            newBitmap[firstWord] ^= ((UInt64(1) << zeroPrefixLength) - 1)
+            let blockOfOnes = (UInt64(1) << zeroSuffixLength) - 1
             let maskOnLeft = blockOfOnes << (64 - zeroSuffixLength)
-            _bitmap[lastWord] ^= maskOnLeft
+            newBitmap[lastWord] ^= maskOnLeft
+            
+            self._bitmap = newBitmap
         }
         
     }
     
     
-    internal init(newBitmap:[Int64], newCardinality:Int) {
+    internal init(newBitmap:[UInt64], newCardinality:Int) {
         self._cardinality = newCardinality
         self._bitmap = newBitmap
     }
     
     //MARK: Container protocol
     
+    public var sequence:SequenceOf<UInt16>{
+        return SequenceOf<UInt16>(self)
+    }
+    
     public func add(value: UInt16) ->Container{
         let  x = Int(value)
-        let xShift = x % 64
-        let previous = _bitmap[x / 64]
-        _bitmap[x / 64] |= Int64(1 << xShift)
-        _cardinality += (Int(previous ^ _bitmap[x / 64]) >> xShift)
+        let xShift = UInt64(x % 64)
+        let index = x / 64
+        let previous = _bitmap[index]
+        _bitmap[index] |= UInt64(1) << xShift
+        _cardinality += Int((previous ^ _bitmap[index]) >> xShift)
         return self
     }
     
@@ -81,10 +94,9 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     public func and(rhs: ArrayContainer) ->Container{
         let rhsContent = rhs._content
         var answer = ArrayContainer(capacity: rhsContent.count)
-        var answerContent = rhs._content
         for k in 0..<rhs._cardinality{
             if (self.contains(rhsContent[k])){
-                answerContent[answer._cardinality++] = rhsContent[k]
+                answer._content[answer._cardinality++] = rhsContent[k]
             }
         }
         return answer
@@ -116,10 +128,13 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     
     public func andNot(rhs: ArrayContainer) ->Container{
         var answer = clone() as! BitmapContainer
+        let localRHSContent = rhs._content
+        let localBitmap = self._bitmap
         for k in 0..<rhs._cardinality {
-            let i = Int(rhs._content[k]) >> 6
-            answer._bitmap[i] = answer._bitmap[i] & Int64(~(1 << rhs._content[k]))
-            answer._cardinality -= Int((answer._bitmap[i] ^ self._bitmap[i]) >> Int64(rhs._content[k]))
+            let i = Int(localRHSContent[k]) >> 6
+            let adjustedShift = UInt64(localRHSContent[k]) % 64
+            answer._bitmap[i] = answer._bitmap[i] & (~(UInt64(1) << adjustedShift))
+            answer._cardinality -= Int((answer._bitmap[i] ^ localBitmap[i]) >> adjustedShift)
         }
         if (answer._cardinality <= ArrayContainer.DEFAULT_MAX_SIZE){
             return answer.toArrayContainer()
@@ -153,7 +168,7 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
         if (_cardinality != 0) {
             _cardinality = 0
             let _bitmapCount = _bitmap.count
-            _bitmap = [Int64](count:_bitmapCount,repeatedValue:0)
+            _bitmap = [UInt64](count:_bitmapCount,repeatedValue:0)
         }
     }
     
@@ -164,21 +179,24 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     
     
     public func contains(value:UInt16) -> Bool{
-        let  x = Int(value)
-        return (_bitmap[x / 64] & Int64(1 << x)) != 0
+        let  x = Int(value) / 64
+        var  xShift = UInt64(value) % 64
+        xShift = UInt64(1) <<  xShift
+        return (_bitmap[x] & xShift) != 0
     }
     
    
 
-    public func fillLeastSignificant16bits(inout array:[Int64], index:Int, mask: UInt64) {
+    public func fillLeastSignificant16bits(inout array:[UInt64], index:Int, mask: UInt64) {
         var pos = index
         let selfBitmap = self._bitmap
-        let iMask = Int64(mask)
+        let iMask = UInt64(mask)
         for k in 0..<selfBitmap.count{
             var bitset = selfBitmap[k]
             while (bitset != 0) {
-                let t = bitset & -bitset
-                let k64 = Int64(k * 64)
+                let notBitset = (~bitset) + 1
+                let t = bitset & notBitset
+                let k64 = UInt64(k * 64)
                 array[pos++] = (k64 + countBits(t - 1)) | iMask
                 bitset ^= t
             }
@@ -196,41 +214,7 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     }
     
 
-//FIXME:    public ShortIterator getShortIterator() {
-//        return new ShortIterator() {
-//            int i = BitmapContainer.self.nextSetBit(0);
-//            int j;
-//            int max = BitmapContainer.self.bitmap.length * 64 - 1;
-//            
-//        
-//            public boolean hasNext() {
-//                return i >= 0;
-//            }
-//            
-//        
-//            public short next() {
-//                j = i;
-//                i = i < max ? BitmapContainer.self.nextSetBit(i + 1) : -1;
-//                return (short) j;
-//            }
-//            
-//        
-//            public ShortIterator clone() {
-//                try {
-//                    return (ShortIterator) super.clone();
-//                } catch (CloneNotSupportedException e) {
-//                    return nil;// will not happen
-//                }
-//            }
-//            
-//        
-//            public void remove() {
-//                //TODO: implement
-//                throw new RuntimeException("unsupported operation: remove");
-//            }
-//        };
-//        
-//    }
+
     
 
 //FIXME:    public ShortIterator getReverseShortIterator() {
@@ -298,8 +282,9 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     
 
     public func iandNot(rhs: ArrayContainer) -> Container{
+        let rhsContent = rhs._content
         for k in 0..<rhs._cardinality {
-            self.remove(rhs._content[k])
+            self.remove(rhsContent[k])
         }
         if (_cardinality <= ArrayContainer.DEFAULT_MAX_SIZE){
             return self.toArrayContainer()
@@ -343,8 +328,10 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
         var newCardinality = self._cardinality
         for k in 0..<rhs._cardinality {
             let  i = Int(rhsContent[k]) >> 6
-            newCardinality += Int(((~selfBitmap[i]) & Int64(1 << rhsContent[k])) >> Int64(rhsContent[k]))
-            self._bitmap[i] |= Int64(1 << rhsContent[k])
+            let shiftingValue:UInt64 = UInt64(rhsContent[k]) % 64
+            let leftShiftedOne = oneUInt64 << shiftingValue
+            newCardinality += Int(((~selfBitmap[i]) & leftShiftedOne) >> shiftingValue)
+            self._bitmap[i] |= leftShiftedOne
         }
         self._cardinality = newCardinality
         return self
@@ -352,7 +339,7 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     
 
     public func ior(rhs: BitmapContainer) ->Container{
-        var newCardinality:Int64 = 0
+        var newCardinality:UInt64 = 0
         var selfBitmap = self._bitmap
         let rhsBitmap = rhs._bitmap
         for k in 0..<selfBitmap.count{
@@ -365,10 +352,13 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     
 
     public func ixor(rhs: ArrayContainer) -> Container{
+        let rhsContent = rhs._content
         for k in 0..<rhs._cardinality {
-            let index = Int(rhs._content[k]) >> 6
-            self._cardinality += 1 - 2 * Int((self._bitmap[index] & (1 << Int64(rhs._content[k]))) >> Int64(rhs._content[k]))
-            self._bitmap[index] ^= Int64(1 << rhs._content[k])
+            let index = Int(rhsContent[k]) >> 6
+            let shiftingValue:UInt64 = UInt64(rhsContent[k]) % 64
+            let leftShiftedOne = oneUInt64 << shiftingValue
+            self._cardinality += 1 - 2 * Int((self._bitmap[index] & leftShiftedOne) >> shiftingValue)
+            self._bitmap[index] ^= leftShiftedOne
         }
         if (self._cardinality <= ArrayContainer.DEFAULT_MAX_SIZE) {
             return self.toArrayContainer()
@@ -378,13 +368,13 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     
 
     public func ixor(rhs: BitmapContainer) -> Container{
-        var newCardinality:Int64 = 0
+        var newCardinality:UInt64 = 0
         var selfBitmap = self._bitmap
         let rhsBitmap = rhs._bitmap
         for k in 0..<selfBitmap.count{
             newCardinality += countBits(selfBitmap[k] ^ rhsBitmap[k])
         }
-        if (newCardinality > Int64(ArrayContainer.DEFAULT_MAX_SIZE)) {
+        if (newCardinality > UInt64(ArrayContainer.DEFAULT_MAX_SIZE)) {
             for k in 0..<selfBitmap.count {
                 selfBitmap[k] = selfBitmap[k] ^ rhsBitmap[k]
             }
@@ -405,10 +395,12 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
 
     public func or(rhs: ArrayContainer) ->Container {
         var answer = clone() as! BitmapContainer
+        let rhsContent = rhs._content
         for k in 0..<rhs._cardinality{
-            let i = Int(rhs._content[k]) >> 6
-            answer._cardinality += Int(~answer._bitmap[i] & Int64(1 << rhs._content[k]) >> Int64(rhs._content[k]))
-            answer._bitmap[i] = answer._bitmap[i] | Int64(1 << rhs._content[k])
+            let i = Int(rhsContent[k]) >> 6
+            let shiftingValue:UInt64 = UInt64(rhsContent[k]) % 64
+            answer._cardinality += Int(~answer._bitmap[i] & (oneUInt64 << shiftingValue) >> shiftingValue)
+            answer._bitmap[i] = answer._bitmap[i] | (oneUInt64 << shiftingValue)
         }
         return answer;
     }
@@ -433,22 +425,24 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
 //        deserialize(in)
 //    }
 
-
     public func remove(value:UInt16) -> Container{
-        let x = Int(value)
-        let xShift = x % 64
+        let xShift = UInt64(value) % 64
+        let index = Int(value) / 64
+        let oneUInt64Shifted:UInt64 = oneUInt64 << xShift
+        
         if (_cardinality == ArrayContainer.DEFAULT_MAX_SIZE + 1) {// self is
             // the
             // uncommon
             // path
-            if ((_bitmap[x / 64] & Int64(1 << xShift)) != 0) {
+            if ((self._bitmap[index] & oneUInt64Shifted) != 0) {
                 --_cardinality
-                _bitmap[x / 64] &= Int64(~(1 << xShift))
+                _bitmap[index] = self._bitmap[index] & ~oneUInt64Shifted
                 return self.toArrayContainer()
             }
         }
-        _cardinality -= Int(_bitmap[x / 64] & Int64(1 << xShift)) >> xShift
-        _bitmap[x / 64] &= Int64(~(1 << xShift))
+
+        _cardinality -= Int((self._bitmap[index] & oneUInt64Shifted) >> xShift)
+        _bitmap[index] =  self._bitmap[index] & ~oneUInt64Shifted
         return self
     }
     
@@ -507,11 +501,17 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     public func xor(rhs: ArrayContainer) ->Container{
         var answer = clone() as! BitmapContainer
         let rhsContent = rhs._content
+        var answerCardinality = answer.cardinality
         for k in 0..<rhs._cardinality {
             let index = Int(rhsContent[k]) >> 6
-            answer._cardinality += Int(1 - 2 * ((answer._bitmap[index] & Int64(1 << rhsContent[k])) >> Int64(rhsContent[k])))
-            answer._bitmap[index] = answer._bitmap[index] ^ Int64(1 << rhsContent[k])
+            let shiftingValue:UInt64 = UInt64(rhsContent[k]) % 64
+            let leftShiftedOne = oneUInt64 << shiftingValue
+            
+            answerCardinality += 1 - 2 * Int(((answer._bitmap[index] & leftShiftedOne) >> shiftingValue))
+              
+            answer._bitmap[index] = answer._bitmap[index] ^ leftShiftedOne
         }
+        answer._cardinality = answerCardinality
         if (answer.cardinality <= ArrayContainer.DEFAULT_MAX_SIZE){
             return answer.toArrayContainer()
         }
@@ -541,26 +541,33 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     
 
     public func rank(lowbits:UInt16) ->Int{
-        let x = Int(lowbits)
-        let leftover = (x + 1) & 63
-        let maxRange = (x + 1)/64
-        var answer:Int64 = _bitmap[0..<maxRange].reduce(0) { $0 + countBits($1) }
+        let x:UInt64 = UInt64(lowbits)
+        let leftover:UInt64 = UInt64((x + 1) & 63)
+        let maxRange = Int((x + 1)/64)
+        let localBitmap = self._bitmap
+        
+       // localBitmap[0..<maxRange].reduce(0) { $0 + countBits($1)}
+      
+        var answer:UInt64 = localBitmap[0..<maxRange].reduce(0) { $0 + countBits($1) }
         
         if (leftover != 0) {
-            answer += countBits(_bitmap[maxRange]<<(64 - leftover))
+            let shift:UInt64 = 64 - leftover
+           // let shiftedValue:UInt64 =
+            let bitCount:UInt64 = countBits(localBitmap[maxRange] << shift)
+            answer += bitCount
         }
         return Int(answer)
     }
     
 
-    public func select(index:Int) ->UInt16{
+    public func select(index:Int) ->Int{
         var leftover = index
         let localBitmap = self._bitmap
         for k in 0..<localBitmap.count {
             let w = Int(countBits(localBitmap[k]))
             if(w > leftover) {
                 let selectedBitIndex = selectBit(word:UInt64(localBitmap[k]), bitIndex:leftover)
-                return UInt16(k * 64 + selectedBitIndex)
+                return Int(k * 64 + selectedBitIndex)
             }
             leftover -= w
         }
@@ -578,8 +585,9 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
             for (var k = 0; (ac._cardinality < maxCardinality) && (k < _bitmap.count); ++k) {
                 var bitset = _bitmap[k]
                 while ((ac._cardinality < maxCardinality) && ( bitset != 0)) {
-                    var t = bitset & -bitset
-                    ac._content[pos++] =  UInt16(Int64(k * 64) + countBits(t - 1))
+                    let notBitset = (~bitset) + 1
+                    let t = bitset & notBitset
+                    ac._content[pos++] =  UInt16(UInt64(k * 64) + countBits(t - 1))
                     ac._cardinality++
                     bitset ^= t
                 }
@@ -595,7 +603,7 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
         }
         let lastword = s % 64
         if(lastword != 0) {
-            let lastWord64 = Int64(64 - lastword)
+            let lastWord64 = UInt64(64 - lastword)
             bc._bitmap[s/64] = (bc._bitmap[s/64] << (lastWord64)) >> (lastWord64)
         }
         return bc
@@ -625,22 +633,24 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     
     //MARK: Class Specific Public methods
     /**
-    * Find the index of the next set bit greater or equal to i, returns -1
+    * Find the index of the next set bit greater or equal to index, returns -1
     * if none found.
     *
     * @param i starting index
     * @return index of the next set bit
     */
     public func nextSetBit(index:Int) ->Int {
+        let localBitmap = self._bitmap
         var x = index >> 6 // i / 64 with sign extension
-        var w = _bitmap[x]
-        w >>= Int64(index)
+        var w = localBitmap[x]
+        let adjustedShift = UInt64(index) % 64
+        w >>= adjustedShift
         if (w != 0) {
             return index + Int(numberOfTrailingZeros(w))
         }
-        for (x++; x < _bitmap.count; x++) {
-            if (_bitmap[x] != 0) {
-                return x * 64 + Int(numberOfTrailingZeros(_bitmap[x]))
+        for (x++; x < localBitmap.count; x++) {
+            if (localBitmap[x] != 0) {
+                return x * 64 + Int(numberOfTrailingZeros(localBitmap[x]))
             }
         }
         return -1;
@@ -656,7 +666,7 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     public func prevSetBit(index:Int) ->Int {
         var x = index >> 6 // i / 64 with sign extension
         var w = _bitmap[x]
-        w <<= Int64(64 - index - 1)
+        w <<= UInt64(64 - index - 1)
         if (w != 0) {
             return index - Int(numberOfLeadingZeros(w))
         }
@@ -678,7 +688,7 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     public func nextUnsetBit(index:Int) ->Int {
         var x = index / 64
         var w = ~_bitmap[x]
-        w >>= Int64(index)
+        w >>= UInt64(index)
         if (w != 0) {
             return  Int (index + numberOfTrailingZeros(w))
         }
@@ -721,7 +731,7 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
 
     //MARK: Hashable Protocol
     public var hashValue: Int {
-        return int64HashValue(self._bitmap)
+        return UInt64HashValue(self._bitmap)
     }
 
     
@@ -738,29 +748,40 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
         for k in 0..<selfBitmap.count {
             var bitset = selfBitmap[k]
             while (bitset != 0) {
-                let t = bitset & -bitset;
-                array[pos++] = UInt16(k * 64 + countBits(t - 1))
+                let notBitset = (~bitset) + 1
+                let t = bitset & notBitset
+                let k64:UInt64 = UInt64(k) * 64
+                array[pos++] = UInt16(k64 + countBits(t - 1))
                 bitset ^= t
             }
         }
     }
 
+    
+//    for (int k = 0; k < arrayContainer.cardinality; ++k) {
+//        final short x = arrayContainer.content[k];
+//    
+//        bitmap[Util.toIntUnsigned(x) / 64] |= (1l << x);
+//    }
+    
     internal func loadData(arrayContainer:ArrayContainer) {
         self._cardinality = arrayContainer._cardinality
         var localBitmap = _bitmap
         var localArrayContent = arrayContainer._content
         for k in 0..<arrayContainer._cardinality {
-            let x = Int64(localArrayContent[k]) % 64
+            let x = UInt64(localArrayContent[k])
             let index = Int(x / 64)
-            let xorValue = (1 << x)
-            localBitmap[index] |= xorValue
+            let xorValue:UInt64 = (oneUInt64 << (x % 64))
+            //localBitmap[index] |= xorValue
+            _bitmap[index] |= xorValue
         }
+        
     }
     
     // answer could be a new BitmapContainer, or (for inplace) it can be
     // "self"
     private func not(answer:BitmapContainer , rangeStart firstOfRange:Int,rangeEnd lastOfRange:Int) -> Container{
-        assert(_bitmap.count == BitmapContainer.MAX_CAPACITY / 64); // checking assumption
+        assert(self._bitmap.count == BitmapContainer.MAX_CAPACITY / 64); // checking assumption
         // that partial
         // bitmaps are not
         // allowed
@@ -782,31 +803,49 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
         
         var cardinalityChange = 0
         let rangeFirstWord = firstOfRange / 64
-        let rangeFirstBitPos = Int64(firstOfRange & 63)
+        let rangeFirstBitPos:UInt64 = UInt64(firstOfRange) & 63
         let rangeLastWord = lastOfRange / 64
-        let rangeLastBitPos = lastOfRange & 63
+        let rangeLastBitPos:UInt64 = UInt64(lastOfRange) & 63
+
         
         // if not in place, we need to duplicate stuff before
         // rangeFirstWord and after rangeLastWord
         if (answer != self) {
-            //            System.arraycopy(bitmap, 0, answer.bitmap, 0, rangeFirstWord);
-            //            System.arraycopy(bitmap, rangeLastWord + 1, answer.bitmap,
-            //                rangeLastWord + 1, bitmap.length - (rangeLastWord + 1));
+            //System.arraycopy(bitmap, 0, answer.bitmap, 0, rangeFirstWord);
+            
+            let selfBitmapPtr = UnsafeBufferPointer(start: &_bitmap, count: _bitmap.count)
+            let baseSelfBitmapPtr = selfBitmapPtr.baseAddress as UnsafePointer<UInt64>
+            
+            let answerBitmapPtr = UnsafeMutableBufferPointer(start: &answer._bitmap, count: answer._bitmap.count)
+            let baseAnswerBitmapPtr = answerBitmapPtr.baseAddress as UnsafeMutablePointer<UInt64>
+            
+            memcpy(baseAnswerBitmapPtr,baseSelfBitmapPtr,rangeFirstWord * sizeof(UInt64))
+            //System.arraycopy(bitmap, rangeLastWord + 1, answer.bitmap, rangeLastWord + 1, bitmap.length - (rangeLastWord + 1));
+            let position = rangeLastWord + 1
+            let length = _bitmap.count - (rangeLastWord + 1)
+            
+            let sourcePtr = baseSelfBitmapPtr.advancedBy(position)
+            let destinationPtr = baseAnswerBitmapPtr.advancedBy(position)
+            
+            memcpy(destinationPtr,sourcePtr,length * sizeof(UInt64))
+            
         }
         
         // unfortunately, the simple expression gives the wrong mask for
         // rangeLastBitPos==63
         // no branchless way comes to mind
-        let maskOnLeft:Int64 = (rangeLastBitPos == 63) ? -1 : (1 << (rangeLastBitPos + 1)) - 1
+        let rangeLastBitPosShiting:UInt64 = (rangeLastBitPos + 1) % 64
+        let maskOnLeft:UInt64 = (rangeLastBitPos == 63) ? UInt64.max : (oneUInt64 << rangeLastBitPosShiting) - 1
         
-        var mask = Int64(-1) // now zero out stuff in the prefix
-        mask ^= ((1 << rangeFirstBitPos) - 1)
+        var mask = UInt64.max // now zero out stuff in the prefix
+        let rangeFirstBitPosShiting:UInt64 = (rangeFirstBitPos) % 64
+        mask ^= ((oneUInt64 << rangeFirstBitPosShiting) - 1)
         
         if (rangeFirstWord == rangeLastWord) {
             // range starts and ends in same word (may have
             // unchanged bits on both left and right)
-            mask &= maskOnLeft;
-            cardinalityChange = Int(-countBits(_bitmap[rangeFirstWord]))
+            mask &= maskOnLeft
+            cardinalityChange = -Int(countBits(_bitmap[rangeFirstWord]))
             answer._bitmap[rangeFirstWord] = _bitmap[rangeFirstWord] ^ mask
             cardinalityChange += Int(countBits(answer._bitmap[rangeFirstWord]))
             answer._cardinality = cardinality + cardinalityChange;
@@ -817,20 +856,26 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
             return answer
         }
         
-        // range spans words
-        cardinalityChange += Int(-countBits(_bitmap[rangeFirstWord]))
-        answer._bitmap[rangeFirstWord] = _bitmap[rangeFirstWord] ^ mask
+        let INTmask:Int = -16
+        let INTmask_1:Int = -1
+        let INTbit0:Int = -683
+         // range spans words
+        cardinalityChange -= Int(countBits(self._bitmap[rangeFirstWord]))
+        answer._bitmap[rangeFirstWord] = self._bitmap[rangeFirstWord] ^ mask
         cardinalityChange += Int(countBits(answer._bitmap[rangeFirstWord]))
         
-        cardinalityChange += Int(-countBits(_bitmap[rangeLastWord]))
-        answer._bitmap[rangeLastWord] = _bitmap[rangeLastWord] ^ maskOnLeft
+        cardinalityChange -= Int(countBits(self._bitmap[rangeLastWord]))
+        answer._bitmap[rangeLastWord] = self._bitmap[rangeLastWord] ^ maskOnLeft
         cardinalityChange += Int(countBits(answer._bitmap[rangeLastWord]))
         // negate the words, if any, strictly between first and last
         let loopStart = (rangeFirstWord + 1)
         for  i in loopStart..<rangeLastWord {
-            cardinalityChange += Int(64 - 2 * countBits(_bitmap[i]))
-            answer._bitmap[i] = ~_bitmap[i]
+            let numberOfBits = Int(countBits(self._bitmap[i]))
+            let cardinalityDelta = 64 - 2 * numberOfBits
+            cardinalityChange += cardinalityDelta
+            answer._bitmap[i] = ~self._bitmap[i]
         }
+        
         answer._cardinality = _cardinality + cardinalityChange
         
         if (answer.cardinality <= ArrayContainer.DEFAULT_MAX_SIZE){
@@ -841,9 +886,11 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     
     internal func ilazyor(rhs:ArrayContainer) ->Container {
         self._cardinality = -1// invalid
+        let rhsContent = rhs._content
         for k in 0..<rhs._cardinality  {
-            let i = Int(rhs._content[k]) >> 6
-            self._bitmap[i] |= (1 << Int64(rhs._content[k]))
+            let i = Int(rhsContent[k]) >> 6
+            let shiftingValue:UInt64 = UInt64(rhsContent[k]) % 64
+            self._bitmap[i] |= (oneUInt64 << shiftingValue)
         }
         return self
     }
@@ -859,9 +906,11 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     internal func lazyor(rhs:ArrayContainer) ->Container {
         var answer = self.clone() as! BitmapContainer
         answer._cardinality = -1// invalid
+        let rhsContent = rhs._content
         for k in 0..<rhs._cardinality {
-            let i = Int(rhs._content[k]) >> 6
-            answer._bitmap[i] |= (1 << Int64(rhs._content[k]))
+            let i = Int(rhsContent[k]) >> 6
+            let shiftingValue:UInt64 = UInt64(rhsContent[k]) % 64
+            answer._bitmap[i] |= (oneUInt64 << shiftingValue)
         }
         return answer
     }
@@ -876,34 +925,62 @@ public class BitmapContainer:Container, Equatable, Printable, Hashable{
     }
     
     internal func computeCardinality() {
-        var newCardinality:Int64 = _bitmap.reduce(0) { $0 + countBits($1) }
+        var newCardinality:UInt64 = _bitmap.reduce(0) { $0 + countBits($1) }
         self._cardinality = Int(newCardinality)
     }
 
 
 }
 
-// FIXME:   public Iterator<Short> iterator() {
-//        return new Iterator<Short>() {
-//            final ShortIterator si = BitmapContainer.self.getShortIterator();
+//FIXME:    public ShortIterator getShortIterator() {
+//        return new ShortIterator() {
+//            int i = BitmapContainer.self.nextSetBit(0);
+//            int j;
+//            int max = BitmapContainer.self.bitmap.length * 64 - 1;
 //
 //
 //            public boolean hasNext() {
-//                return si.hasNext();
+//                return i >= 0;
 //            }
 //
 //
-//            public Short next() {
-//                return si.next();
+//            public short next() {
+//                j = i;
+//                i = i < max ? BitmapContainer.self.nextSetBit(i + 1) : -1;
+//                return (short) j;
 //            }
 //
-//
-//            public void remove() {
-//                //TODO: implement
-//                throw new RuntimeException("unsupported operation: remove");
-//            }
 //        };
+//
 //    }
+
+// MARK:Sequence Protocol
+extension BitmapContainer : SequenceType {
+    typealias GeneratorType = BitmapContainerGenerator
+    public func generate() -> BitmapContainerGenerator{
+        return BitmapContainerGenerator(self)
+    }
+}
+
+public struct BitmapContainerGenerator : GeneratorType{
+    let _backingBitmapContainer : BitmapContainer
+    var i:Int
+    let max:Int
+    init(_ backingBitmapContainer: BitmapContainer) {
+        _backingBitmapContainer = backingBitmapContainer
+        i = backingBitmapContainer.nextSetBit(0)
+        max = backingBitmapContainer._bitmap.count * 64 - 1
+    }
+    typealias Element = UInt16
+    mutating public func next() -> UInt16? {
+        if i >= 0{
+            let j = UInt16(i)
+            i = i < max ? _backingBitmapContainer.nextSetBit(i + 1) : -1
+            return j
+        }
+        return nil
+    }
+}
 
 public func ==(lhs: BitmapContainer, rhs: BitmapContainer) -> Bool{
 

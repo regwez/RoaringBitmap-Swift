@@ -60,7 +60,7 @@ public protocol ImmutableBitmapDataProvider {
     *
     * @return the cardinality
     */
-    var cardinality:UInt32{get}
+    var cardinality:Int{get}
     
        /**
     * Estimate of the memory usage of this data structure.
@@ -82,7 +82,7 @@ public protocol ImmutableBitmapDataProvider {
     *
     * @return array representing the set values.
     */
-    var arrayRepresentation:[Int64]{get}
+    var asArray:[UInt64]{get}
     
     /**
     * Return the jth value stored in this bitmap.
@@ -91,7 +91,7 @@ public protocol ImmutableBitmapDataProvider {
     *
     * @return the value
     */
-    func select(atIndex index:Int) -> UInt32
+    func select(atIndex index:Int) -> Int
     
     /**
     * Rank returns the number of integers that are smaller or equal to x (Rank(infinity) would be GetCardinality()).

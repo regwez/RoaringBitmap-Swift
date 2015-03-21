@@ -21,7 +21,7 @@ extension Int    : BitshiftOperationsType {}
 extension Int8   : BitshiftOperationsType {}
 extension Int16  : BitshiftOperationsType {}
 extension Int32  : BitshiftOperationsType {}
-extension Int64  : BitshiftOperationsType {}
+extension UInt64  : BitshiftOperationsType {}
 extension UInt   : BitshiftOperationsType {}
 extension UInt8  : BitshiftOperationsType {}
 extension UInt16 : BitshiftOperationsType {}
@@ -44,19 +44,57 @@ extension UInt64 : BitshiftOperationsType {}
 *     to zero.
 * @since 1.5
 */
-public func numberOfTrailingZeros(i:Int64) -> Int32 {
+//public func numberOfTrailingZeros(i:UInt64) -> Int {
+//    
+//    var x:UInt64 = 0
+//    if (i == 0){
+//        return 64
+//    }
+//    var n = UInt64(63)
+//    var y = UInt64(i)
+//    
+//    if (y != 0) {
+//        n = n - 32
+//        x = y
+//    } else {
+//        x = i >> 32
+//    }
+//    y = x << 16;
+//    if (y != 0) {
+//        n = n - 16; x = y;
+//    }
+//    y = x << 8;
+//    if (y != 0) {
+//        n = n - 8; x = y;
+//    }
+//    y = x << 4;
+//    if (y != 0) {
+//        n = n - 4; x = y;
+//    }
+//    y = x << 2;
+//    if (y != 0) {
+//        n = n - 2; x = y;
+//    }
+//    let finalShiftedX = ((x << 1) >> 31)
+//    return Int(n - finalShiftedX)
+//}
+
+public func numberOfTrailingZeros(value:UInt64) -> Int {
     
-    var x:Int32 = 0
-    if (i == 0){
+    if value == 0{
         return 64
     }
-    var n = Int32(63)
-    var y = Int32(i); if (y != 0) { n = n - 32; x = y; } else {x = Int32(i >> 32 )}
-    y = x << 16; if (y != 0) { n = n - 16; x = y; }
-    y = x << 8; if (y != 0) { n = n - 8; x = y; }
-    y = x << 4; if (y != 0) { n = n - 4; x = y; }
-    y = x << 2; if (y != 0) { n = n - 2; x = y; }
-    return n - ((x << 1) >> 31)
+    var c:UInt64 = 64 // c will be the number of zero bits on the right
+    let v = value & (~value + 1)
+    if (v != 0 ){ c--}
+    if (v & 0x00000000FFFFFFFF) != 0 { c -= 32}
+    if (v & 0x0000FFFF0000FFFF) != 0 { c -= 16}
+    if (v & 0x00FF00FF00FF00FF) != 0 { c -= 8}
+    if (v & 0x0F0F0F0F0F0F0F0F) != 0 { c -= 4}
+    if (v & 0x3333333333333333) != 0 { c -= 2}
+    if (v & 0x5555555555555555) != 0 { c -= 1}
+    
+    return Int(c)
 }
 
 
@@ -81,7 +119,7 @@ public func numberOfTrailingZeros(i:Int64) -> Int32 {
 *     is equal to zero.
 * @since 1.5
 */
-public func numberOfLeadingZeros(i:Int64) -> Int32{
+public func numberOfLeadingZeros(i:UInt64) -> Int32{
     // HD, Figure 5-6
     if (i == 0){
         return 64
@@ -100,16 +138,16 @@ public func numberOfLeadingZeros(i:Int64) -> Int32{
 /**
 * Various useful methods for roaring bitmaps.
 */
-func countBits (input:Int64) ->Int64{
+public func countBits (input:UInt64) ->UInt64{
     var i = input
     // HD, Figure 5-14
-    i = i - ((i >> 1) & Int64(0x5555555555555555))
-    i = (i & Int64(0x3333333333333333)) + ((i >> 2) & Int64(0x3333333333333333))
-    i = (i + (i >> 4)) & Int64(0x0f0f0f0f0f0f0f0f)
+    i = i - ((i >> 1) & UInt64(0x5555555555555555))
+    i = (i & UInt64(0x3333333333333333)) + ((i >> 2) & UInt64(0x3333333333333333))
+    i = (i + (i >> 4)) & UInt64(0x0f0f0f0f0f0f0f0f)
     i = i + (i >> 8)
     i = i + (i >> 16)
     i = i + (i >> 32)
-    return i & Int64(0x7f)
+    return i & UInt64(0x7f)
 }
 
     
@@ -183,7 +221,7 @@ internal func  advanceUntil(array:[UInt16], pos: Int, length:Int , min: UInt16) 
 * @param bitmap1   first bitmap
 * @param bitmap2   second bitmap
 */
-public func fillArrayAND(inout #container:[UInt16] ,#bitmap1: [Int64], #bitmap2: [Int64] ) {
+public func fillArrayAND(inout #container:[UInt16] ,#bitmap1: [UInt64], #bitmap2: [UInt64] ) {
     var pos = 0
     if (bitmap1.count  != bitmap2.count){
         assert(false, "not supported")
@@ -191,9 +229,9 @@ public func fillArrayAND(inout #container:[UInt16] ,#bitmap1: [Int64], #bitmap2:
     for k in 0..<bitmap1.count{
         var bitset = bitmap1[k] & bitmap2[k]
         while (bitset != 0) {
-            let t = bitset & -bitset
-            let cValue = Int64(k * 64) + countBits(t - 1)
-            println("pos = \(pos)")
+            let notBitset = (~bitset) + 1
+            let t = bitset & notBitset
+            let cValue = UInt64(k * 64) + countBits(t - 1)
             container[pos++] = UInt16(cValue)
             bitset ^= t
         }
@@ -211,7 +249,7 @@ public func fillArrayAND(inout #container:[UInt16] ,#bitmap1: [Int64], #bitmap2:
 * @param bitmap2   second bitmap
 */
 
-public func fillArrayANDNOT(inout #container:[UInt16] ,#bitmap1: [Int64], #bitmap2: [Int64] ) {
+public func fillArrayANDNOT(inout #container:[UInt16] ,#bitmap1: [UInt64], #bitmap2: [UInt64] ) {
     var pos = 0
     if (bitmap1.count  != bitmap2.count){
         assert(false, "not supported")
@@ -219,8 +257,9 @@ public func fillArrayANDNOT(inout #container:[UInt16] ,#bitmap1: [Int64], #bitma
     for k in 0..<bitmap1.count{
         var bitset = bitmap1[k] & (~bitmap2[k])
         while (bitset != 0) {
-            let t = bitset & -bitset
-            let cValue = Int64(k * 64) + countBits(t - 1)
+            let notBitset = (~bitset) + 1
+            let t = bitset & notBitset
+            let cValue = UInt64(k * 64) + countBits(t - 1)
             println("pos = \(pos)")
             container[pos++] = UInt16(cValue)
             bitset ^= t
@@ -237,7 +276,7 @@ public func fillArrayANDNOT(inout #container:[UInt16] ,#bitmap1: [Int64], #bitma
 * @param bitmap2   second bitmap
 */
 
-public func fillArrayXOR(inout #container:[UInt16] ,#bitmap1: [Int64], #bitmap2: [Int64] ) {
+public func fillArrayXOR(inout #container:[UInt16] ,#bitmap1: [UInt64], #bitmap2: [UInt64] ) {
     var pos = 0
     if (bitmap1.count  != bitmap2.count){
         assert(false, "not supported")
@@ -245,8 +284,9 @@ public func fillArrayXOR(inout #container:[UInt16] ,#bitmap1: [Int64], #bitmap2:
     for k in 0..<bitmap1.count{
         var bitset = bitmap1[k] ^ bitmap2[k]
         while (bitset != 0) {
-            let t = bitset & -bitset
-            let cValue = Int64(k * 64) + countBits(t - 1)
+            let notBitset = (~bitset) + 1
+            let t = bitset & notBitset
+            let cValue = UInt64(k * 64) + countBits(t - 1)
             println("pos = \(pos)")
             container[pos++] = UInt16(cValue)
             bitset ^= t

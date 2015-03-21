@@ -31,7 +31,7 @@ public protocol BitmapDataProvider: ImmutableBitmapDataProvider {
     *
     * @return the value
     */
-    func select(atIndex index:Int) -> UInt32
+    func select(atIndex index:Int) -> Int
     
     /**
     * Recover allocated but unused memory.

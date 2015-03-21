@@ -16,6 +16,8 @@ import UIKit
 
 public class ContainerDispatcher {
     
+    
+    
     /**
     * Computes the bitwise AND of this container with another
     * (intersection). This container as well as the provided container are
@@ -188,6 +190,8 @@ public class ContainerDispatcher {
 */
 public protocol Container {
     
+    var sequence:SequenceOf<UInt16> {get}
+    
  
     var hashValue: Int {get}
     
@@ -279,7 +283,7 @@ public protocol Container {
     * @param i    starting index
     * @param mask indicates most significant bits
     */
-    func fillLeastSignificant16bits(inout array:[Int64], index:Int, mask:UInt64)
+    func fillLeastSignificant16bits(inout array:[UInt64], index:Int, mask:UInt64)
     
     /**
     * Size of the underlying array
@@ -520,7 +524,7 @@ public protocol Container {
     *
     * @return the value
     */
-    func select(index:Int) -> UInt16
+    func select(index:Int) -> Int
     
     /**
     * Create a new Container containing at most maxcardinality integers.

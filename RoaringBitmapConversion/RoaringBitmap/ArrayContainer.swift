@@ -16,7 +16,7 @@ import UIKit
 public class ArrayContainer: Container, Equatable, Printable, Hashable {
     private static let DEFAULT_INIT_SIZE = 4
     
-    static let DEFAULT_MAX_SIZE = 4096
+    public static let DEFAULT_MAX_SIZE = 4096
     
     
     internal var _cardinality = 0
@@ -36,7 +36,7 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
     * @param capacity The capacity of the container
     */
     public init(capacity:Int) {
-        _content = [UInt16]()
+        _content = [UInt16](count: capacity, repeatedValue: 0)
         _content.reserveCapacity(capacity)
     }
     
@@ -71,6 +71,10 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
     
     //MARK: Container protocol
     
+    public var sequence:SequenceOf<UInt16>{
+        return SequenceOf<UInt16>(self)
+    }
+    
     /**
     * running time is in O(n) time if insert is not in order.
     */
@@ -91,7 +95,8 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
             // insertion : shift the elements > x by one position to
             // the right
             // and put x in it's appropriate place
-            _content.insert(value, atIndex: -loc - 1)
+            let insertionIndex = -loc - 1
+            _content.insert(value, atIndex: insertionIndex)
             ++_cardinality
         }
         return self
@@ -153,9 +158,10 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
     }
     
     
-    public func fillLeastSignificant16bits(inout array:[Int64], index:Int, mask:UInt64) {
+    public func fillLeastSignificant16bits(inout array:[UInt64], index:Int, mask:UInt64) {
+        let localContent = self._content
         for k in 0..<self._cardinality{
-            array[k + index] = Int64(UInt64(self._content[k]) | mask)
+            array[k + index] = UInt64(localContent[k]) | mask
         }
         
     }
@@ -167,7 +173,7 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
     
     
     public var cardinality:Int {
-        return _cardinality;
+        return _cardinality
     }
     
     
@@ -281,64 +287,67 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
     
     public func inot(#rangeStart:Int, rangeEnd lastOfRange:Int) ->Container{
         // determine the span of array indices to be affected
-        var localContent = _content
+
         let localCadinality = cardinality
-        var startIndex = unsignedBinarySearch(localContent, 0, localCadinality, UInt16(rangeStart))
+        var startIndex = unsignedBinarySearch(_content, 0, localCadinality, UInt16(rangeStart))
             if (startIndex < 0){
                 startIndex = -startIndex - 1
         }
-        var lastIndex = unsignedBinarySearch(localContent, 0, localCadinality, UInt16(lastOfRange))
+        var lastIndex = unsignedBinarySearch(_content, 0, localCadinality, UInt16(lastOfRange))
         if (lastIndex < 0){
             lastIndex = -lastIndex - 1 - 1
         }
         let currentValuesInRange = lastIndex - startIndex + 1
         let  spanToBeFlipped = lastOfRange - rangeStart + 1
         let  newValuesInRange = spanToBeFlipped - currentValuesInRange
-        var buffer = [UInt16](count: newValuesInRange, repeatedValue: 0)
+        var buffer:[UInt16]
         let cardinalityChange = newValuesInRange - currentValuesInRange
         let newCardinality = localCadinality + cardinalityChange
         
         if (cardinalityChange > 0) { // expansion, right shifting needed
-            if (newCardinality > localContent.count) {
+            if (newCardinality > _content.count) {
                 // so big we need a bitmap?
                 if (newCardinality >= ArrayContainer.DEFAULT_MAX_SIZE){
-                    return BitmapContainer().inot(rangeStart: rangeStart, rangeEnd: lastOfRange)
+                    return toBitmapContainer().inot(rangeStart: rangeStart, rangeEnd: lastOfRange)
                 }
-                let contentExtension = [UInt16](count: newCardinality - localContent.count, repeatedValue:0)
-                localContent += contentExtension
+                let expendedContent = [UInt16](count: newCardinality , repeatedValue:0)
+                let expendedContentPtr = UnsafeMutablePointer<Void>(expendedContent)
+                memcpy(expendedContentPtr,_content,_content.count * sizeof(UInt16))
+                _content = expendedContent
             }
-            
+            buffer = [UInt16](count: newValuesInRange, repeatedValue: 0)
             // slide right the _contents after the range
-            //System.arraycopy(localContent, lastIndex + 1, localContent,lastIndex + 1 + cardinalityChange, cardinality - 1 - lastIndex)
-            let position = lastIndex
+            //System.arraycopy(content, lastIndex + 1, content,lastIndex + 1 + cardinalityChange, cardinality - 1 - lastIndex);
+            let startingDelta = lastIndex + 1
             let length = cardinality - 1 - lastIndex
             
-            let contentPtr = UnsafeMutableBufferPointer(start: &localContent, count: localContent.count)
+            let contentPtr = UnsafeMutableBufferPointer(start: &_content, count: _content.count)
             let baseContentPtr = contentPtr.baseAddress as UnsafeMutablePointer<UInt16>
             
-            let sourcePtr = baseContentPtr.advancedBy(position)
-            let destinationPtr = baseContentPtr.advancedBy(lastIndex + cardinalityChange)
+            let sourcePtr = baseContentPtr.advancedBy(startingDelta)
+            let destinationPtr = baseContentPtr.advancedBy(startingDelta + cardinalityChange)
             
             memmove(destinationPtr,sourcePtr,length * sizeof(UInt16))
             
-            
-            
+
             negateRange(&buffer, startIndex: startIndex, lastIndex: lastIndex,startRange: rangeStart, lastRange: lastOfRange)
         } else { // no expansion needed
+            buffer = [UInt16](count: newValuesInRange, repeatedValue: 0)
             negateRange(&buffer, startIndex: startIndex, lastIndex: lastIndex, startRange: rangeStart, lastRange: lastOfRange);
             if (cardinalityChange < 0) {
                 // contraction, left sliding.
                 // Leave array oversize
-                //System.arraycopy(localContent, startIndex + newValuesInRange - cardinalityChange,localContent, startIndex + newValuesInRange, newCardinality - (startIndex + newValuesInRange))
+                //System.arraycopy(content, startIndex + newValuesInRange - cardinalityChange,content, startIndex + newValuesInRange,
+               // newCardinality - (startIndex + newValuesInRange));
                 
-                let position = startIndex + newValuesInRange - 1
+                let startingDelta = startIndex + newValuesInRange
                 let length = newCardinality - (startIndex + newValuesInRange)
                 
-                let contentPtr = UnsafeMutableBufferPointer(start: &localContent, count: localContent.count)
+                let contentPtr = UnsafeMutableBufferPointer(start: &_content, count: _content.count)
                 let baseContentPtr = contentPtr.baseAddress as UnsafeMutablePointer<UInt16>
                 
-                let sourcePtr = baseContentPtr.advancedBy(position - cardinalityChange)
-                let destinationPtr = baseContentPtr.advancedBy(position)
+                let sourcePtr = baseContentPtr.advancedBy(startingDelta - cardinalityChange)
+                let destinationPtr = baseContentPtr.advancedBy(startingDelta)
                 
                 memmove(destinationPtr,sourcePtr,length * sizeof(UInt16))
                 
@@ -430,15 +439,18 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
     public func or(rhs: ArrayContainer) -> Container{
         var value1 = self
         var totalCardinality = value1._cardinality + rhs._cardinality
+        let one64 = UInt64(1)
         if (totalCardinality > ArrayContainer.DEFAULT_MAX_SIZE) {// it could be a bitmap!
             var bc =  BitmapContainer()
             for k in 0..<rhs._cardinality{
                 let i = Int(rhs._content[k]) >> 6
-                bc._bitmap[i] |= (1 << Int64(rhs._content[k]))
+                let shiftValue:UInt64 = UInt64(rhs._content[k]) % 64
+                bc._bitmap[i] |= (one64 << shiftValue)
             }
             for k in 0..<self._cardinality{
                 let i = Int(self._content[k]) >> 6
-                bc._bitmap[i] |= (1 << Int64(self._content[k]))
+                let shiftValue:UInt64 = UInt64(self._content[k]) % 64
+                bc._bitmap[i] |= (one64 << shiftValue)
             }
             let newCardinality = bc._bitmap.reduce(0, combine: { $0 + countBits($1) })
             bc._cardinality = Int(newCardinality)
@@ -519,9 +531,10 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
     
     public func trim() {
         let newSize = self.cardinality
-        var newContent = [UInt16] (count: newSize, repeatedValue: 0)
         
-        memcpy(&newContent, self._content, newSize * sizeof(Int))
+        var newContent = [UInt16] (count: newSize, repeatedValue: 0)
+        memcpy(&newContent, self._content, newSize * sizeof(UInt16))
+        self._content = newContent
 
     }
     
@@ -529,15 +542,18 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
     public func xor(rhs: ArrayContainer) -> Container{
         var value1 = self
         var totalCardinality = value1._cardinality + rhs._cardinality
+        let one64 = UInt64(1)
         if (totalCardinality > ArrayContainer.DEFAULT_MAX_SIZE) {// it could be a bitmap!
             var bc =  BitmapContainer()
             for k in 0..<rhs._cardinality{
                 let i = Int(rhs._content[k]) >> 6
-                bc._bitmap[i] ^= (1 << Int64(rhs._content[k]))
+                let shiftValue:UInt64 = UInt64(rhs._content[k]) % 64
+                bc._bitmap[i] ^= (one64 << shiftValue)
             }
             for k in 0..<self._cardinality{
                 let i = Int(self._content[k]) >> 6
-                bc._bitmap[i] ^= (1 << Int64(self._content[k]))
+                let shiftValue:UInt64 = UInt64(self._content[k]) % 64
+                bc._bitmap[i] ^= (one64 << shiftValue)
             }
             
             let newCardinality = bc._bitmap.reduce(0, combine: { $0 + countBits($1) })
@@ -571,8 +587,8 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
     }
     
     
-    public func select(index:Int) -> UInt16{
-        return self._content[index]
+    public func select(index:Int) -> Int{
+        return Int(self._content[index])
     }
     
     
@@ -598,10 +614,10 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
     
     //MARK: Hashable 
     public var hashValue: Int  {
-        var hash = Int64(0)
-        let i31 = Int64(31)
+        var hash = UInt64(0)
+        let i31 = UInt64(31)
         for k in 0..<_cardinality{
-            hash = hash + (i31 * hash + Int64(_content[k]))
+            hash = hash + (i31 * hash + UInt64(_content[k]))
         }
         return Int(hash)
     }
@@ -640,8 +656,8 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
     
     // for use in inot range known to be nonempty
     private func negateRange(inout buffer:[UInt16] , startIndex:Int, lastIndex:Int, startRange:Int, lastRange:Int) {
+        let localContent = _content
         // compute the negation Into buffer
-        
         var outPos = 0
         var inPos = startIndex // value here always >= valInRange,
         // until it is exhausted
@@ -650,7 +666,7 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
         var valInRange = startRange
         for (; valInRange <= lastRange && inPos <= lastIndex; ++valInRange) {
             let valInRange16 = UInt16(valInRange)
-            if valInRange16 != _content[inPos] {
+            if valInRange16 != localContent[inPos] {
                 buffer[outPos++] = valInRange16
             } else {
                 ++inPos
@@ -667,37 +683,44 @@ public class ArrayContainer: Container, Equatable, Printable, Hashable {
             assert(false,"negateRange: outPos \(outPos) whereas buffer.length= \(buffer.count)")
         }
         // copy back from buffer...caller must ensure there is room
-        var i = startIndex
-        for item in buffer {
-            _content[i++] = item
-        }
+        let contentPtr = UnsafeMutableBufferPointer(start: &_content, count: _content.count)
+        let baseContentPtr = contentPtr.baseAddress as UnsafeMutablePointer<UInt16>
+        let destinationPtr = baseContentPtr.advancedBy(startIndex)
+        
+        memcpy(destinationPtr,buffer,buffer.count * sizeof(UInt16))
     }
+    
     
 
 }
 
-//FIXME:    public Iterator<Short> iterator() {
-//        return new Iterator<Short>() {
-//            UInt16 pos = 0;
-//
-//
-//            public boolean hasNext() {
-//                return pos < ArrayContainer.self.cardinality;
-//            }
-//
-//
-//            public Short next() {
-//                return ArrayContainer.self._content[pos++];
-//            }
-//
-//
-//            public void remove() {
-//                ArrayContainer.self.remove((UInt16) (pos - 1));
-//                pos--;
-//            }
-//        };
-//    }
 
+// MARK:Sequence Protocol
+extension ArrayContainer : SequenceType {
+    typealias GeneratorType = ArrayContainerGenerator
+    public func generate() -> ArrayContainerGenerator{
+        return ArrayContainerGenerator(content:self._content,cardinality:self._cardinality)
+    }
+}
+
+public struct ArrayContainerGenerator : GeneratorType{
+    let _arrayContainerContent : [UInt16]
+    let _arrayContainerCardinality:Int
+    var pos = 0
+    init(content:[UInt16], cardinality: Int) {
+        _arrayContainerContent = content
+        _arrayContainerCardinality = cardinality
+    }
+    typealias Element = UInt16
+    mutating public func next() -> UInt16? {
+        if pos < _arrayContainerCardinality{
+            return _arrayContainerContent[pos++]
+        }
+        return nil
+    }
+}
+
+//MARK: Equatable Protocol
 public func ==(lhs: ArrayContainer, rhs: ArrayContainer) -> Bool{
     
     if (lhs._cardinality != rhs._cardinality){

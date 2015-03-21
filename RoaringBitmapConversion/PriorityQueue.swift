@@ -138,6 +138,7 @@ extension PriorityQueue: GeneratorType {
     }
 }
 
+
 extension PriorityQueue: SequenceType {
     typealias Generator = PriorityQueue
     public func generate() -> Generator {
