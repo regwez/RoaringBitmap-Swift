@@ -8,35 +8,35 @@
 
 import Foundation
 
-public class PriorityQueue<T> {
+open class PriorityQueue<T> {
 
-    private final var _heap: [T]
-    private let compare: (T, T) -> Bool
+    fileprivate final var _heap: [T]
+    fileprivate let compare: (T, T) -> Bool
 
-    public init(_ compare: (T, T) -> Bool) {
+    public init(_ compare: @escaping (T, T) -> Bool) {
         _heap = []
         self.compare = compare
     }
     
-    public init(initialSize:Int, compare: (T, T) -> Bool) {
+    public init(initialSize:Int, compare: @escaping (T, T) -> Bool) {
         _heap = []
         _heap.reserveCapacity(initialSize)
         self.compare = compare
     }
 
 
-    public func push(newElements: [T]) {
+    open func push(_ newElements: [T]) {
         for e in newElements{
             self.push(e)
         }
     }
     
-    public func push(newElement: T) {
+    open func push(_ newElement: T) {
         _heap.append(newElement)
         siftUp(_heap.endIndex - 1)
     }
 
-    public func peek() -> T? {
+    open func peek() -> T? {
         if _heap.count == 0 {
             return nil
         }
@@ -44,7 +44,7 @@ public class PriorityQueue<T> {
         return peek
     }
     
-    public func pop() -> T? {
+    open func pop() -> T? {
         if _heap.count == 0 {
             return nil
         }
@@ -54,7 +54,7 @@ public class PriorityQueue<T> {
         return pop
     }
 
-    private func siftDown(index: Int) -> Bool {
+    fileprivate func siftDown(_ index: Int) -> Bool {
         let left = index * 2 + 1
         let right = index * 2 + 2
         var smallest = index
@@ -73,7 +73,7 @@ public class PriorityQueue<T> {
         return false
     }
 
-    private func siftUp(index: Int) -> Bool {
+    fileprivate func siftUp(_ index: Int) -> Bool {
         if index == 0 {
             return false
         }
@@ -96,9 +96,9 @@ extension PriorityQueue {
         return _heap.isEmpty
     }
 
-    public func update<T2 where T2: Equatable>(element: T2) -> T? {
+    public func update<T2>(_ element: T2) -> T? where T2: Equatable {
         assert(element is T)  // How to enforce this with type constraints?
-        for (index, item) in enumerate(_heap) {
+        for (index, item) in _heap.enumerated() {
             if (item as! T2) == element {
                 _heap[index] = element as! T
                 if siftDown(index) || siftUp(index) {
@@ -109,9 +109,9 @@ extension PriorityQueue {
         return nil
     }
 
-    public func remove<T2 where T2: Equatable>(element: T2) -> T? {
+    public func remove<T2>(_ element: T2) -> T? where T2: Equatable {
         assert(element is T)  // How to enforce this with type constraints?
-        for (index, item) in enumerate(_heap) {
+        for (index, item) in _heap.enumerated() {
             if (item as! T2) == element {
                 swap(&_heap[index], &_heap[_heap.endIndex - 1])
                 _heap.removeLast()
@@ -131,17 +131,17 @@ extension PriorityQueue {
     }
 }
 
-extension PriorityQueue: GeneratorType {
-    typealias Element = T
+extension PriorityQueue: IteratorProtocol {
+    public typealias Element = T
     public func next() -> Element? {
         return pop()
     }
 }
 
 
-extension PriorityQueue: SequenceType {
-    typealias Generator = PriorityQueue
-    public func generate() -> Generator {
+extension PriorityQueue: Sequence {
+    public typealias Iterator = PriorityQueue
+    public func makeIterator() -> Iterator {
         return self
     }
 }

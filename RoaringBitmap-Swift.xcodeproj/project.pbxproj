@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		055ABD971ABFCC5200E309E1 /* BitSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055ABD961ABFCC5200E309E1 /* BitSet.swift */; };
 		055CB49F1AB7CB4C0077D02A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB49E1AB7CB4C0077D02A /* AppDelegate.swift */; };
 		055CB4A11AB7CB4C0077D02A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CB4A01AB7CB4C0077D02A /* ViewController.swift */; };
 		055CB4A41AB7CB4C0077D02A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055CB4A21AB7CB4C0077D02A /* Main.storyboard */; };
@@ -41,14 +42,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		055CB4991AB7CB4C0077D02A /* RoaringBitmapConversion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoaringBitmapConversion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		055ABD961ABFCC5200E309E1 /* BitSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitSet.swift; sourceTree = "<group>"; };
+		055CB4991AB7CB4C0077D02A /* RoaringBitmap-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RoaringBitmap-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		055CB49D1AB7CB4C0077D02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		055CB49E1AB7CB4C0077D02A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		055CB4A01AB7CB4C0077D02A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		055CB4A31AB7CB4C0077D02A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		055CB4A51AB7CB4C0077D02A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		055CB4A81AB7CB4C0077D02A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		055CB4AE1AB7CB4C0077D02A /* RoaringBitmapConversionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoaringBitmapConversionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		055CB4AE1AB7CB4C0077D02A /* RoaringBitmap-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RoaringBitmap-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		055CB4B31AB7CB4C0077D02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		055CB4BF1AB7CB6A0077D02A /* RoaringBitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoaringBitmap.swift; sourceTree = "<group>"; };
 		055CB4C11AB7CC4E0077D02A /* ImmutableBitmapDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImmutableBitmapDataProvider.swift; sourceTree = "<group>"; };
@@ -86,11 +88,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		055ABD951ABFCC3D00E309E1 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				055ABD961ABFCC5200E309E1 /* BitSet.swift */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
 		055CB4901AB7CB4C0077D02A = {
 			isa = PBXGroup;
 			children = (
-				055CB49B1AB7CB4C0077D02A /* RoaringBitmapConversion */,
-				055CB4B11AB7CB4C0077D02A /* RoaringBitmapConversionTests */,
+				055CB49B1AB7CB4C0077D02A /* RoaringBitmap */,
+				055CB4B11AB7CB4C0077D02A /* RoaringBitmapTests */,
 				055CB49A1AB7CB4C0077D02A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,15 +108,16 @@
 		055CB49A1AB7CB4C0077D02A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				055CB4991AB7CB4C0077D02A /* RoaringBitmapConversion.app */,
-				055CB4AE1AB7CB4C0077D02A /* RoaringBitmapConversionTests.xctest */,
+				055CB4991AB7CB4C0077D02A /* RoaringBitmap-Swift.app */,
+				055CB4AE1AB7CB4C0077D02A /* RoaringBitmap-SwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		055CB49B1AB7CB4C0077D02A /* RoaringBitmapConversion */ = {
+		055CB49B1AB7CB4C0077D02A /* RoaringBitmap */ = {
 			isa = PBXGroup;
 			children = (
+				055ABD951ABFCC3D00E309E1 /* Support */,
 				05A93BE21ABA762C00EAA8DC /* Core */,
 				05A93BDF1AB9EA3100EAA8DC /* OpenSource */,
 				055CB4BE1AB7CB5D0077D02A /* RoaringBitmap */,
@@ -117,6 +128,7 @@
 				055CB4A71AB7CB4C0077D02A /* LaunchScreen.xib */,
 				055CB49C1AB7CB4C0077D02A /* Supporting Files */,
 			);
+			name = RoaringBitmap;
 			path = RoaringBitmapConversion;
 			sourceTree = "<group>";
 		};
@@ -128,7 +140,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		055CB4B11AB7CB4C0077D02A /* RoaringBitmapConversionTests */ = {
+		055CB4B11AB7CB4C0077D02A /* RoaringBitmapTests */ = {
 			isa = PBXGroup;
 			children = (
 				059936A61ABCE34300582F10 /* RoaringBitmapPart2Tests.swift */,
@@ -137,6 +149,7 @@
 				05DCFFCD1ABB70C800E58794 /* ContainerTests.swift */,
 				05DD69F21ABCA6D200E2ED7B /* BitsMathTests.swift */,
 			);
+			name = RoaringBitmapTests;
 			path = RoaringBitmapConversionTests;
 			sourceTree = "<group>";
 		};
@@ -184,9 +197,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		055CB4981AB7CB4C0077D02A /* RoaringBitmapConversion */ = {
+		055CB4981AB7CB4C0077D02A /* RoaringBitmap-Swift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 055CB4B81AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmapConversion" */;
+			buildConfigurationList = 055CB4B81AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmap-Swift" */;
 			buildPhases = (
 				055CB4951AB7CB4C0077D02A /* Sources */,
 				055CB4961AB7CB4C0077D02A /* Frameworks */,
@@ -196,14 +209,14 @@
 			);
 			dependencies = (
 			);
-			name = RoaringBitmapConversion;
+			name = "RoaringBitmap-Swift";
 			productName = RoaringBitmapConversion;
-			productReference = 055CB4991AB7CB4C0077D02A /* RoaringBitmapConversion.app */;
+			productReference = 055CB4991AB7CB4C0077D02A /* RoaringBitmap-Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		055CB4AD1AB7CB4C0077D02A /* RoaringBitmapConversionTests */ = {
+		055CB4AD1AB7CB4C0077D02A /* RoaringBitmap-SwiftTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 055CB4BB1AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmapConversionTests" */;
+			buildConfigurationList = 055CB4BB1AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmap-SwiftTests" */;
 			buildPhases = (
 				055CB4AA1AB7CB4C0077D02A /* Sources */,
 				055CB4AB1AB7CB4C0077D02A /* Frameworks */,
@@ -214,9 +227,9 @@
 			dependencies = (
 				055CB4B01AB7CB4C0077D02A /* PBXTargetDependency */,
 			);
-			name = RoaringBitmapConversionTests;
+			name = "RoaringBitmap-SwiftTests";
 			productName = RoaringBitmapConversionTests;
-			productReference = 055CB4AE1AB7CB4C0077D02A /* RoaringBitmapConversionTests.xctest */;
+			productReference = 055CB4AE1AB7CB4C0077D02A /* RoaringBitmap-SwiftTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -225,19 +238,22 @@
 		055CB4911AB7CB4C0077D02A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Regwez, Inc.";
 				TargetAttributes = {
 					055CB4981AB7CB4C0077D02A = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 0820;
 					};
 					055CB4AD1AB7CB4C0077D02A = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 0820;
 						TestTargetID = 055CB4981AB7CB4C0077D02A;
 					};
 				};
 			};
-			buildConfigurationList = 055CB4941AB7CB4C0077D02A /* Build configuration list for PBXProject "RoaringBitmapConversion" */;
+			buildConfigurationList = 055CB4941AB7CB4C0077D02A /* Build configuration list for PBXProject "RoaringBitmap-Swift" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -250,8 +266,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				055CB4981AB7CB4C0077D02A /* RoaringBitmapConversion */,
-				055CB4AD1AB7CB4C0077D02A /* RoaringBitmapConversionTests */,
+				055CB4981AB7CB4C0077D02A /* RoaringBitmap-Swift */,
+				055CB4AD1AB7CB4C0077D02A /* RoaringBitmap-SwiftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -281,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055ABD971ABFCC5200E309E1 /* BitSet.swift in Sources */,
 				055CB4C61AB7D6BB0077D02A /* RoaringBitmapUtilFunctions.swift in Sources */,
 				055CB4C81AB8176A0077D02A /* RoaringArray.swift in Sources */,
 				055CB4CC1AB8C4C70077D02A /* BitmapContainer.swift in Sources */,
@@ -314,7 +331,7 @@
 /* Begin PBXTargetDependency section */
 		055CB4B01AB7CB4C0077D02A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 055CB4981AB7CB4C0077D02A /* RoaringBitmapConversion */;
+			target = 055CB4981AB7CB4C0077D02A /* RoaringBitmap-Swift */;
 			targetProxy = 055CB4AF1AB7CB4C0077D02A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -360,6 +377,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -375,7 +393,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -414,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -428,7 +446,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RoaringBitmapConversion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.regwez.platform.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -438,7 +458,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RoaringBitmapConversion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.regwez.platform.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -456,8 +478,10 @@
 				);
 				INFOPLIST_FILE = RoaringBitmapConversionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.regwez.platform.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoaringBitmapConversion.app/RoaringBitmapConversion";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoaringBitmap-Swift.app/RoaringBitmap-Swift";
 			};
 			name = Debug;
 		};
@@ -471,15 +495,17 @@
 				);
 				INFOPLIST_FILE = RoaringBitmapConversionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.regwez.platform.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoaringBitmapConversion.app/RoaringBitmapConversion";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoaringBitmap-Swift.app/RoaringBitmap-Swift";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		055CB4941AB7CB4C0077D02A /* Build configuration list for PBXProject "RoaringBitmapConversion" */ = {
+		055CB4941AB7CB4C0077D02A /* Build configuration list for PBXProject "RoaringBitmap-Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				055CB4B61AB7CB4C0077D02A /* Debug */,
@@ -488,7 +514,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		055CB4B81AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmapConversion" */ = {
+		055CB4B81AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmap-Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				055CB4B91AB7CB4C0077D02A /* Debug */,
@@ -497,7 +523,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		055CB4BB1AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmapConversionTests" */ = {
+		055CB4BB1AB7CB4C0077D02A /* Build configuration list for PBXNativeTarget "RoaringBitmap-SwiftTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				055CB4BC1AB7CB4C0077D02A /* Debug */,

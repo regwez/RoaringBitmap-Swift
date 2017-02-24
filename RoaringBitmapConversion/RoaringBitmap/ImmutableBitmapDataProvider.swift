@@ -49,10 +49,10 @@ public protocol ImmutableBitmapDataProvider {
     * Checks whether the value in included, which is equivalent to checking
     * if the corresponding bit is set (get in BitSet class).
     *
-    * @param x integer value
+    * @param x UInt32 value
     * @return whether the integer value is included.
     */
-    func contains(x:Int) -> Bool
+    func contains(_ x:UInt32) -> Bool
     
     /**
     * Returns the number of distinct integers added to the bitmap (e.g.,
@@ -82,7 +82,7 @@ public protocol ImmutableBitmapDataProvider {
     *
     * @return array representing the set values.
     */
-    var asArray:[UInt64]{get}
+    var asArray:[UInt32]{get}
     
     /**
     * Return the jth value stored in this bitmap.
@@ -91,7 +91,7 @@ public protocol ImmutableBitmapDataProvider {
     *
     * @return the value
     */
-    func select(atIndex index:Int) -> Int
+    func select(atIndex index:UInt32) -> UInt32
     
     /**
     * Rank returns the number of integers that are smaller or equal to x (Rank(infinity) would be GetCardinality()).
@@ -99,7 +99,7 @@ public protocol ImmutableBitmapDataProvider {
     *
     * @return the rank
     */
-    func rank(#upperLimit:Int) -> Int
+    func rank(upperLimit:UInt32) -> UInt32
     
     /**
     * Create a new bitmap of the same class, containing at most maxcardinality integers.
@@ -107,6 +107,6 @@ public protocol ImmutableBitmapDataProvider {
     * @param x maximal cardinality
     * @return a new bitmap with cardinality no more than maxcardinality
     */
-    func limit(#maxCardinality:Int) -> ImmutableBitmapDataProvider
+    func limit(maxCardinality:UInt32) -> ImmutableBitmapDataProvider
 
 }

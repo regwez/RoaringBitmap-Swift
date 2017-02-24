@@ -14,6 +14,7 @@ public protocol BitshiftOperationsType {
     init(_ val: UInt8)
     init(_ val: Int)
     init(_ val: Int32)
+    init(_ val: UInt32)
     init(_ val: UInt64)
 }
 
@@ -21,7 +22,7 @@ extension Int    : BitshiftOperationsType {}
 extension Int8   : BitshiftOperationsType {}
 extension Int16  : BitshiftOperationsType {}
 extension Int32  : BitshiftOperationsType {}
-extension UInt64  : BitshiftOperationsType {}
+extension Int64  : BitshiftOperationsType {}
 extension UInt   : BitshiftOperationsType {}
 extension UInt8  : BitshiftOperationsType {}
 extension UInt16 : BitshiftOperationsType {}
@@ -79,14 +80,14 @@ extension UInt64 : BitshiftOperationsType {}
 //    return Int(n - finalShiftedX)
 //}
 
-public func numberOfTrailingZeros(value:UInt64) -> Int {
+public func numberOfTrailingZeros(_ value:UInt64) -> Int {
     
     if value == 0{
         return 64
     }
     var c:UInt64 = 64 // c will be the number of zero bits on the right
     let v = value & (~value + 1)
-    if (v != 0 ){ c--}
+    if (v != 0 ){ c -= 1}
     if (v & 0x00000000FFFFFFFF) != 0 { c -= 32}
     if (v & 0x0000FFFF0000FFFF) != 0 { c -= 16}
     if (v & 0x00FF00FF00FF00FF) != 0 { c -= 8}
@@ -119,7 +120,7 @@ public func numberOfTrailingZeros(value:UInt64) -> Int {
 *     is equal to zero.
 * @since 1.5
 */
-public func numberOfLeadingZeros(i:UInt64) -> Int32{
+public func numberOfLeadingZeros(_ i:UInt64) -> Int32{
     // HD, Figure 5-6
     if (i == 0){
         return 64
@@ -138,7 +139,7 @@ public func numberOfLeadingZeros(i:UInt64) -> Int32{
 /**
 * Various useful methods for roaring bitmaps.
 */
-public func countBits (input:UInt64) ->UInt64{
+public func countBits (_ input:UInt64) ->UInt64{
     var i = input
     // HD, Figure 5-14
     i = i - ((i >> 1) & UInt64(0x5555555555555555))
@@ -161,7 +162,7 @@ public func countBits (input:UInt64) ->UInt64{
     * @return x greater than pos such that array[pos] is at least as large
     * as min, pos is is equal to length if it is not possible.
     */
-internal func  advanceUntil(array:[UInt16], pos: Int, length:Int , min: UInt16) ->Int{
+internal func  advanceUntil(_ array:[UInt16], pos: Int, length:Int , min: UInt16) ->Int{
     var lower = pos + 1
 
     // special handling for a possibly common sequential case
@@ -221,7 +222,7 @@ internal func  advanceUntil(array:[UInt16], pos: Int, length:Int , min: UInt16) 
 * @param bitmap1   first bitmap
 * @param bitmap2   second bitmap
 */
-public func fillArrayAND(inout #container:[UInt16] ,#bitmap1: [UInt64], #bitmap2: [UInt64] ) {
+public func fillArrayAND(container:inout [UInt16] ,bitmap1: [UInt64], bitmap2: [UInt64] ) {
     var pos = 0
     if (bitmap1.count  != bitmap2.count){
         assert(false, "not supported")
@@ -249,7 +250,7 @@ public func fillArrayAND(inout #container:[UInt16] ,#bitmap1: [UInt64], #bitmap2
 * @param bitmap2   second bitmap
 */
 
-public func fillArrayANDNOT(inout #container:[UInt16] ,#bitmap1: [UInt64], #bitmap2: [UInt64] ) {
+public func fillArrayANDNOT(container:inout [UInt16] ,bitmap1: [UInt64], bitmap2: [UInt64] ) {
     var pos = 0
     if (bitmap1.count  != bitmap2.count){
         assert(false, "not supported")
@@ -260,7 +261,7 @@ public func fillArrayANDNOT(inout #container:[UInt16] ,#bitmap1: [UInt64], #bitm
             let notBitset = (~bitset) + 1
             let t = bitset & notBitset
             let cValue = UInt64(k * 64) + countBits(t - 1)
-            println("pos = \(pos)")
+            print("pos = \(pos)")
             container[pos++] = UInt16(cValue)
             bitset ^= t
         }
@@ -276,7 +277,7 @@ public func fillArrayANDNOT(inout #container:[UInt16] ,#bitmap1: [UInt64], #bitm
 * @param bitmap2   second bitmap
 */
 
-public func fillArrayXOR(inout #container:[UInt16] ,#bitmap1: [UInt64], #bitmap2: [UInt64] ) {
+public func fillArrayXOR(container:inout [UInt16] ,bitmap1: [UInt64], bitmap2: [UInt64] ) {
     var pos = 0
     if (bitmap1.count  != bitmap2.count){
         assert(false, "not supported")
@@ -287,18 +288,18 @@ public func fillArrayXOR(inout #container:[UInt16] ,#bitmap1: [UInt64], #bitmap2
             let notBitset = (~bitset) + 1
             let t = bitset & notBitset
             let cValue = UInt64(k * 64) + countBits(t - 1)
-            println("pos = \(pos)")
+            print("pos = \(pos)")
             container[pos++] = UInt16(cValue)
             bitset ^= t
         }
     }
 }
 
-internal func highbits(x:Int) ->UInt16{
+internal func highbits(_ x:UInt32) ->UInt16{
     return UInt16(x >> 16)
 }
 
-internal func lowbits(x:Int) ->UInt16{
+internal func lowbits(_ x:UInt32) ->UInt16{
     return UInt16(x & 0xFFFF)
 }
 
@@ -307,7 +308,7 @@ internal func maxLowBit() ->UInt16{
 }
 
     
-internal func unsignedBinarySearch(array: [UInt16], begin: Int, end: Int, k: UInt16) -> Int{
+internal func unsignedBinarySearch(_ array: [UInt16], begin: Int, end: Int, k: UInt16) -> Int{
     let ikey = k
     // next line accelerates the possibly common case where the value would be inserted at the end
     if((end>0) && (array[end-1] < ikey)){
@@ -345,14 +346,14 @@ internal func unsignedBinarySearch(array: [UInt16], begin: Int, end: Int, k: UIn
     * @param buffer  output array
     * @return cardinality of the difference
     */
-public  func unsignedDifference(set1: [UInt16] , length1:Int , set2: [UInt16], length2:Int , inout buffer: [UInt16] ) ->Int {
+public  func unsignedDifference(_ set1: [UInt16] , length1:Int , set2: [UInt16], length2:Int , buffer: inout [UInt16] ) ->Int {
     var pos = 0
     var k1 = 0
     var k2 = 0
     if (0 == length2) {
-        let bufferPointer = UnsafeMutablePointer<Void>(buffer)
-        let set1Pointer = UnsafePointer<Void>(set1)
-        memcpy(bufferPointer, set1 ,sizeof(UInt16) * length1)
+        let bufferPointer = UnsafeMutableRawPointer(mutating: buffer)
+        let set1Pointer = UnsafeRawPointer(set1)
+        memcpy(bufferPointer, set1 ,MemoryLayout<UInt16>.size * length1)
         return length1
     }
     
@@ -362,27 +363,27 @@ public  func unsignedDifference(set1: [UInt16] , length1:Int , set2: [UInt16], l
     while (true) {
         if (set1[k1] < set2[k2]) {
             buffer[pos++] = set1[k1]
-            ++k1
+            k1 += 1
             if (k1 >= length1) {
                 break
             }
         } else if (set1[k1] == set2[k2]) {
-            ++k1
-            ++k2
+            k1 += 1
+            k2 += 1
             if (k1 >= length1) {
     
                 break
             }
             if (k2 >= length2) {
-                for (; k1 < length1; ++k1){
+                for (; k1 < length1; k1 += 1){
                     buffer[pos++] = set1[k1]
                 }
                 break
             }
         } else {// if (val1>val2)
-            ++k2;
+            k2 += 1;
             if (k2 >= length2) {
-                for (; k1 < length1; ++k1){
+                for (; k1 < length1; k1 += 1){
                     buffer[pos++] = set1[k1]
                 }
                 break
@@ -403,20 +404,20 @@ public  func unsignedDifference(set1: [UInt16] , length1:Int , set2: [UInt16], l
     * @param buffer  output array
     * @return cardinality of the exclusive union
     */
-public  func unsignedExclusiveUnion2by2(set1: [UInt16] , length1:Int , set2: [UInt16], length2:Int , inout buffer: [UInt16] ) ->Int {
+public  func unsignedExclusiveUnion2by2(_ set1: [UInt16] , length1:Int , set2: [UInt16], length2:Int , buffer: inout [UInt16] ) ->Int {
     var pos = 0
     var k1 = 0
     var k2 = 0
     
     if (0 == length2) {
-        let bufferPointer = UnsafeMutablePointer<Void>(buffer)
-        memcpy(bufferPointer, set1 ,sizeof(UInt16) * length1)
+        let bufferPointer = UnsafeMutableRawPointer(mutating: buffer)
+        memcpy(bufferPointer, set1 ,MemoryLayout<UInt16>.size * length1)
         return length1
     }
 
     if (0 == length1) {
-        let bufferPointer = UnsafeMutablePointer<Void>(buffer)
-        memcpy(bufferPointer, set2 ,sizeof(UInt16) * length2)
+        let bufferPointer = UnsafeMutableRawPointer(mutating: buffer)
+        memcpy(bufferPointer, set2 ,MemoryLayout<UInt16>.size * length2)
         return length2
     }
 
@@ -424,33 +425,33 @@ public  func unsignedExclusiveUnion2by2(set1: [UInt16] , length1:Int , set2: [UI
     while (true) {
         if (set1[k1] < set2[k2]) {
             buffer[pos++] = set1[k1]
-            ++k1
+            k1 += 1
             if (k1 >= length1) {
-                for (; k2 < length2; ++k2){
+                for (; k2 < length2; k2 += 1){
                     buffer[pos++] = set2[k2]
                 }
                 break
             }
         } else if (set1[k1] == set2[k2]) {
-            ++k1
-            ++k2
+            k1 += 1
+            k2 += 1
             if (k1 >= length1) {
-                for (; k2 < length2; ++k2){
+                for (; k2 < length2; k2 += 1){
                     buffer[pos++] = set2[k2]
                 }
                 break
             }
             if (k2 >= length2) {
-                for (; k1 < length1; ++k1){
+                for (; k1 < length1; k1 += 1){
                     buffer[pos++] = set1[k1]
                 }
                 break
             }
         } else {// if (val1>val2)
             buffer[pos++] = set2[k2]
-            ++k2
+            k2 += 1
             if (k2 >= length2) {
-                for (; k1 < length1; ++k1){
+                for (; k1 < length1; k1 += 1){
                     buffer[pos++] = set1[k1]
                 }
                 break
@@ -472,19 +473,19 @@ public  func unsignedExclusiveUnion2by2(set1: [UInt16] , length1:Int , set2: [UI
 * @return cardinality of the Intersection
 */
 
-public  func unsignedIntersect2by2(set1: [UInt16] , length1:Int , set2: [UInt16], length2:Int , inout buffer: [UInt16] ) ->Int {
+public  func unsignedIntersect2by2(_ set1: [UInt16] , length1:Int , set2: [UInt16], length2:Int , buffer: inout [UInt16] ) ->Int {
  
     if (set1.count * 64 < set2.count) {
-        return unsignedOneSidedGallopingIntersect2by2(set1, length1, set2, length2, &buffer)
+        return unsignedOneSidedGallopingIntersect2by2(set1, smallLength: length1, largeSet: set2, largeLength: length2, buffer: &buffer)
     } else if (set2.count * 64 < set1.count) {
-        return unsignedOneSidedGallopingIntersect2by2(set2, length2, set1, length1, &buffer)
+        return unsignedOneSidedGallopingIntersect2by2(set2, smallLength: length2, largeSet: set1, largeLength: length1, buffer: &buffer)
     } else {
-        return unsignedLocalIntersect2by2(set1, length1, set2, length2, &buffer)
+        return unsignedLocalIntersect2by2(set1, length1: length1, set2: set2, length2: length2, buffer: &buffer)
     }
 }
 
         
-internal func unsignedLocalIntersect2by2(set1: [UInt16] , length1:Int , set2: [UInt16], length2:Int , inout buffer: [UInt16] ) ->Int {
+internal func unsignedLocalIntersect2by2(_ set1: [UInt16] , length1:Int , set2: [UInt16], length2:Int , buffer: inout [UInt16] ) ->Int {
 
     if ((0 == length1) || (0 == length2)){
         return 0
@@ -495,16 +496,16 @@ internal func unsignedLocalIntersect2by2(set1: [UInt16] , length1:Int , set2: [U
 
     mainwhile: while (true) {
         if (set2[k2] < set1[k1]) {
-            do {
-                ++k2
+            repeat {
+                k2 += 1
                 if (k2 == length2){
                     break mainwhile
                 }
             } while (set2[k2] < set1[k1]);
         }
         if (set1[k1] < set2[k2]) {
-            do {
-                ++k1
+            repeat {
+                k1 += 1
                 if (k1 == length1){
                     break mainwhile
                 }
@@ -512,11 +513,11 @@ internal func unsignedLocalIntersect2by2(set1: [UInt16] , length1:Int , set2: [U
         } else {
             // (set2[k2] == set1[k1])
             buffer[pos++] = set1[k1]
-            ++k1
+            k1 += 1
             if (k1 == length1){
                 break
             }
-            ++k2
+            k2 += 1
             if (k2 == length2){
                 break
             }
@@ -525,7 +526,7 @@ internal func unsignedLocalIntersect2by2(set1: [UInt16] , length1:Int , set2: [U
     return pos
 }
 
-internal func unsignedOneSidedGallopingIntersect2by2(smallSet: [UInt16] , smallLength:Int , largeSet: [UInt16], largeLength:Int , inout buffer: [UInt16] ) ->Int {
+internal func unsignedOneSidedGallopingIntersect2by2(_ smallSet: [UInt16] , smallLength:Int , largeSet: [UInt16], largeLength:Int , buffer: inout [UInt16] ) ->Int {
 
     if (0 == smallLength){
         return 0
@@ -536,24 +537,24 @@ internal func unsignedOneSidedGallopingIntersect2by2(smallSet: [UInt16] , smallL
         
     while (true) {
         if (largeSet[k1] < smallSet[k2]) {
-            k1 = advanceUntil(largeSet, k1, largeLength, smallSet[k2])
+            k1 = advanceUntil(largeSet, pos: k1, length: largeLength, min: smallSet[k2])
             if (k1 == largeLength){
                 break
             }
         }
         if (smallSet[k2] < largeSet[k1]) {
-            ++k2
+            k2 += 1
             if (k2 == smallLength){
                 break
             }
         } else {
             // (set2[k2] == set1[k1])
             buffer[pos++] = smallSet[k2]
-            ++k2
+            k2 += 1
             if (k2 == smallLength){
                 break
             }
-            k1 = advanceUntil(largeSet, k1, largeLength, smallSet[k2]);
+            k1 = advanceUntil(largeSet, pos: k1, length: largeLength, min: smallSet[k2]);
             if (k1 == largeLength){
                 break
             }
@@ -575,7 +576,7 @@ internal func unsignedOneSidedGallopingIntersect2by2(smallSet: [UInt16] , smallL
     * @param buffer  output array
     * @return cardinality of the union
     */
-public  func unsignedUnion2by2(set1: [UInt16] , length1:Int , set2: [UInt16], length2:Int , inout buffer: [UInt16] ) ->Int {
+public  func unsignedUnion2by2(_ set1: [UInt16] , length1:Int , set2: [UInt16], length2:Int , buffer: inout [UInt16] ) ->Int {
 
 
     var k1 = 0
@@ -583,48 +584,48 @@ public  func unsignedUnion2by2(set1: [UInt16] , length1:Int , set2: [UInt16], le
     var pos = 0
     
     if (0 == length2) {
-        let bufferPointer = UnsafeMutablePointer<Void>(buffer)
-        memcpy(bufferPointer, set1 ,sizeof(UInt16) * length1)
+        let bufferPointer = UnsafeMutableRawPointer(mutating: buffer)
+        memcpy(bufferPointer, set1 ,MemoryLayout<UInt16>.size * length1)
         return length1
     }
     
     if (0 == length1) {
-        let bufferPointer = UnsafeMutablePointer<Void>(buffer)
-        memcpy(bufferPointer, set2 ,sizeof(UInt16) * length2)
+        let bufferPointer = UnsafeMutableRawPointer(mutating: buffer)
+        memcpy(bufferPointer, set2 ,MemoryLayout<UInt16>.size * length2)
         return length2
     }
     
     while (true) {
         if (set1[k1] < set2[k2]) {
             buffer[pos++] = set1[k1]
-            ++k1
+            k1 += 1
             if (k1 >= length1) {
-                for (; k2 < length2; ++k2){
+                for (; k2 < length2; k2 += 1){
                     buffer[pos++] = set2[k2]
                 }
                 break
             }
         } else if (set1[k1] == set2[k2]) {
             buffer[pos++] = set1[k1]
-            ++k1
-            ++k2
+            k1 += 1
+            k2 += 1
             if (k1 >= length1) {
-                for (; k2 < length2; ++k2){
+                for (; k2 < length2; k2 += 1){
                     buffer[pos++] = set2[k2]
                 }
                 break
             }
             if (k2 >= length2) {
-                for (; k1 < length1; ++k1){
+                for (; k1 < length1; k1 += 1){
                     buffer[pos++] = set1[k1]
                 }
                 break
             }
         } else {// if (set1[k1]>set2[k2])
             buffer[pos++] = set2[k2]
-            ++k2
+            k2 += 1
             if (k2 >= length2) {
-                for (; k1 < length1; ++k1){
+                for (; k1 < length1; k1 += 1){
                     buffer[pos++] = set1[k1]
                 }
                 break
@@ -644,10 +645,10 @@ public  func unsignedUnion2by2(set1: [UInt16] , length1:Int , set2: [UInt16], le
 * @param j index
 * @return position of jth true bit in w
 */
-public func selectBit<WordType:UnsignedIntegerType where WordType:BitshiftOperationsType>( #word:WordType,#bitIndex:Int) -> Int{
+public func selectBit<WordType:UnsignedInteger>( word:WordType,bitIndex:UInt32) -> Int where WordType:BitshiftOperationsType{
     var sumtotal:WordType = 0
     let wtBitIndex = WordType(bitIndex)
-    let bitsLimit = sizeof(WordType) * 8
+    let bitsLimit = MemoryLayout<WordType>.size * 8
     for counter in 0..<bitsLimit {
         let bitPosition = (word >> WordType(counter)) & 1
         sumtotal += bitPosition
@@ -655,7 +656,7 @@ public func selectBit<WordType:UnsignedIntegerType where WordType:BitshiftOperat
             return counter
         }
     }
-    assert(bitIndex<sizeof(WordType), "cannot local \(bitIndex)th bit in \(word) weight is \(sizeof(WordType))")
+    assert(bitIndex<UInt32(MemoryLayout<WordType>.size), "cannot local \(bitIndex)th bit in \(word) weight is \(MemoryLayout<WordType>.size)")
     return -20
 }
 

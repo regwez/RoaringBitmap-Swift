@@ -26,7 +26,7 @@ public final class FastAggregation {
     /**
     * Private constructor to prevent instantiation of utility class
     */
-    private init() {}
+    fileprivate init() {}
     
     /**
     * Sort the bitmap prior to using the and aggregate.
@@ -34,7 +34,7 @@ public final class FastAggregation {
     * @param bitmaps input bitmaps
     * @return aggregated bitmap
     */
-    public static func and(#bitmaps:[RoaringBitmap]) -> RoaringBitmap{
+    public static func and(bitmaps:[RoaringBitmap]) -> RoaringBitmap{
         if (bitmaps.count == 0){
             return RoaringBitmap()
         }
@@ -48,7 +48,7 @@ public final class FastAggregation {
         }
     
         
-        var answer = RoaringBitmap.and(lhs: array[0], rhs: array[1])
+        let answer = RoaringBitmap.and(lhs: array[0], rhs: array[1])
         for k in 2..<array.count{
             answer.and(rhs: array[k])
         }
@@ -61,7 +61,7 @@ public final class FastAggregation {
     * @param bitmaps input bitmaps
     * @return aggregated bitmap
     */
-    public static func and(bitmapsSequence: SequenceOf<RoaringBitmap> ) -> RoaringBitmap{
+    public static func and(_ bitmapsSequence: AnySequence<RoaringBitmap> ) -> RoaringBitmap{
         var bitmaps = [RoaringBitmap]()
         for map in bitmapsSequence{
             bitmaps.append(map)
@@ -76,13 +76,13 @@ public final class FastAggregation {
     *            input bitmaps
     * @return aggregated bitmap
     */
-    public func horizontal_or(bitmapsSequence: SequenceOf<RoaringBitmap>  ) ->RoaringBitmap {
-        var answer = RoaringBitmap()
+    public func horizontal_or(_ bitmapsSequence: AnySequence<RoaringBitmap>  ) ->RoaringBitmap {
+        let answer = RoaringBitmap()
     
         let pq = PriorityQueue<ContainerPointer>({ $0.lessThan($1) })
         for map in bitmapsSequence{
             let x = map.highLowContainer.containerPointer
-            if let uw_x = x.container {
+            if let _ = x.container {
                 pq.push(x)
             }
         }
@@ -93,8 +93,8 @@ public final class FastAggregation {
     
         while let x1 = pq.pop() {
             
-            if  let uw_peek = pq.peek() where  uw_peek.key != x1.key {
-                answer.highLowContainer.append((key:x1.key,value:x1.container!.clone()))
+            if  let uw_peek = pq.peek(),  uw_peek.key != x1.key {
+                answer.highLowContainer.array.append((key:x1.key,value:x1.container!.clone()))
                 x1.advance()
                 if x1.container != nil{
                     pq.push(x1)
@@ -108,7 +108,7 @@ public final class FastAggregation {
                 let x = pq.pop()!
                 newc = ContainerDispatcher.lazyOR(newc,rhs: x.container!)
                 x.advance()
-                if let uw_x = x.container{
+                if let _ = x.container{
                     pq.push(x)
                 }
 
@@ -121,14 +121,14 @@ public final class FastAggregation {
                     uw_newc.computeCardinality()
                 }
             }
-            answer.highLowContainer.append((key:x1.key,value:newc))
+            answer.highLowContainer.array.append((key:x1.key,value:newc))
             x1.advance()
             if x1.container != nil{
                 pq.push(x1)
             }
 
             x2.advance()
-            if let uw_x2 = x2.container{
+            if let _ = x2.container{
                 pq.push(x2)
             }
 
@@ -143,7 +143,7 @@ public final class FastAggregation {
     * @return aggregated bitmap
     * @see #horizontal_or(RoaringBitmap...)
     */
-    public static func  or(bitmaps:[RoaringBitmap]) -> RoaringBitmap?{
+    public static func  or(_ bitmaps:[RoaringBitmap]) -> RoaringBitmap?{
         if (bitmaps.count == 0){
             return RoaringBitmap()
         }
@@ -159,6 +159,7 @@ public final class FastAggregation {
         return pq.pop()
     }
     
+    
     /**
     * Minimizes memory usage while computing the or aggregate.
     *
@@ -166,11 +167,13 @@ public final class FastAggregation {
     * @return aggregated bitmap
     * @see #or(RoaringBitmap...)
     */
-    public static func horizontal_or(bitmaps:[RoaringBitmap]) -> RoaringBitmap?{
-        var answer = RoaringBitmap()
+    public static func horizontal_or(_ bitmaps:[RoaringBitmap]) -> RoaringBitmap?{
+
+        let answer = RoaringBitmap()
         if (bitmaps.count == 0){
             return answer
         }
+        
         let pq = PriorityQueue<ContainerPointer>(initialSize:bitmaps.count, compare:{ $0.lessThan($1) })
         //(initialSize:bitmaps.count, compare:{ $0 < $1 })
         for  k in 0..<bitmaps.count {
@@ -181,20 +184,25 @@ public final class FastAggregation {
         }
     
         while let x1 = pq.pop() {
-            if let uw_peek = pq.peek() where  uw_peek.key != x1.key {
-                answer.highLowContainer.append((key:x1.key, value:x1.container!.clone()))
+       
+            let pq_peek = pq.peek()
+            
+            if  pq_peek == nil ||  pq_peek!.key != x1.key {
+                answer.highLowContainer.array.append((key:x1.key, value:x1.container!.clone()))
                 x1.advance()
-                if let uw_x1 = x1.container{
+                if let _ = x1.container{
                     pq.push(x1)
                 }
                 continue
             }
+            
+            
             let x2 = pq.pop()!
             var newc = ContainerDispatcher.lazyOR(x1.container!,rhs: x2.container!)
             while(!pq.isEmpty && (pq.peek()!.key == x1.key)) {
     
                 let x = pq.pop()!
-                newc = ContainerDispatcher.lazyOR(newc,rhs: x.container!)
+                newc = ContainerDispatcher.lazyIOR(newc,rhs: x.container!)
                 x.advance()
                 if x.container != nil{
                     pq.push(x)
@@ -203,18 +211,21 @@ public final class FastAggregation {
                     break
                 }
             }
+            
+            
             if(newc.cardinality<0){
                 if let uw_newc = newc as? BitmapContainer{
                     uw_newc.computeCardinality()
                 }
             }
-            answer.highLowContainer.append((key:x1.key, value:newc))
+            
+            answer.highLowContainer.array.append((key:x1.key, value:newc))
             x1.advance()
-            if let uw_x1 = x1.container{
+            if let _ = x1.container{
                 pq.push(x1)
             }
             x2.advance()
-            if let uw_x2 = x2.container{
+            if let _ = x2.container{
                 pq.push(x2)
             }
         }
@@ -228,7 +239,7 @@ public final class FastAggregation {
     * @return aggregated bitmap
     * @see #horizontal_xor(RoaringBitmap...)
     */
-    public func xor(bitmaps:[RoaringBitmap]) ->RoaringBitmap?{
+    public static func xor(_ bitmaps:[RoaringBitmap]) ->RoaringBitmap?{
         if (bitmaps.count == 0){
             return RoaringBitmap()
         }
@@ -251,8 +262,8 @@ public final class FastAggregation {
     * @return aggregated bitmap
     * @see #xor(RoaringBitmap...)
     */
-    public static func horizontal_xor(bitmaps:[RoaringBitmap]) -> RoaringBitmap{
-        var answer = RoaringBitmap()
+    public static func horizontal_xor(_ bitmaps:[RoaringBitmap]) -> RoaringBitmap{
+        let answer = RoaringBitmap()
         if (bitmaps.count == 0){
             return answer
         }
@@ -267,8 +278,8 @@ public final class FastAggregation {
         }
     
         while let x1 = pq.pop() {
-            if let uw_peek = pq.peek() where  uw_peek.key != x1.key {
-                answer.highLowContainer.append((key:x1.key, value:x1.container!.clone()))
+            if let uw_peek = pq.peek(),  uw_peek.key != x1.key {
+                answer.highLowContainer.array.append((key:x1.key, value:x1.container!.clone()))
                 x1.advance()
                 if x1.container != nil{
                     pq.push(x1)
@@ -287,7 +298,7 @@ public final class FastAggregation {
                     break;
                 }
             }
-            answer.highLowContainer.append((key:x1.key, value:newc))
+            answer.highLowContainer.array.append((key:x1.key, value:newc))
             x1.advance()
             if x1.container != nil{
                 pq.push(x1)

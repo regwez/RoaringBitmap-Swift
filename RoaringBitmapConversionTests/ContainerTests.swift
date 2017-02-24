@@ -1,3 +1,4 @@
+
 //
 //  ContainerTests.swift
 //  RoaringBitmapConversion
@@ -8,6 +9,7 @@
 
 import UIKit
 import XCTest
+@testable
 import RoaringBitmapConversion
 
 class ContainerTests: XCTestCase {
@@ -28,13 +30,13 @@ class ContainerTests: XCTestCase {
         let threshold:UInt16 = 4096
         
         for i in 0..<threshold {
-            c = c.add(UInt16(i))
+            if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         XCTAssert(c.cardinality == 4096, "c.cardinality == 4096")
         XCTAssert(c is ArrayContainer, "c should be of Type ArrayContainer")
    
         for i in 0..<threshold {
-            c = c.add(UInt16(i))
+            if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         
         XCTAssert(c.cardinality == 4096, "c.cardinality == 4096")
@@ -42,13 +44,13 @@ class ContainerTests: XCTestCase {
         XCTAssert(c.contains(UInt16(45)), "contains 45 ")
         XCTAssert(!c.contains(UInt16(5000)), "contains 45 ")
         
-        c = c.add(threshold)
+        if let uw_c = c.add(threshold){ c = uw_c }
         XCTAssert(c.cardinality == 4097, "c.cardinality == 4097")
         XCTAssert(c is BitmapContainer, "c should be of Type BitmapContainer")
         XCTAssert(c.contains(UInt16(45)), "contains 45 ")
         XCTAssert(!c.contains(UInt16(5000)), "contains 45 ")
         
-        c  = c.remove(threshold)
+        if let uw_c = c.remove(threshold){ c = uw_c }
         XCTAssert(c.cardinality == 4096, "c.cardinality == 4096")
         XCTAssert(c is ArrayContainer, "c should be of Type ArrayContainer")
         XCTAssert(c.contains(UInt16(45)), "contains 45 ")
@@ -61,7 +63,7 @@ class ContainerTests: XCTestCase {
         
         var c:Container =  BitmapContainer()
         for (var i = 0; i < 65536; i += 2){
-            c = c.add(UInt16(i))
+            if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         XCTAssert(!c.contains(UInt16( 3)) && c.contains(UInt16(4)),"")
 
@@ -75,7 +77,7 @@ class ContainerTests: XCTestCase {
         
         var c:Container =  ArrayContainer()
         for (var i = 0; i < ArrayContainer.DEFAULT_MAX_SIZE; i += 2){
-            c = c.add(UInt16(i))
+            if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         XCTAssert(!c.contains(UInt16( 3)) && c.contains(UInt16(4)),"")
         
@@ -90,7 +92,7 @@ class ContainerTests: XCTestCase {
         
         var c:Container =  ArrayContainer()
         for (var i = 0; i < 65536; i += 2){
-            c = c.add(UInt16(i))
+            if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         XCTAssert(!c.contains(UInt16( 3)) && c.contains(UInt16(4)),"")
         
@@ -116,10 +118,10 @@ class ContainerTests: XCTestCase {
         let content:[UInt16] = [1, 3, 5, 7, 9]
         var c = ContainerTests.makeContainer(content)
         c = c.inot(rangeStart: 0, rangeEnd: 65535)
-        var s = [UInt16](count:65536 - content.count, repeatedValue:0)
+        var s = [UInt16](repeating: 0, count: 65536 - content.count)
         var pos = 0
         for i in 0..<65536{
-            if find(content,  UInt16(i)) == nil {
+            if content.index(of: UInt16(i)) == nil {
                s[pos++] = UInt16(i)
             }
         }
@@ -130,11 +132,11 @@ class ContainerTests: XCTestCase {
    
     
     func testiNot_10() {
-        println("inotTest10");
+        print("inotTest10");
         // Array container, inverting a range past any set bit
         let content:[UInt16] = [0,2, 4]
-        var c = ContainerTests.makeContainer(content)
-        var c1 = c.inot(rangeStart: 65190, rangeEnd: 65200)
+        let c = ContainerTests.makeContainer(content)
+        let c1 = c.inot(rangeStart: 65190, rangeEnd: 65200)
         XCTAssert(c1 is ArrayContainer, "c1 should be of Type ArrayContainer")
         XCTAssert(c1.cardinality == 14, "c1.cardinality == 14")
         
@@ -162,7 +164,7 @@ class ContainerTests: XCTestCase {
     
         var c:Container =  ArrayContainer()
         for (var i = 0; i < 65536; i += 2){
-            c = c.add(UInt16(i))
+            if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         XCTAssert(!c.contains(UInt16( 3)) && c.contains(UInt16(4)),"")
         c = c.inot(rangeStart: 0, rangeEnd: 65535)
@@ -170,16 +172,16 @@ class ContainerTests: XCTestCase {
         XCTAssertEqual(32768, c.cardinality)
         c = c.inot(rangeStart: 0, rangeEnd: 65535)
         
-        println("==============")
+        print("==============")
         for (var i = 0; i < 65536; i += 2){
             XCTAssert(c.contains(UInt16(i)), "c.contains(\(i))")
             XCTAssert( !c.contains(UInt16 (i + 1)), "!c.contains(\(i+1))")
             if !c.contains(UInt16(i)){
-                print("\(i), ")
+                print("\(i), ", appendNewline: false)
             }
         }
-        println("")
-        println("==============")
+        print("")
+        print("==============")
     }
     
     func testiNot_3_Array() {
@@ -187,7 +189,7 @@ class ContainerTests: XCTestCase {
         
         var c:Container =  ArrayContainer()
         for (var i = 0; i < ArrayContainer.DEFAULT_MAX_SIZE; i += 2){
-            c = c.add(UInt16(i))
+            if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         XCTAssert(!c.contains(UInt16( 3)) && c.contains(UInt16(4)),"")
         c = c.inot(rangeStart: 0, rangeEnd: ArrayContainer.DEFAULT_MAX_SIZE - 1)
@@ -216,13 +218,13 @@ class ContainerTests: XCTestCase {
     
     func testiNot_5() {
         // Bitmap container, range is partial, result stays bitmap
-        var content = [UInt16](count:32768 - 5,repeatedValue:0)
+        var content = [UInt16](repeating: 0,count: 32768 - 5)
             content[0] = 0
             content[1] = 2
             content[2] = 4
             content[3] = 6
             content[4] = 8
-        for (var i = 10; i <= 32767; ++i){
+        for (var i = 10; i <= 32767; i += 1){
             content[i - 10 + 5] = UInt16(i)
         }
         var c = ContainerTests.makeContainer(content)
@@ -237,13 +239,13 @@ class ContainerTests: XCTestCase {
     
     func testiNot_5_noTransition() {
         // Bitmap container, range is partial, result stays bitmap
-        var content = [UInt16](count:32768 - 5,repeatedValue:0)
+        var content = [UInt16](repeating: 0,count: 32768 - 5)
         content[0] = 0
         content[1] = 2
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; ++i){
+        for (var i = 10; i <= 32767; i += 1){
             content[i - 10 + 5] = UInt16(i)
         }
         var c = ContainerTests.makeBitmapContainer(content)
@@ -261,13 +263,13 @@ class ContainerTests: XCTestCase {
     func testiNot_6() {
            // Bitmap container, range is partial and in one word, result
         // stays bitmap
-        var content = [UInt16](count:32768 - 5,repeatedValue:0)
+        var content = [UInt16](repeating: 0,count: 32768 - 5)
         content[0] = 0
         content[1] = 2
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; ++i){
+        for (var i = 10; i <= 32767; i += 1){
             content[i - 10 + 5] = UInt16(i)
         }
         var c = ContainerTests.makeContainer(content)
@@ -282,13 +284,13 @@ class ContainerTests: XCTestCase {
     
     func testiNot_7() {
         // Bitmap container, range is partial, result flips to array
-        var content = [UInt16](count:32768 - 5,repeatedValue:0)
+        var content = [UInt16](repeating: 0,count: 32768 - 5)
         content[0] = 0
         content[1] = 2
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; ++i){
+        for (var i = 10; i <= 32767; i += 1){
             content[i - 10 + 5] = UInt16(i)
         }
         var c = ContainerTests.makeContainer(content)
@@ -314,7 +316,7 @@ class ContainerTests: XCTestCase {
     func testiNot_8() {
 
         // Array container
-        var content = [UInt16](count:21,repeatedValue:0)
+        var content = [UInt16](repeating: 0,count: 21)
         for i in 0..<18{
             content[i] = UInt16(i)
         }
@@ -339,12 +341,12 @@ class ContainerTests: XCTestCase {
     func testNot_1() {
         // Array container, range is complete
         let content:[UInt16] = [1, 3, 5, 7, 9]
-        var c = ContainerTests.makeContainer(content)
+        let c = ContainerTests.makeContainer(content)
         let c1 = c.not(rangeStart: 0, rangeEnd: 65535)
-        var s = [UInt16](count:65536 - content.count, repeatedValue:0)
+        var s = [UInt16](repeating: 0, count: 65536 - content.count)
         var pos = 0
         for i in 0..<65536{
-            if find(content,  UInt16(i)) == nil {
+            if content.index(of: UInt16(i)) == nil {
                 s[pos++] = UInt16(i)
             }
         }
@@ -359,17 +361,17 @@ class ContainerTests: XCTestCase {
     // Array container, inverting a range past any set bit
     // attempting to recreate a bug (but bug required extra space
     // in the array with just the right junk in it.
-        var content = [UInt16](count:40, repeatedValue:0)
+        var content = [UInt16](repeating: 0, count: 40)
         for i in 244...283{
             content[i - 244] = UInt16(i)
         }
    
-        var c = ContainerTests.makeContainer(content)
+        let c = ContainerTests.makeContainer(content)
         let c1 = c.not(rangeStart: 51413, rangeEnd: 51470)
         XCTAssert(c1 is ArrayContainer)
         XCTAssertEqual(40 + 58, c1.cardinality)
         
-        var rightAns = [UInt16](count:98, repeatedValue:0)
+        var rightAns = [UInt16](repeating: 0, count: 98)
         for i in 244...283{
             rightAns[i - 244] = UInt16(i)
         }
@@ -385,18 +387,18 @@ class ContainerTests: XCTestCase {
         // Array container, inverting a range before any set bit
         // attempting to recreate a bug (but required extra space
         // in the array with the right junk in it.
-        var content = [UInt16](count:40, repeatedValue:0)
+        var content = [UInt16](repeating: 0, count: 40)
         for i in 244...283{
             content[i - 244] = UInt16(i)
         }
         
-        var c = ContainerTests.makeContainer(content)
+        let c = ContainerTests.makeContainer(content)
         
         let c1 = c.not(rangeStart: 1, rangeEnd: 58)
         XCTAssert(c1 is ArrayContainer)
         XCTAssertEqual(40 + 58, c1.cardinality)
         
-        var rightAns = [UInt16](count:98, repeatedValue:0)
+        var rightAns = [UInt16](repeating: 0, count: 98)
         for i in 1...58{
             rightAns[i - 1] = UInt16(i)
         }
@@ -412,9 +414,9 @@ class ContainerTests: XCTestCase {
         // Array and then Bitmap container, range is complete
         let content:[UInt16] = [1, 3, 5, 7, 9]
         
-        var c = ContainerTests.makeContainer(content)
-        var c1 = c.not(rangeStart: 0, rangeEnd: 65535)
-        var c2 = c1.not(rangeStart: 0, rangeEnd: 65535)
+        let c = ContainerTests.makeContainer(content)
+        let c1 = c.not(rangeStart: 0, rangeEnd: 65535)
+        let c2 = c1.not(rangeStart: 0, rangeEnd: 65535)
         XCTAssert(ContainerTests.checkContent(c2, s: content), "c passed")
     }
     
@@ -423,7 +425,7 @@ class ContainerTests: XCTestCase {
         // Bitmap to bitmap, full range
         var c:Container =  ArrayContainer()
         for (var i = 0; i < 65536; i += 2){
-            c = c.add(UInt16(i))
+            if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         
         let c1 = c.not(rangeStart: 0, rangeEnd: 65535)
@@ -440,7 +442,7 @@ class ContainerTests: XCTestCase {
     func testNot_4() {
         // Array container, range is partial, result stays array
         let content:[UInt16] = [1, 3, 5, 7, 9]
-        var c:Container = ContainerTests.makeContainer(content)
+        let c:Container = ContainerTests.makeContainer(content)
         let c1 = c.not(rangeStart: 4, rangeEnd: 999)
         XCTAssert(c1 is ArrayContainer, "c1 should be of Type ArrayContainer")
         XCTAssertEqual(999 - 4 + 1 - 3 + 2, c1.cardinality)
@@ -452,16 +454,16 @@ class ContainerTests: XCTestCase {
     func testNot_5() {
     
         // Bitmap container, range is partial, result stays bitmap
-        var content = [UInt16](count:32768 - 5,repeatedValue:0)
+        var content = [UInt16](repeating: 0,count: 32768 - 5)
         content[0] = 0
         content[1] = 2
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; ++i){
+        for (var i = 10; i <= 32767; i += 1){
             content[i - 10 + 5] = UInt16(i)
         }
-        var c = ContainerTests.makeContainer(content)
+        let c = ContainerTests.makeContainer(content)
         let c1 = c.not(rangeStart: 4, rangeEnd: 999)
         XCTAssert(c1 is BitmapContainer,"");
         XCTAssertEqual(31773, c1.cardinality,"")
@@ -475,16 +477,16 @@ class ContainerTests: XCTestCase {
     func testNot_6() {
         // Bitmap container, range is partial and in one word, result
         // stays bitmap
-        var content = [UInt16](count:32768 - 5,repeatedValue:0)
+        var content = [UInt16](repeating: 0,count: 32768 - 5)
         content[0] = 0
         content[1] = 2
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; ++i){
+        for (var i = 10; i <= 32767; i += 1){
             content[i - 10 + 5] = UInt16(i)
         }
-        var c = ContainerTests.makeContainer(content)
+        let c = ContainerTests.makeContainer(content)
         let c1 = c.not(rangeStart:4, rangeEnd:8)
         XCTAssert(c1 is BitmapContainer);
         XCTAssertEqual(32762, c1.cardinality)
@@ -497,16 +499,16 @@ class ContainerTests: XCTestCase {
     
     func testNot_7() {
         // Bitmap container, range is partial, result flips to array
-        var content = [UInt16](count:32768 - 5,repeatedValue:0)
+        var content = [UInt16](repeating: 0,count: 32768 - 5)
         content[0] = 0
         content[1] = 2
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; ++i){
+        for (var i = 10; i <= 32767; i += 1){
             content[i - 10 + 5] = UInt16(i)
         }
-        var c = ContainerTests.makeContainer(content)
+        let c = ContainerTests.makeContainer(content)
         
         let c1 = c.not(rangeStart: 5, rangeEnd: 31000)
         if (c1.cardinality <= ArrayContainer.DEFAULT_MAX_SIZE){
@@ -527,16 +529,16 @@ class ContainerTests: XCTestCase {
     
     func testNot_8() {
         // Bitmap container, range is partial on the lower end
-        var content = [UInt16](count:32768 - 5,repeatedValue:0)
+        var content = [UInt16](repeating: 0,count: 32768 - 5)
         content[0] = 0
         content[1] = 2
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; ++i){
+        for (var i = 10; i <= 32767; i += 1){
             content[i - 10 + 5] = UInt16(i)
         }
-        var c = ContainerTests.makeContainer(content)
+        let c = ContainerTests.makeContainer(content)
         
         let c1 = c.not(rangeStart: 4, rangeEnd: 65535)
         XCTAssert(c1 is BitmapContainer)
@@ -551,16 +553,16 @@ class ContainerTests: XCTestCase {
     func testNot_9() {
         // Bitmap container, range is partial on the upper end, not
         // single wordbb    
-        var content = [UInt16](count:32768 - 5,repeatedValue:0)
+        var content = [UInt16](repeating: 0,count: 32768 - 5)
         content[0] = 0
         content[1] = 2
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; ++i){
+        for (var i = 10; i <= 32767; i += 1){
             content[i - 10 + 5] = UInt16(i)
         }
-        var c = ContainerTests.makeContainer(content)
+        let c = ContainerTests.makeContainer(content)
         
         let c1 = c.not(rangeStart: 0, rangeEnd: 65200)
         XCTAssert(c1 is BitmapContainer)
@@ -589,8 +591,8 @@ class ContainerTests: XCTestCase {
     
     func testRangeOfOnes_2A() {
         let  c = ContainerDispatcher.rangeOfOnes(1000, lastIndex: 35000) // dense
-        var s = [UInt16](count: 35000 - 1000 + 1, repeatedValue: 0)
-        for (var i = 1000; i <= 35000; ++i){
+        var s = [UInt16](repeating: 0, count: 35000 - 1000 + 1)
+        for (var i = 1000; i <= 35000; i += 1){
             s[i - 1000] = UInt16(i)
         }
    
@@ -613,7 +615,7 @@ class ContainerTests: XCTestCase {
     }
   
 
-    static func checkContent(c:Container , s:[UInt16]) ->Bool{
+    static func checkContent(_ c:Container , s:[UInt16]) ->Bool{
         let si = c.sequence
         var ctr = 0
         var fail = false
@@ -633,34 +635,34 @@ class ContainerTests: XCTestCase {
             fail = true
         }
         if (fail) {
-            println("============== fail, found ==================")
+            print("============== fail, found ==================")
             let siPrint = c.sequence
             for siItem in siPrint{
-                print(" \(siItem)")
+                print(" \(siItem)", appendNewline: false)
             }
-            print("\n expected ")
+            print("\n expected ", appendNewline: false)
             for s1 in s{
-                print(" \(s1)")
+                print(" \(s1)", appendNewline: false)
             }
-            println()
-            println("============== End fail ==================")
+            print("")
+            print("============== End fail ==================")
         }
         return !fail;
     }
     
 
-    static func  makeContainer(ss:[UInt16]) -> Container{
+    static func  makeContainer(_ ss:[UInt16]) -> Container{
         var c:Container =  ArrayContainer()
         for s in ss{
-            c = c.add(s)
+            if let uw_c = c.add(s){ c = uw_c }
         }
         return c
     }
     
-    static func  makeBitmapContainer(ss:[UInt16]) -> Container{
+    static func  makeBitmapContainer(_ ss:[UInt16]) -> Container{
         var c:Container =  BitmapContainer()
         for s in ss{
-            c = c.add(s)
+            if let uw_c = c.add(s){ c = uw_c }
         }
         return c
     }

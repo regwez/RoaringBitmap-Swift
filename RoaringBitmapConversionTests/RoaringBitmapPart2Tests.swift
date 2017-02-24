@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+@testable
 import RoaringBitmapConversion
 
 class RoaringBitmapPart2Tests: XCTestCase {

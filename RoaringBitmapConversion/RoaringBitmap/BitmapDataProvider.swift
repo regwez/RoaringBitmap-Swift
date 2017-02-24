@@ -14,7 +14,7 @@ public protocol BitmapDataProvider: ImmutableBitmapDataProvider {
     *
     * @param x integer value
     */
-    func add(value:UInt32)
+    func add(_ value:UInt32)
     
     /**
     * If present remove the specified integers (effectively, sets its bit
@@ -22,7 +22,7 @@ public protocol BitmapDataProvider: ImmutableBitmapDataProvider {
     *
     * @param x integer value representing the index in a bitmap
     */
-    func remove(value:UInt32)
+    func remove(_ value:UInt32)
     
     /**
     * Return the jth value stored in this bitmap.

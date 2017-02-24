@@ -35,7 +35,7 @@ protocol ContainerPointer{
     */
     var key:UInt16{get}
     
-    func lessThan(rhs:ContainerPointer) -> Bool
+    func lessThan(_ rhs:ContainerPointer) -> Bool
 }
 
 
@@ -58,7 +58,7 @@ class RoaringArrayContainerPointer:ContainerPointer{
         
     
     func advance() {
-        ++k;
+        k += 1;
         
     }
         
@@ -68,7 +68,7 @@ class RoaringArrayContainerPointer:ContainerPointer{
         
     }
     
-    func lessThan(rhs:ContainerPointer) -> Bool{
+    func lessThan(_ rhs:ContainerPointer) -> Bool{
         if self.key != rhs.key{
             return self.key < rhs.key
         }

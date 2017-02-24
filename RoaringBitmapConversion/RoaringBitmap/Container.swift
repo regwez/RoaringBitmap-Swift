@@ -14,7 +14,7 @@ import UIKit
 */
 
 
-public class ContainerDispatcher {
+open class ContainerDispatcher {
     
     
     
@@ -26,14 +26,14 @@ public class ContainerDispatcher {
     * @param x other container
     * @return aggregated container
     */
-    public static func and(lhs:Container, rhs:Container) -> Container{
+    open static func and(_ lhs:Container, rhs:Container) -> Container{
         if let rhsA:ArrayContainer = rhs as? ArrayContainer{
             return lhs.and(rhsA)
         }
         return lhs.and(rhs as! BitmapContainer)
     }
     
-    public static func andNot(lhs:Container, rhs:Container) -> Container{
+    open static func andNot(_ lhs:Container, rhs:Container) -> Container{
         if let rhsA:ArrayContainer = rhs as? ArrayContainer{
             return lhs.andNot(rhsA)
         }
@@ -41,7 +41,7 @@ public class ContainerDispatcher {
     }
     
 
-    public static func iand(lhs:Container, rhs:Container) -> Container{
+    open static func iand(_ lhs:Container, rhs:Container) -> Container{
         if let rhsA:ArrayContainer = rhs as? ArrayContainer{
             return lhs.iand(rhsA)
         }
@@ -57,7 +57,7 @@ public class ContainerDispatcher {
     * @param x other container
     * @return aggregated container
     */
-    public static func iandNot(lhs:Container, rhs:Container) -> Container{
+    open static func iandNot(_ lhs:Container, rhs:Container) -> Container{
         if let rhsA:ArrayContainer = rhs as? ArrayContainer{
             return lhs.iandNot(rhsA)
         }
@@ -72,7 +72,7 @@ public class ContainerDispatcher {
     * @param x other container
     * @return aggregated container
     */
-    public static func ior(lhs:Container, rhs:Container) -> Container{
+    open static func ior(_ lhs:Container, rhs:Container) -> Container{
         if let rhsA:ArrayContainer = rhs as? ArrayContainer{
             return lhs.ior(rhsA)
         }
@@ -87,9 +87,9 @@ public class ContainerDispatcher {
     * @param x other container
     * @return aggregated container
     */
-    public static func ixor(lhs:Container, rhs:Container) -> Container{
+    open static func ixor(_ lhs:Container, rhs:Container) -> Container{
         if let rhsA:ArrayContainer = rhs as? ArrayContainer{
-            return lhs.ior(rhsA)
+            return lhs.ixor(rhsA)
         }
         return lhs.ixor(rhs as! BitmapContainer)
     }
@@ -101,7 +101,7 @@ public class ContainerDispatcher {
     * @param x other container
     * @return aggregated container
     */
-    public static func or(lhs:Container, rhs:Container) -> Container{
+    open static func or(_ lhs:Container, rhs:Container) -> Container{
         if let rhsA:ArrayContainer = rhs as? ArrayContainer{
             return lhs.or(rhsA)
         }
@@ -115,7 +115,7 @@ public class ContainerDispatcher {
     * @param x other parameter
     * @return aggregated container
     */
-    public static func xor(lhs:Container, rhs:Container) -> Container{
+    open static func xor(_ lhs:Container, rhs:Container) -> Container{
         if let rhsA:ArrayContainer = rhs as? ArrayContainer{
             return lhs.xor(rhsA)
         }
@@ -130,14 +130,14 @@ public class ContainerDispatcher {
     * @param last  last index (range in inclusive)
     * @return a new container initialized with the specified values
     */
-    public static func  rangeOfOnes(startIndex: Int, lastIndex:Int) ->Container{
+    open static func  rangeOfOnes(_ startIndex: Int, lastIndex:Int) ->Container{
         if (lastIndex - startIndex + 1 > ArrayContainer.DEFAULT_MAX_SIZE){
             return BitmapContainer(firstOfRun:startIndex, lastOfRun:lastIndex)
         }
         return ArrayContainer(firstOfRun:startIndex, lastOfRun:lastIndex)
     }
 
-    public static func equals(lhs:Container, rhs:Container) ->Bool{
+    open static func equals(_ lhs:Container, rhs:Container) ->Bool{
         if let uw_lhs = lhs as? ArrayContainer {
             if let uw_rhs = rhs as? ArrayContainer{
                 return uw_lhs == uw_rhs
@@ -152,7 +152,7 @@ public class ContainerDispatcher {
         return false
     }
     
-    internal static func lazyOR(lhs:Container,rhs:Container) ->Container{
+    internal static func lazyOR(_ lhs:Container,rhs:Container) ->Container{
         if (lhs is ArrayContainer) {
             if (rhs is ArrayContainer){
                 return lhs.or((rhs as! ArrayContainer))
@@ -166,7 +166,7 @@ public class ContainerDispatcher {
         }
     }
     
-    internal static func lazyIOR(lhs:Container,rhs:Container) ->Container{
+    internal static func lazyIOR(_ lhs:Container,rhs:Container) ->Container{
         if (lhs is ArrayContainer) {
             if (rhs is ArrayContainer){
                 return lhs.ior((rhs as! ArrayContainer) )
@@ -190,7 +190,7 @@ public class ContainerDispatcher {
 */
 public protocol Container {
     
-    var sequence:SequenceOf<UInt16> {get}
+    var sequence:AnySequence<UInt16> {get}
     
  
     var hashValue: Int {get}
@@ -200,9 +200,9 @@ public protocol Container {
     * Add a UInt16 to the container. May generate a new container.
     *
     * @param x UInt16 to be added
-    * @return the new container
+    * @return a optional new Container or nil if the current one hasn't changed
     */
-    func add(value:UInt16) -> Container
+    func add(_ value:UInt16) -> Container?
     
     /**
     * Computes the bitwise AND of this container with another
@@ -212,7 +212,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func and(rhs:ArrayContainer) -> Container
+    func and(_ rhs:ArrayContainer) -> Container
     
     /**
     * Computes the bitwise AND of this container with another
@@ -222,7 +222,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func and(rhs:BitmapContainer) -> Container
+    func and(_ rhs:BitmapContainer) -> Container
     
    
     
@@ -234,7 +234,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func andNot(rhs:ArrayContainer) -> Container
+    func andNot(_ rhs:ArrayContainer) -> Container
     
     /**
     * Computes the bitwise ANDNOT of this container with another
@@ -244,7 +244,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func andNot(rhs:BitmapContainer) -> Container
+    func andNot(_ rhs:BitmapContainer) -> Container
     
 
     
@@ -262,7 +262,7 @@ public protocol Container {
     * @param x value to check
     * @return whether the value is in the container
     */
-    func  contains(value:UInt16) -> Bool
+    func  contains(_ value:UInt16) -> Bool
     
     /**
     * Deserialize (recover) the container.
@@ -283,7 +283,7 @@ public protocol Container {
     * @param i    starting index
     * @param mask indicates most significant bits
     */
-    func fillLeastSignificant16bits(inout array:[UInt64], index:Int, mask:UInt64)
+    func fillLeastSignificant16bits(_ array:inout [UInt32], index:Int, mask:UInt32)
     
     /**
     * Size of the underlying array
@@ -332,7 +332,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func iand(rhs:ArrayContainer) -> Container
+    func iand(_ rhs:ArrayContainer) -> Container
     
     /**
     * Computes the in-place bitwise AND of this container with another
@@ -343,7 +343,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func iand(rhs:BitmapContainer) -> Container
+    func iand(_ rhs:BitmapContainer) -> Container
     
     
     /**
@@ -355,7 +355,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func iandNot(rhs:ArrayContainer) -> Container
+    func iandNot(_ rhs:ArrayContainer) -> Container
     
     /**
     * Computes the in-place bitwise ANDNOT of this container with another
@@ -366,7 +366,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func iandNot(rhs:BitmapContainer) -> Container
+    func iandNot(_ rhs:BitmapContainer) -> Container
     
 
     /**
@@ -379,7 +379,7 @@ public protocol Container {
     * @param rangeEnd   ending of range (exclusive)
     * @return (partially) completmented container
     */
-    func inot(#rangeStart:Int, rangeEnd:Int) -> Container
+    func inot(rangeStart:Int, rangeEnd:Int) -> Container
     
     /**
     * Computes the in-place bitwise OR of this container with another
@@ -389,7 +389,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func ior(rhs:ArrayContainer) -> Container
+    func ior(_ rhs:ArrayContainer) -> Container
     
     /**
     * Computes the in-place bitwise OR of this container with another
@@ -399,7 +399,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func ior(rhs:BitmapContainer) -> Container
+    func ior(_ rhs:BitmapContainer) -> Container
 
     
     /**
@@ -410,7 +410,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func ixor(rhs:ArrayContainer) -> Container
+    func ixor(_ rhs:ArrayContainer) -> Container
     
     /**
     * Computes the in-place bitwise OR of this container with another
@@ -420,7 +420,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func ixor(rhs:BitmapContainer) -> Container
+    func ixor(_ rhs:BitmapContainer) -> Container
     
 
     /**
@@ -433,7 +433,7 @@ public protocol Container {
     * @param rangeEnd   ending of range (exclusive)
     * @return (partially) completmented container
     */
-    func not(#rangeStart:Int, rangeEnd:Int) -> Container
+    func not(rangeStart:Int, rangeEnd:Int) -> Container
     
     /**
     * Computes the bitwise OR of this container with another (union). This
@@ -442,7 +442,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func or(rhs:ArrayContainer) -> Container
+    func or(_ rhs:ArrayContainer) -> Container
 
     /**
     * Computes the bitwise OR of this container with another (union). This
@@ -451,16 +451,16 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func or(rhs:BitmapContainer) -> Container
+    func or(_ rhs:BitmapContainer) -> Container
     
     
     /**
     * Remove the UInt16 from this container. May create a new container.
     *
     * @param x to be removed
-    * @return New container
+    * @return a optional new Container or nil if the current one hasn't changed
     */
-    func remove(value:UInt16) -> Container
+    func remove(_ value:UInt16) -> Container?
     
     /**
     * Serialize the container.
@@ -489,6 +489,7 @@ public protocol Container {
     * @throws IOException in case of failure
     */
   //FIXME:  func void writeArray(DataOutput out)
+    func writeArray()
     
     /**
     * Computes the bitwise OR of this container with another (union). This
@@ -497,7 +498,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func xor(rhs:ArrayContainer) -> Container
+    func xor(_ rhs:ArrayContainer) -> Container
     
     /**
     * Computes the bitwise OR of this container with another (union). This
@@ -506,7 +507,7 @@ public protocol Container {
     * @param x other container
     * @return aggregated container
     */
-    func xor(rhs:BitmapContainer) -> Container
+    func xor(_ rhs:BitmapContainer) -> Container
     
 
     /**
@@ -515,7 +516,7 @@ public protocol Container {
     *
     * @return the rank
     */
-    func rank(lowbits:UInt16) -> Int
+    func rank(_ lowbits:UInt16) -> Int
     
     /**
     * Return the jth value
@@ -524,7 +525,7 @@ public protocol Container {
     *
     * @return the value
     */
-    func select(index:Int) -> Int
+    func select(_ index:UInt32) -> UInt32
     
     /**
     * Create a new Container containing at most maxcardinality integers.
@@ -532,7 +533,7 @@ public protocol Container {
     * @param maxcardinality maximal cardinality
     * @return a new bitmap with cardinality no more than maxcardinality
     */
-    func limit(maxCardinality:Int)  -> Container
+    func limit(_ maxCardinality:Int)  -> Container
     
 }
 

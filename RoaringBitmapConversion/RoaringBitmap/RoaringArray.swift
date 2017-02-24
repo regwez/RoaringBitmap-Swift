@@ -21,26 +21,26 @@ public typealias Element = (key:UInt16,value:Container)
 //    }
 
 
-let INITIAL_CAPACITY = 4
+//let INITIAL_CAPACITY = 4
 
 /**
 * Specialized array to store the containers used by a RoaringBitmap.
 * This is not meant to be used by end users.
 */
-public struct RoaringArray:Equatable,Hashable {
+public struct RoaringArray:Equatable {
     public var array:[Element]
     
 
     init() {
-        var newArray = [Element]()
-        newArray.reserveCapacity(INITIAL_CAPACITY)
+        let newArray = [Element]()
+      //  newArray.reserveCapacity(INITIAL_CAPACITY)
         
         self.array = newArray
     }
     
-    mutating func append(tuple:Element) {
-        array.append(tuple)
-    }
+//    mutating func append(tuple:Element) {
+//        array.append(tuple)
+//    }
     
     /**
     * Append copy of the one value from another array
@@ -48,7 +48,7 @@ public struct RoaringArray:Equatable,Hashable {
     * @param sa    other array
     * @param index index in the other array
     */
-    internal mutating func appendCopy(sourceArray: RoaringArray,  index:Int) {
+    internal mutating func appendCopy(_ sourceArray: RoaringArray,  index:Int) {
         let sourceTuple = sourceArray.array[index]
         self.array.append((key:sourceTuple.key,value:sourceTuple.value.clone()))
     }
@@ -60,12 +60,12 @@ public struct RoaringArray:Equatable,Hashable {
     * @param startingIndex starting index in the other array
     * @param end endingIndex (exclusive) in the other array
     */
-    internal mutating func  appendCopy(sourceArray:RoaringArray ,startingIndex:Int, end:Int) {
-        var uw_array = self.array
-        self.array.reserveCapacity(uw_array.count + (end - startingIndex))
+    internal mutating func  appendCopy(_ extraRoaringArray:RoaringArray ,startingIndex:Int, end:Int) {
+        var sourceArray = extraRoaringArray.array
+        self.array.reserveCapacity(self.array.count + (end - startingIndex))
         for i in startingIndex..<end {
-            let sourceTuple = sourceArray.array[i]
-            uw_array.append((key:sourceTuple.key,value:sourceTuple.value.clone()))
+            let sourceTuple = sourceArray[i]
+            self.array.append((key:sourceTuple.key,value:sourceTuple.value.clone()))
         }
     }
     
@@ -76,7 +76,7 @@ public struct RoaringArray:Equatable,Hashable {
     * @param stoppingKey any equal or larger key in other array will terminate
     *                    copying
     */
-    internal mutating func  appendCopiesUntil(sourceArray:RoaringArray , stoppingKey:UInt16 ) {
+    internal mutating func  appendCopiesUntil(_ sourceArray:RoaringArray , stoppingKey:UInt16 ) {
         for sourceTuple in sourceArray.array {
             if (sourceTuple.key >= stoppingKey){
                 break
@@ -93,10 +93,10 @@ public struct RoaringArray:Equatable,Hashable {
     * @param sa          other array
     * @param beforeStart given key is the largest key that we won't copy
     */
-    internal mutating func appendCopiesAfter(sourceArray:RoaringArray , beforeStart:UInt16 ) {
+    internal mutating func appendCopiesAfter(_ sourceArray:RoaringArray , beforeStart:UInt16 ) {
         var startLocation = sourceArray.getIndex(beforeStart)
         if (startLocation >= 0){
-            startLocation++
+            startLocation += 1
         }else{
             startLocation = -startLocation - 1
         }
@@ -127,7 +127,7 @@ public struct RoaringArray:Equatable,Hashable {
    
     
     // involves a binary search
-    internal func getContainer(key:UInt16) -> Container? {
+    internal func getContainer(_ key:UInt16) -> Container? {
         let i = self.binarySearch(begin:0, end: size, key: key)
         if (i < 0){
             return nil
@@ -136,7 +136,7 @@ public struct RoaringArray:Equatable,Hashable {
     }
     
     // involves a binary search
-    internal func getIndex(key:UInt16) -> Int {
+    internal func getIndex(_ key:UInt16) -> Int {
         // before the binary search, we optimize for frequent cases
         if ((size == 0) || (array[size - 1].key == key)){
             return size - 1
@@ -150,9 +150,9 @@ public struct RoaringArray:Equatable,Hashable {
     
     
     // insert a new key, it is assumed that it does not exist
-    internal mutating func  insertNewKeyValueAt(index:Int, element:Element) {
-        array.insert(element, atIndex: index)
-    }
+//    internal mutating func  insertNewKeyValueAt(index:Int, element:Element) {
+//        array.insert(element, atIndex: index)
+//    }
     
     internal mutating func trim(toLength newLength:Int) {
         let currentCount = self.array.count
@@ -163,7 +163,7 @@ public struct RoaringArray:Equatable,Hashable {
 //FIXME:        var newArray = [Element] (count: newLength, repeatedValue: 0)
 //        memcpy(&newArray, self.array, newLength * sizeof(Element))
 //        self.array = newArray
-        self.array.removeRange(newLength..<currentCount)
+        self.array.removeSubrange(newLength..<currentCount)
     }
     
     
@@ -171,7 +171,7 @@ public struct RoaringArray:Equatable,Hashable {
         return array.count
     }
     
-    private func binarySearch( #begin:Int, end:Int, key: UInt16 ) ->Int{
+    fileprivate func binarySearch( begin:Int, end:Int, key: UInt16 ) ->Int{
         var low = begin
         var high = end - 1
 
