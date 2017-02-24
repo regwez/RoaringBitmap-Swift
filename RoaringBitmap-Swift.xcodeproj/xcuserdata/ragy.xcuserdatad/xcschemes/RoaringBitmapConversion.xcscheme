@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "055CB4981AB7CB4C0077D02A"
-               BuildableName = "RoaringBitmap-Swift.app"
-               BlueprintName = "RoaringBitmap-Swift"
+               BuildableName = "RoaringBitmap.app"
+               BlueprintName = "RoaringBitmap"
                ReferencedContainer = "container:RoaringBitmap-Swift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "055CB4AD1AB7CB4C0077D02A"
-               BuildableName = "RoaringBitmap-SwiftTests.xctest"
-               BlueprintName = "RoaringBitmap-SwiftTests"
+               BuildableName = "RoaringBitmapTests.xctest"
+               BlueprintName = "RoaringBitmapTests"
                ReferencedContainer = "container:RoaringBitmap-Swift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "055CB4AD1AB7CB4C0077D02A"
-               BuildableName = "RoaringBitmap-SwiftTests.xctest"
-               BlueprintName = "RoaringBitmap-SwiftTests"
+               BuildableName = "RoaringBitmapTests.xctest"
+               BlueprintName = "RoaringBitmapTests"
                ReferencedContainer = "container:RoaringBitmap-Swift.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,8 +57,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "055CB4981AB7CB4C0077D02A"
-            BuildableName = "RoaringBitmap-Swift.app"
-            BlueprintName = "RoaringBitmap-Swift"
+            BuildableName = "RoaringBitmap.app"
+            BlueprintName = "RoaringBitmap"
             ReferencedContainer = "container:RoaringBitmap-Swift.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -80,8 +80,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "055CB4981AB7CB4C0077D02A"
-            BuildableName = "RoaringBitmap-Swift.app"
-            BlueprintName = "RoaringBitmap-Swift"
+            BuildableName = "RoaringBitmap.app"
+            BlueprintName = "RoaringBitmap"
             ReferencedContainer = "container:RoaringBitmap-Swift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -99,8 +99,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "055CB4981AB7CB4C0077D02A"
-            BuildableName = "RoaringBitmap-Swift.app"
-            BlueprintName = "RoaringBitmap-Swift"
+            BuildableName = "RoaringBitmap.app"
+            BlueprintName = "RoaringBitmap"
             ReferencedContainer = "container:RoaringBitmap-Swift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

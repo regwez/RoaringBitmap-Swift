@@ -30,7 +30,7 @@
             startingLineNumber = "679"
             endingLineNumber = "679"
             landmarkName = "prevSetBit(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -78,7 +78,7 @@
             startingLineNumber = "712"
             endingLineNumber = "712"
             landmarkName = "next()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -110,7 +110,7 @@
             startingLineNumber = "558"
             endingLineNumber = "558"
             landmarkName = "testBitmapContainerCardinality()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -126,7 +126,7 @@
             startingLineNumber = "662"
             endingLineNumber = "662"
             landmarkName = "negateRange(_:startIndex:lastIndex:startRange:lastRange:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -142,7 +142,7 @@
             startingLineNumber = "661"
             endingLineNumber = "661"
             landmarkName = "negateRange(_:startIndex:lastIndex:startRange:lastRange:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -158,7 +158,7 @@
             startingLineNumber = "660"
             endingLineNumber = "660"
             landmarkName = "negateRange(_:startIndex:lastIndex:startRange:lastRange:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -174,7 +174,7 @@
             startingLineNumber = "169"
             endingLineNumber = "169"
             landmarkName = "testiNot_3()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -190,7 +190,7 @@
             startingLineNumber = "165"
             endingLineNumber = "165"
             landmarkName = "testiNot_3()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -206,7 +206,7 @@
             startingLineNumber = "638"
             endingLineNumber = "638"
             landmarkName = "checkContent(_:s:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -221,8 +221,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26"
-            landmarkName = "testCountBits()"
-            landmarkType = "5">
+            landmarkName = "BitsMathTests"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -238,7 +238,7 @@
             startingLineNumber = "232"
             endingLineNumber = "232"
             landmarkName = "testiNot_5()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -301,7 +301,7 @@
             startingLineNumber = "233"
             endingLineNumber = "233"
             landmarkName = "testiNot_5()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -317,7 +317,7 @@
             startingLineNumber = "881"
             endingLineNumber = "881"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -333,7 +333,7 @@
             startingLineNumber = "332"
             endingLineNumber = "332"
             landmarkName = "testiNot_8()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -349,7 +349,7 @@
             startingLineNumber = "416"
             endingLineNumber = "416"
             landmarkName = "testAnd_3()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -365,7 +365,7 @@
             startingLineNumber = "639"
             endingLineNumber = "639"
             landmarkName = "testClear()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -381,7 +381,7 @@
             startingLineNumber = "660"
             endingLineNumber = "660"
             landmarkName = "testClear()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -397,7 +397,7 @@
             startingLineNumber = "651"
             endingLineNumber = "651"
             landmarkName = "testClear()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -413,7 +413,7 @@
             startingLineNumber = "1646"
             endingLineNumber = "1646"
             landmarkName = "testXOR_4()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -461,7 +461,7 @@
             startingLineNumber = "168"
             endingLineNumber = "168"
             landmarkName = "testiNot_3()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -509,7 +509,7 @@
             startingLineNumber = "194"
             endingLineNumber = "194"
             landmarkName = "testiNot_3_Array()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -525,7 +525,7 @@
             startingLineNumber = "793"
             endingLineNumber = "793"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -541,7 +541,7 @@
             startingLineNumber = "779"
             endingLineNumber = "779"
             landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -557,7 +557,7 @@
             startingLineNumber = "788"
             endingLineNumber = "788"
             landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -573,7 +573,7 @@
             startingLineNumber = "96"
             endingLineNumber = "96"
             landmarkName = "testContains_3()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -621,7 +621,7 @@
             startingLineNumber = "101"
             endingLineNumber = "101"
             landmarkName = "add(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -637,7 +637,7 @@
             startingLineNumber = "103"
             endingLineNumber = "103"
             landmarkName = "testContains_3()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -653,7 +653,7 @@
             startingLineNumber = "119"
             endingLineNumber = "119"
             landmarkName = "testiNot_1()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -669,7 +669,7 @@
             startingLineNumber = "804"
             endingLineNumber = "804"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -685,7 +685,7 @@
             startingLineNumber = "127"
             endingLineNumber = "127"
             landmarkName = "testiNot_1()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -749,7 +749,7 @@
             startingLineNumber = "759"
             endingLineNumber = "759"
             landmarkName = "fillArray(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -765,7 +765,7 @@
             startingLineNumber = "761"
             endingLineNumber = "761"
             landmarkName = "fillArray(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -781,7 +781,7 @@
             startingLineNumber = "452"
             endingLineNumber = "452"
             landmarkName = "remove(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -797,7 +797,7 @@
             startingLineNumber = "888"
             endingLineNumber = "888"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -813,7 +813,7 @@
             startingLineNumber = "879"
             endingLineNumber = "879"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -829,7 +829,7 @@
             startingLineNumber = "871"
             endingLineNumber = "871"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -845,7 +845,7 @@
             startingLineNumber = "870"
             endingLineNumber = "870"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -861,7 +861,7 @@
             startingLineNumber = "880"
             endingLineNumber = "880"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -877,7 +877,7 @@
             startingLineNumber = "878"
             endingLineNumber = "878"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -893,7 +893,7 @@
             startingLineNumber = "230"
             endingLineNumber = "230"
             landmarkName = "testiNot_5()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -909,7 +909,7 @@
             startingLineNumber = "328"
             endingLineNumber = "328"
             landmarkName = "testiNot_8()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -925,7 +925,7 @@
             startingLineNumber = "621"
             endingLineNumber = "621"
             landmarkName = "checkContent(_:s:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -941,7 +941,7 @@
             startingLineNumber = "622"
             endingLineNumber = "622"
             landmarkName = "checkContent(_:s:)"
-            landmarkType = "5">
+            landmarkType = "7">
             <Actions>
                <BreakpointActionProxy
                   ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
@@ -965,7 +965,7 @@
             startingLineNumber = "707"
             endingLineNumber = "707"
             landmarkName = "init(content:cardinality:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -981,7 +981,7 @@
             startingLineNumber = "334"
             endingLineNumber = "334"
             landmarkName = "testiNot_8()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -1029,7 +1029,7 @@
             startingLineNumber = "593"
             endingLineNumber = "593"
             landmarkName = "testRangeOfOnes_2A()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1045,7 +1045,7 @@
             startingLineNumber = "592"
             endingLineNumber = "592"
             landmarkName = "testRangeOfOnes_2A()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1061,7 +1061,7 @@
             startingLineNumber = "1148"
             endingLineNumber = "1148"
             landmarkName = "testOR_1()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1077,7 +1077,7 @@
             startingLineNumber = "1172"
             endingLineNumber = "1172"
             landmarkName = "testOR_2()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1093,7 +1093,7 @@
             startingLineNumber = "253"
             endingLineNumber = "253"
             landmarkName = "testAndNot_4()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1125,7 +1125,7 @@
             startingLineNumber = "256"
             endingLineNumber = "256"
             landmarkName = "testAndNot_4()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1141,7 +1141,7 @@
             startingLineNumber = "257"
             endingLineNumber = "257"
             landmarkName = "testAndNot_4()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1157,7 +1157,7 @@
             startingLineNumber = "418"
             endingLineNumber = "418"
             landmarkName = "testAnd_3()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1173,7 +1173,7 @@
             startingLineNumber = "420"
             endingLineNumber = "420"
             landmarkName = "testAnd_3()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1189,7 +1189,7 @@
             startingLineNumber = "124"
             endingLineNumber = "124"
             landmarkName = "and(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1205,7 +1205,7 @@
             startingLineNumber = "130"
             endingLineNumber = "130"
             landmarkName = "and(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1221,7 +1221,7 @@
             startingLineNumber = "136"
             endingLineNumber = "136"
             landmarkName = "and(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1237,7 +1237,7 @@
             startingLineNumber = "1532"
             endingLineNumber = "1532"
             landmarkName = "testXOR_0()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1253,7 +1253,7 @@
             startingLineNumber = "1534"
             endingLineNumber = "1534"
             landmarkName = "testXOR_0()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -1301,7 +1301,7 @@
             startingLineNumber = "1533"
             endingLineNumber = "1533"
             landmarkName = "testXOR_0()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1317,7 +1317,7 @@
             startingLineNumber = "1462"
             endingLineNumber = "1462"
             landmarkName = "testSequence()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -1365,7 +1365,7 @@
             startingLineNumber = "1459"
             endingLineNumber = "1459"
             landmarkName = "testSequence()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1397,7 +1397,7 @@
             startingLineNumber = "1458"
             endingLineNumber = "1458"
             landmarkName = "testSequence()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1413,7 +1413,7 @@
             startingLineNumber = "1457"
             endingLineNumber = "1457"
             landmarkName = "testSequence()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1445,7 +1445,7 @@
             startingLineNumber = "1746"
             endingLineNumber = "1746"
             landmarkName = "testMassiveAnd()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1461,7 +1461,7 @@
             startingLineNumber = "1793"
             endingLineNumber = "1793"
             landmarkName = "testMassiveOR()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -1509,7 +1509,7 @@
             startingLineNumber = "1260"
             endingLineNumber = "1260"
             landmarkName = "testOR_3()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1525,7 +1525,7 @@
             startingLineNumber = "209"
             endingLineNumber = "209"
             landmarkName = "fillLeastSignificant16bits(_:index:mask:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1542,7 +1542,7 @@
             startingLineNumber = "211"
             endingLineNumber = "211"
             landmarkName = "fillLeastSignificant16bits(_:index:mask:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1558,7 +1558,7 @@
             startingLineNumber = "1240"
             endingLineNumber = "1240"
             landmarkName = "testOR_3()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1574,7 +1574,7 @@
             startingLineNumber = "426"
             endingLineNumber = "426"
             landmarkName = "or(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1606,7 +1606,7 @@
             startingLineNumber = "1791"
             endingLineNumber = "1791"
             landmarkName = "testMassiveOR()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1622,7 +1622,7 @@
             startingLineNumber = "1790"
             endingLineNumber = "1790"
             landmarkName = "testMassiveOR()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1654,7 +1654,7 @@
             startingLineNumber = "1787"
             endingLineNumber = "1787"
             landmarkName = "testMassiveOR()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1670,7 +1670,7 @@
             startingLineNumber = "1785"
             endingLineNumber = "1785"
             landmarkName = "testMassiveOR()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1686,7 +1686,7 @@
             startingLineNumber = "1784"
             endingLineNumber = "1784"
             landmarkName = "testMassiveOR()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1702,7 +1702,7 @@
             startingLineNumber = "1778"
             endingLineNumber = "1778"
             landmarkName = "testMassiveOR()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1750,7 +1750,7 @@
             startingLineNumber = "413"
             endingLineNumber = "413"
             landmarkName = "or(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1846,7 +1846,7 @@
             startingLineNumber = "1828"
             endingLineNumber = "1828"
             landmarkName = "testMassiveXOr()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1862,7 +1862,7 @@
             startingLineNumber = "799"
             endingLineNumber = "799"
             landmarkName = "testFlip_3A()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -1910,7 +1910,7 @@
             startingLineNumber = "796"
             endingLineNumber = "796"
             landmarkName = "testFlip_3A()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1926,7 +1926,7 @@
             startingLineNumber = "798"
             endingLineNumber = "798"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1942,7 +1942,7 @@
             startingLineNumber = "846"
             endingLineNumber = "846"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1958,7 +1958,7 @@
             startingLineNumber = "874"
             endingLineNumber = "874"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1974,7 +1974,7 @@
             startingLineNumber = "875"
             endingLineNumber = "875"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1990,7 +1990,7 @@
             startingLineNumber = "795"
             endingLineNumber = "795"
             landmarkName = "testFlip_3A()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2006,7 +2006,7 @@
             startingLineNumber = "76"
             endingLineNumber = "76"
             landmarkName = "init(firstOfRun:lastOfRun:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2022,7 +2022,7 @@
             startingLineNumber = "81"
             endingLineNumber = "81"
             landmarkName = "init(firstOfRun:lastOfRun:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2038,7 +2038,7 @@
             startingLineNumber = "743"
             endingLineNumber = "743"
             landmarkName = "testFlip_1A()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -2086,7 +2086,7 @@
             startingLineNumber = "733"
             endingLineNumber = "733"
             landmarkName = "testFlip_1A()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

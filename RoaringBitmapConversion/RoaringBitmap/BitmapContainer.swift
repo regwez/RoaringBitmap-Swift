@@ -113,7 +113,8 @@ open class BitmapContainer:Container, Equatable, CustomStringConvertible, Hashab
         let answer = ArrayContainer(initialCardinality: rhsContent.count)
         for k in 0..<rhs._cardinality{
             if (self.contains(rhsContent[k])){
-                answer._content[answer._cardinality++] = rhsContent[k]
+                answer._content[answer._cardinality] = rhsContent[k]
+                answer._cardinality+=1
             }
         }
         return answer
@@ -212,7 +213,8 @@ open class BitmapContainer:Container, Equatable, CustomStringConvertible, Hashab
                 let notBitset = (~bitset) + 1
                 let t = bitset & notBitset
                 let k64 = UInt64(k * 64) + countBits(t - 1)
-                array[pos++] = UInt32(k64) | mask
+                array[pos] = UInt32(k64) | mask
+                pos+=1
                 bitset ^= t
             }
         }
@@ -590,15 +592,18 @@ open class BitmapContainer:Container, Equatable, CustomStringConvertible, Hashab
         if(maxCardinality <= BitmapContainer.MAX_CAPACITY) {
             let ac = ArrayContainer(initialCardinality: maxCardinality)
             var pos = 0
-            for (var k = 0; (ac._cardinality < maxCardinality) && (k < _bitmap.count); k += 1) {
+            var k = 0
+            while ((ac._cardinality < maxCardinality) && (k < _bitmap.count)) {
                 var bitset = _bitmap[k]
                 while ((ac._cardinality < maxCardinality) && ( bitset != 0)) {
                     let notBitset = (~bitset) + 1
                     let t = bitset & notBitset
-                    ac._content[pos++] =  UInt16(UInt64(k * 64) + countBits(t - 1))
+                    ac._content[pos] =  UInt16(UInt64(k * 64) + countBits(t - 1))
+                    pos+=1
                     ac._cardinality += 1
                     bitset ^= t
                 }
+                k += 1
             }
             return ac
         }
@@ -656,9 +661,10 @@ open class BitmapContainer:Container, Equatable, CustomStringConvertible, Hashab
         if (w != 0) {
             return index + Int(numberOfTrailingZeros(w))
         }
-        for (x += 1; x < localBitmap.count; x += 1) {
-            if (localBitmap[x] != 0) {
-                return x * 64 + Int(numberOfTrailingZeros(localBitmap[x]))
+        x += 1
+        for xi in x ..< localBitmap.count  {
+            if (localBitmap[xi] != 0) {
+                return xi * 64 + Int(numberOfTrailingZeros(localBitmap[xi]))
             }
         }
         return -1;
@@ -678,9 +684,10 @@ open class BitmapContainer:Container, Equatable, CustomStringConvertible, Hashab
         if (w != 0) {
             return index - Int(numberOfLeadingZeros(w))
         }
-        for (x -= 1; x >= 0; x -= 1) {
-            if (_bitmap[x] != 0) {
-                return x * 64 + 63 - Int(numberOfLeadingZeros(_bitmap[x]))
+        x -= 1
+        for xi in stride(from: x, through: 0, by: -1)  {
+            if (_bitmap[xi] != 0) {
+                return xi * 64 + 63 - Int(numberOfLeadingZeros(_bitmap[xi]))
             }
         }
         return -1
@@ -701,9 +708,9 @@ open class BitmapContainer:Container, Equatable, CustomStringConvertible, Hashab
             return  Int (index + numberOfTrailingZeros(w))
         }
         x += 1;
-        for (; x < _bitmap.count; x += 1) {
-            if (_bitmap[x] != ~0) {
-                return Int(x * 64 + numberOfTrailingZeros(~_bitmap[x]))
+        for xi in x..<_bitmap.count {
+            if (_bitmap[xi] != ~0) {
+                return Int(xi * 64 + numberOfTrailingZeros(~_bitmap[xi]))
             }
         }
         return -1
@@ -762,7 +769,8 @@ open class BitmapContainer:Container, Equatable, CustomStringConvertible, Hashab
                 let notBitset = (~bitset) + 1
                 let t = bitset & notBitset
                 let k64:UInt64 = UInt64(k) * 64
-                array[pos++] = UInt16(k64 + countBits(t - 1))
+                array[pos] = UInt16(k64 + countBits(t - 1))
+                pos += 1
                 bitset ^= t
             }
         }
@@ -833,10 +841,10 @@ open class BitmapContainer:Container, Equatable, CustomStringConvertible, Hashab
             let position = rangeLastWord + 1
             let length = _bitmap.count - (rangeLastWord + 1)
             
-            let sourcePtr = baseSelfBitmapPtr.advancedBy(position)
+            let sourcePtr = baseSelfBitmapPtr.advanced(by: position)
             let destinationPtr = baseAnswerBitmapPtr.advanced(by: position)
             
-            memcpy(destinationPtr,sourcePtr,length * sizeof(UInt64))
+            memcpy(destinationPtr,sourcePtr,length * MemoryLayout<UInt64>.size)
             
         }
         

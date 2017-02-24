@@ -65,14 +65,15 @@ open class BitSet{
     fileprivate func recalculateWordsInUse() {
         // Traverse the bitset until a used word is found
  
-        var i = 0
-        for (i = wordsInUse-1; i >= 0; i -= 1){
+        var j = -1
+        for i in stride(from: wordsInUse-1, through: 0, by: -1){
+            j = i
             if (words[i] != 0){
                     break;
             }
         }
         
-        wordsInUse = i + 1 // The new logical size
+        wordsInUse = j + 1 // The new logical size
     }
     
     /**
@@ -200,7 +201,7 @@ open class BitSet{
             words[startWordIndex] ^= firstWordMask;
             
             // Handle intermediate words, if any
-            for (i in startWordIndex+1 ..< endWordIndex){
+            for i in startWordIndex+1 ..< endWordIndex {
                 words[i] ^= WORD_MASK
             }
             
@@ -284,7 +285,7 @@ open class BitSet{
             words[startWordIndex] |= firstWordMask;
             
             // Handle intermediate words, if any
-            for (i in startWordIndex+1 ..< endWordIndex){
+            for i in startWordIndex+1 ..< endWordIndex{
                 words[i] = WORD_MASK;
             }
             
@@ -379,7 +380,7 @@ open class BitSet{
             words[startWordIndex] &= ~firstWordMask;
             
             // Handle intermediate words, if any
-            for (i in startWordIndex+1 ..< endWordIndex){
+            for i in startWordIndex+1 ..< endWordIndex {
                 words[i] = 0;
             }
             
@@ -398,7 +399,8 @@ open class BitSet{
     */
     open func clear() {
         while (wordsInUse > 0){
-            words[--wordsInUse] = 0;
+            wordsInUse-=1
+            words[wordsInUse] = 0;
         }
     }
 
@@ -455,7 +457,7 @@ open class BitSet{
         let wordAligned = ((fromIndex & BIT_INDEX_MASK) == 0);
         
         // Process all words but the last word
-        for (var i = 0; i < targetWords - 1; i++, sourceIndex++){
+        for  i in 0..<targetWords-1 {
             let shiftingFromIndex:UInt64 = UInt64(fromIndex) % 64
             
             let nfromIndexShift = -fromIndex & 0x3f
@@ -463,6 +465,7 @@ open class BitSet{
             result.words[i] = wordAligned ? words[sourceIndex] :
             (words[sourceIndex] >> shiftingFromIndex) |
             (words[sourceIndex+1] << UInt64(nfromIndexShift))
+            sourceIndex+=1
         }
         
         // Process the last word
@@ -521,7 +524,8 @@ open class BitSet{
             if (word != 0){
                 return (u * BITS_PER_WORD) + numberOfTrailingZeros(word);
             }
-            if (++u == wordsInUse){
+            u+=1
+            if (u == wordsInUse){
                 return -1;
             }
             word = words[u];
@@ -554,7 +558,8 @@ open class BitSet{
             if (word != 0){
                 return (u * BITS_PER_WORD) + numberOfTrailingZeros(word);
             }
-            if (++u == wordsInUse){
+            u+=1
+            if (u == wordsInUse){
                 return wordsInUse * BITS_PER_WORD;
             }
             word = ~words[u];
@@ -603,9 +608,10 @@ open class BitSet{
             if (word != 0){
                 return (u + 1) * BITS_PER_WORD - 1 - Int(numberOfLeadingZeros(word))
             }
-            if (u-- == 0){
+            if (u == 0){
                 return -1;
             }
+            u-=1
             word = words[u];
         }
     }
@@ -644,9 +650,10 @@ open class BitSet{
             if (word != 0){
                 return (u+1) * BITS_PER_WORD - 1 - Int(numberOfLeadingZeros(word))
             }
-            if (u-- == 0){
+            if (u == 0){
                 return -1;
             }
+            u-=1
             word = ~words[u];
         }
     }
@@ -677,7 +684,7 @@ open class BitSet{
     */
     open func cardinality() ->Int{
         var sum = 0;
-        for (i in 0 ..< wordsInUse){
+        for i in 0..<wordsInUse{
             sum += Int(countBits(words[i]))
         }
         return sum;
@@ -696,10 +703,11 @@ open class BitSet{
 
         
         while (wordsInUse > set.wordsInUse){
-            words[--wordsInUse] = 0;
+            wordsInUse-=1
+            words[wordsInUse] = 0;
         }
         // Perform logical AND on words in common
-        for (i in 0 ..< wordsInUse){
+        for i in 0..<wordsInUse{
             words[i] &= set.words[i];
         }
         
@@ -726,7 +734,7 @@ open class BitSet{
         }
         
         // Perform logical OR on words in common
-        for (i in 0 ..< wordsInCommon){
+        for i in 0..<wordsInCommon {
             words[i] |= set.words[i]
         }
         
@@ -780,7 +788,7 @@ open class BitSet{
         }
         
         // Perform logical XOR on words in common
-        for (i in 0 ..< wordsInCommon){
+        for i in 0..<wordsInCommon {
             words[i] ^= set.words[i];
         }
         
@@ -819,7 +827,7 @@ open class BitSet{
     */
     open func andNot(_ set:BitSet) {
         // Perform logical (a & !b) on words in common
-        for (var i = min(wordsInUse, set.wordsInUse) - 1; i >= 0; i -= 1){
+        for  i in stride(from: min(wordsInUse, set.wordsInUse) - 1, through: 0, by: -1) {
             words[i] &= ~set.words[i];
         }
         
@@ -854,7 +862,7 @@ open class BitSet{
         }
         
         // Check words in use by both BitSets
-        for (i in 0 ..< wordsInUse){
+        for i in 0..<wordsInUse {
             if (words[i] != set.words[i]){
                 return false;
             }

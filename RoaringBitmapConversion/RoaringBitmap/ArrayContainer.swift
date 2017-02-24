@@ -105,7 +105,7 @@ open class ArrayContainer: Container, Equatable, CustomStringConvertible, Hashab
     open func and(_ rhs:ArrayContainer) -> Container{
         
         let value1 = self
-        let desiredCapacity = min(value1._cardinality, rhs._cardinality)
+        let desiredCapacity =  Swift.min(value1._cardinality, rhs._cardinality)
         let answer = ArrayContainer(initialCardinality: desiredCapacity)
         answer._cardinality = unsignedIntersect2by2(value1._content, length1: value1.cardinality, set2: rhs._content,
                                 length2: rhs.cardinality, buffer: &(answer._content))
@@ -134,7 +134,8 @@ open class ArrayContainer: Container, Equatable, CustomStringConvertible, Hashab
         var pos = 0
         for k in 0..<_cardinality{
             if (!rhs.contains(self._content[k])){
-                answer._content[pos++] = self._content[k];
+                answer._content[pos] = self._content[k];
+                pos+=1
             }
         }
         answer._cardinality = pos
@@ -257,7 +258,8 @@ open class ArrayContainer: Container, Equatable, CustomStringConvertible, Hashab
         var pos = 0
         for k in 0..<_cardinality{
             if (rhs.contains(self._content[k])){
-                self._content[pos++] = self._content[k];
+                self._content[pos] = self._content[k];
+                pos+=1
             }
         }
         _cardinality = pos
@@ -275,7 +277,8 @@ open class ArrayContainer: Container, Equatable, CustomStringConvertible, Hashab
         var pos = 0
         for k in 0..<_cardinality{
             if (!rhs.contains(self._content[k])){
-                self._content[pos++] = self._content[k]
+                self._content[pos] = self._content[k]
+                pos+=1
             }
         }
         self._cardinality = pos
@@ -310,8 +313,8 @@ open class ArrayContainer: Container, Equatable, CustomStringConvertible, Hashab
                     return toBitmapContainer().inot(rangeStart: rangeStart, rangeEnd: lastOfRange)
                 }
                 let expendedContent = [UInt16](repeating: 0 , count: newCardinality)
-                let expendedContentPtr = UnsafeMutableRawPointer(expendedContent)
-                memcpy(expendedContentPtr,_content,_content.count * sizeof(UInt16))
+                let expendedContentPtr = UnsafeMutableRawPointer(mutating: expendedContent)
+                memcpy(expendedContentPtr,_content,_content.count * MemoryLayout<UInt16>.size)
                 _content = expendedContent
             }
             buffer = [UInt16](repeating: 0, count: newValuesInRange)
@@ -326,7 +329,7 @@ open class ArrayContainer: Container, Equatable, CustomStringConvertible, Hashab
             let sourcePtr = baseContentPtr.advanced(by: startingDelta)
             let destinationPtr = baseContentPtr.advanced(by: startingDelta + cardinalityChange)
             
-            memmove(destinationPtr,sourcePtr,length * sizeof(UInt16))
+            memmove(destinationPtr,sourcePtr,length * MemoryLayout<UInt16>.size)
             
 
             negateRange(&buffer, startIndex: startIndex, lastIndex: lastIndex,startRange: rangeStart, lastRange: lastOfRange)
@@ -348,7 +351,7 @@ open class ArrayContainer: Container, Equatable, CustomStringConvertible, Hashab
                 let sourcePtr = baseContentPtr.advanced(by: startingDelta - cardinalityChange)
                 let destinationPtr = baseContentPtr.advanced(by: startingDelta)
                 
-                memmove(destinationPtr,sourcePtr,length * sizeof(UInt16))
+                memmove(destinationPtr,sourcePtr,length * MemoryLayout<UInt16>.size)
                 
             }
         }
@@ -406,29 +409,34 @@ open class ArrayContainer: Container, Equatable, CustomStringConvertible, Hashab
         
         // copy stuff before the active area
        // System.arraycopy(_content, 0, answer._content, 0, startIndex);
-        let destinationPtr = UnsafeMutablePointer<UInt16>(answer._content)
+        let destinationPtr = UnsafeMutablePointer<UInt16>(mutating: answer._content)
 
-        memcpy(destinationPtr,localContent,startIndex * sizeof(UInt16))
+        memcpy(destinationPtr,localContent,startIndex * MemoryLayout<UInt16>.size)
         
         var outPos = startIndex
         var inPos = startIndex // item at inPos always >= valInRange
         
         var valInRange = rangeStart
-        for (; valInRange <= rangeEnd && inPos <= lastIndex; valInRange += 1) {
+        while (valInRange <= rangeEnd && inPos <= lastIndex ) {
             if (UInt16(valInRange) != _content[inPos]) {
-                answer._content[outPos++] = UInt16(valInRange)
+                answer._content[outPos] = UInt16(valInRange)
+                outPos+=1
             } else {
-                ++inPos;
+                inPos+=1
             }
+            valInRange += 1
         }
         
-        for (; valInRange <= rangeEnd; valInRange += 1) {
-            answer._content[outPos++] = UInt16(valInRange)
+        while (valInRange <= rangeEnd) {
+            answer._content[outPos] = UInt16(valInRange)
+            outPos+=1
+            valInRange += 1
         }
         
         // _content after the active range
         for i in (lastIndex + 1)..<_cardinality{
-            answer._content[outPos++] = localContent[i]
+            answer._content[outPos] = localContent[i]
+            outPos+=1
         }
         answer._cardinality = newCardinality;
         return answer
@@ -660,19 +668,23 @@ open class ArrayContainer: Container, Equatable, CustomStringConvertible, Hashab
         // n.b., we can start initially exhausted.
         
         var valInRange = startRange
-        for (; valInRange <= lastRange && inPos <= lastIndex; valInRange += 1) {
+        while ( valInRange <= lastRange && inPos <= lastIndex ) {
             let valInRange16 = UInt16(valInRange)
             if valInRange16 != localContent[inPos] {
-                buffer[outPos++] = valInRange16
+                buffer[outPos] = valInRange16
+                outPos+=1
             } else {
                 inPos += 1
             }
+            valInRange += 1
         }
         
         // if there are extra items (greater than the biggest
         // pre-existing one in range), buffer them
-        for (; valInRange <= lastRange; valInRange += 1) {
-            buffer[outPos++] = UInt16(valInRange)
+        while (valInRange <= lastRange ) {
+            buffer[outPos] = UInt16(valInRange)
+            outPos+=1
+            valInRange += 1
         }
         
         if (outPos != buffer.count) {
@@ -710,7 +722,9 @@ public struct ArrayContainerGenerator : IteratorProtocol{
     public typealias Element = UInt16
     mutating public func next() -> UInt16? {
         if pos < _arrayContainerCardinality{
-            return _arrayContainerContent[pos++]
+            let oldPos = pos
+            pos+=1
+            return _arrayContainerContent[oldPos]
         }
         return nil
     }

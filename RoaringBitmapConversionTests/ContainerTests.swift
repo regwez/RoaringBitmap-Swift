@@ -10,7 +10,7 @@
 import UIKit
 import XCTest
 @testable
-import RoaringBitmapConversion
+import RoaringBitmap
 
 class ContainerTests: XCTestCase {
 
@@ -177,7 +177,7 @@ class ContainerTests: XCTestCase {
             XCTAssert(c.contains(UInt16(i)), "c.contains(\(i))")
             XCTAssert( !c.contains(UInt16 (i + 1)), "!c.contains(\(i+1))")
             if !c.contains(UInt16(i)){
-                print("\(i), ", appendNewline: false)
+                print("\(i), ")
             }
         }
         print("")
@@ -638,11 +638,11 @@ class ContainerTests: XCTestCase {
             print("============== fail, found ==================")
             let siPrint = c.sequence
             for siItem in siPrint{
-                print(" \(siItem)", appendNewline: false)
+                print(" \(siItem)")
             }
-            print("\n expected ", appendNewline: false)
+            print("\n expected ")
             for s1 in s{
-                print(" \(s1)", appendNewline: false)
+                print(" \(s1)")
             }
             print("")
             print("============== End fail ==================")

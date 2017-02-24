@@ -9,8 +9,8 @@
 import UIKit
 
 public protocol BitshiftOperationsType {
-    func <<(lhs: Self, rhs: Self) -> Self
-    func >>(lhs: Self, rhs: Self) -> Self
+    static func <<(lhs: Self, rhs: Self) -> Self
+    static func >>(lhs: Self, rhs: Self) -> Self
     init(_ val: UInt8)
     init(_ val: Int)
     init(_ val: Int32)
@@ -233,7 +233,8 @@ public func fillArrayAND(container:inout [UInt16] ,bitmap1: [UInt64], bitmap2: [
             let notBitset = (~bitset) + 1
             let t = bitset & notBitset
             let cValue = UInt64(k * 64) + countBits(t - 1)
-            container[pos++] = UInt16(cValue)
+            container[pos] = UInt16(cValue)
+            pos+=1
             bitset ^= t
         }
     }
@@ -262,7 +263,8 @@ public func fillArrayANDNOT(container:inout [UInt16] ,bitmap1: [UInt64], bitmap2
             let t = bitset & notBitset
             let cValue = UInt64(k * 64) + countBits(t - 1)
             print("pos = \(pos)")
-            container[pos++] = UInt16(cValue)
+            container[pos] = UInt16(cValue)
+            pos+=1
             bitset ^= t
         }
     }
@@ -289,7 +291,8 @@ public func fillArrayXOR(container:inout [UInt16] ,bitmap1: [UInt64], bitmap2: [
             let t = bitset & notBitset
             let cValue = UInt64(k * 64) + countBits(t - 1)
             print("pos = \(pos)")
-            container[pos++] = UInt16(cValue)
+            container[pos] = UInt16(cValue)
+            pos+=1
             bitset ^= t
         }
     }
@@ -352,7 +355,7 @@ public  func unsignedDifference(_ set1: [UInt16] , length1:Int , set2: [UInt16],
     var k2 = 0
     if (0 == length2) {
         let bufferPointer = UnsafeMutableRawPointer(mutating: buffer)
-        let set1Pointer = UnsafeRawPointer(set1)
+        _ = UnsafeRawPointer(set1)
         memcpy(bufferPointer, set1 ,MemoryLayout<UInt16>.size * length1)
         return length1
     }
@@ -362,7 +365,8 @@ public  func unsignedDifference(_ set1: [UInt16] , length1:Int , set2: [UInt16],
     }
     while (true) {
         if (set1[k1] < set2[k2]) {
-            buffer[pos++] = set1[k1]
+            buffer[pos] = set1[k1]
+            pos+=1
             k1 += 1
             if (k1 >= length1) {
                 break
@@ -375,16 +379,20 @@ public  func unsignedDifference(_ set1: [UInt16] , length1:Int , set2: [UInt16],
                 break
             }
             if (k2 >= length2) {
-                for (; k1 < length1; k1 += 1){
-                    buffer[pos++] = set1[k1]
+                while (k1 < length1){
+                    buffer[pos] = set1[k1]
+                    pos+=1
+                    k1 += 1
                 }
                 break
             }
         } else {// if (val1>val2)
             k2 += 1;
             if (k2 >= length2) {
-                for (; k1 < length1; k1 += 1){
-                    buffer[pos++] = set1[k1]
+                while (k1 < length1){
+                    buffer[pos] = set1[k1]
+                    pos+=1
+                    k1 += 1
                 }
                 break
             }
@@ -424,11 +432,14 @@ public  func unsignedExclusiveUnion2by2(_ set1: [UInt16] , length1:Int , set2: [
     
     while (true) {
         if (set1[k1] < set2[k2]) {
-            buffer[pos++] = set1[k1]
+            buffer[pos] = set1[k1]
+            pos+=1
             k1 += 1
             if (k1 >= length1) {
-                for (; k2 < length2; k2 += 1){
-                    buffer[pos++] = set2[k2]
+                while (k2 < length2){
+                    buffer[pos] = set2[k2]
+                    pos+=1
+                    k2 += 1
                 }
                 break
             }
@@ -436,23 +447,30 @@ public  func unsignedExclusiveUnion2by2(_ set1: [UInt16] , length1:Int , set2: [
             k1 += 1
             k2 += 1
             if (k1 >= length1) {
-                for (; k2 < length2; k2 += 1){
-                    buffer[pos++] = set2[k2]
+                while (k2 < length2){
+                    buffer[pos] = set2[k2]
+                    pos+=1
+                    k2 += 1
                 }
                 break
             }
             if (k2 >= length2) {
-                for (; k1 < length1; k1 += 1){
-                    buffer[pos++] = set1[k1]
+                while (k1 < length1){
+                    buffer[pos] = set1[k1]
+                    pos+=1
+                    k1 += 1
                 }
                 break
             }
         } else {// if (val1>val2)
-            buffer[pos++] = set2[k2]
+            buffer[pos] = set2[k2]
+            pos+=1
             k2 += 1
             if (k2 >= length2) {
-                for (; k1 < length1; k1 += 1){
-                    buffer[pos++] = set1[k1]
+                while (k1 < length1){
+                    buffer[pos] = set1[k1]
+                    pos+=1
+                    k1 += 1
                 }
                 break
             }
@@ -512,7 +530,8 @@ internal func unsignedLocalIntersect2by2(_ set1: [UInt16] , length1:Int , set2: 
             } while (set1[k1] < set2[k2])
         } else {
             // (set2[k2] == set1[k1])
-            buffer[pos++] = set1[k1]
+            buffer[pos] = set1[k1]
+            pos+=1
             k1 += 1
             if (k1 == length1){
                 break
@@ -549,7 +568,8 @@ internal func unsignedOneSidedGallopingIntersect2by2(_ smallSet: [UInt16] , smal
             }
         } else {
             // (set2[k2] == set1[k1])
-            buffer[pos++] = smallSet[k2]
+            buffer[pos] = smallSet[k2]
+            pos+=1
             k2 += 1
             if (k2 == smallLength){
                 break
@@ -597,36 +617,47 @@ public  func unsignedUnion2by2(_ set1: [UInt16] , length1:Int , set2: [UInt16], 
     
     while (true) {
         if (set1[k1] < set2[k2]) {
-            buffer[pos++] = set1[k1]
+            buffer[pos] = set1[k1]
+            pos+=1
             k1 += 1
             if (k1 >= length1) {
-                for (; k2 < length2; k2 += 1){
-                    buffer[pos++] = set2[k2]
+                while ( k2 < length2){
+                    buffer[pos] = set2[k2]
+                    pos+=1
+                    k2+=1
                 }
                 break
             }
         } else if (set1[k1] == set2[k2]) {
-            buffer[pos++] = set1[k1]
+            buffer[pos] = set1[k1]
+            pos+=1
             k1 += 1
             k2 += 1
             if (k1 >= length1) {
-                for (; k2 < length2; k2 += 1){
-                    buffer[pos++] = set2[k2]
+                while (k2 < length2){
+                    buffer[pos] = set2[k2]
+                    pos+=1
+                    k2 += 1
                 }
                 break
             }
             if (k2 >= length2) {
-                for (; k1 < length1; k1 += 1){
-                    buffer[pos++] = set1[k1]
+                while ( k1 < length1){
+                    buffer[pos] = set1[k1]
+                    pos+=1
+                    k1 += 1
                 }
                 break
             }
         } else {// if (set1[k1]>set2[k2])
-            buffer[pos++] = set2[k2]
+            buffer[pos] = set2[k2]
+            pos+=1
             k2 += 1
             if (k2 >= length2) {
-                for (; k1 < length1; k1 += 1){
-                    buffer[pos++] = set1[k1]
+                while (k1 < length1){
+                    buffer[pos] = set1[k1]
+                    pos+=1
+                    k1 += 1
                 }
                 break
             }

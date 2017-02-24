@@ -851,9 +851,10 @@ open class RoaringBitmap:  ImmutableBitmapDataProvider, Equatable {
     open func limit(maxCardinality:UInt32) -> ImmutableBitmapDataProvider{
         let answer = RoaringBitmap()
         var currentCardinality = 0
-        for (var i = 0; (currentCardinality < Int(maxCardinality)) && ( i < highLowContainer.size); i += 1) {
+        var i = 0
+        while ((currentCardinality < Int(maxCardinality)) && ( i < highLowContainer.size)) {
             let (key,c) = highLowContainer.array[i]
-            
+            i += 1
             if(c.cardinality + currentCardinality <= Int(maxCardinality)) {
                 answer.highLowContainer.appendCopy(highLowContainer, index: i);
                 currentCardinality += c.cardinality
