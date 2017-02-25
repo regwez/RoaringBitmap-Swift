@@ -62,12 +62,12 @@ class ContainerTests: XCTestCase {
         // Bitmap to bitmap, full range
         
         var c:Container =  BitmapContainer()
-        for (var i = 0; i < 65536; i += 2){
+        for i in stride(from: 0, to: 65536, by: 2){
             if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         XCTAssert(!c.contains(UInt16( 3)) && c.contains(UInt16(4)),"")
 
-        for (var i = 0; i < 65536; i += 2){
+        for i in stride(from: 0, to: 65536, by: 2){
             XCTAssert(c.contains(UInt16(i)) && !c.contains(UInt16 (i + 1)),"")
         }
     }
@@ -76,12 +76,12 @@ class ContainerTests: XCTestCase {
         // Bitmap to bitmap, full range
         
         var c:Container =  ArrayContainer()
-        for (var i = 0; i < ArrayContainer.DEFAULT_MAX_SIZE; i += 2){
+        for i in stride(from: 0, to: ArrayContainer.DEFAULT_MAX_SIZE, by: 2){
             if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         XCTAssert(!c.contains(UInt16( 3)) && c.contains(UInt16(4)),"")
         
-        for (var i = 0; i < ArrayContainer.DEFAULT_MAX_SIZE; i += 2){
+        for i in stride(from: 0, to: ArrayContainer.DEFAULT_MAX_SIZE, by: 2){
             XCTAssert(c.contains(UInt16(i)) && !c.contains(UInt16 (i + 1)),"")
         }
     }
@@ -91,7 +91,7 @@ class ContainerTests: XCTestCase {
         // Bitmap to bitmap, full range
         
         var c:Container =  ArrayContainer()
-        for (var i = 0; i < 65536; i += 2){
+        for i in stride(from: 0, to: 65536, by: 2){
             if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         XCTAssert(!c.contains(UInt16( 3)) && c.contains(UInt16(4)),"")
@@ -101,7 +101,7 @@ class ContainerTests: XCTestCase {
         XCTAssert( c.contains(UInt16(8238)) && !c.contains(UInt16( 8239)),"")
         
       //  println("==============")
-        for (var i = 0; i < 65536; i += 2){
+        for i in stride(from: 0, to: 65536, by: 2){
             XCTAssert(c.contains(UInt16(i)), "c.contains(\(i))")
             XCTAssert( !c.contains(UInt16 (i + 1)), "!c.contains(\(i+1))")
 //            if !c.contains(UInt16(i)){
@@ -122,7 +122,8 @@ class ContainerTests: XCTestCase {
         var pos = 0
         for i in 0..<65536{
             if content.index(of: UInt16(i)) == nil {
-               s[pos++] = UInt16(i)
+               s[pos] = UInt16(i)
+                pos+=1
             }
         }
         XCTAssert(ContainerTests.checkContent(c, s: s), "c.cardinality == 4096")
@@ -163,7 +164,7 @@ class ContainerTests: XCTestCase {
         // Bitmap to bitmap, full range
     
         var c:Container =  ArrayContainer()
-        for (var i = 0; i < 65536; i += 2){
+        for i in stride(from: 0, to: 65536, by: 2){
             if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         XCTAssert(!c.contains(UInt16( 3)) && c.contains(UInt16(4)),"")
@@ -173,7 +174,7 @@ class ContainerTests: XCTestCase {
         c = c.inot(rangeStart: 0, rangeEnd: 65535)
         
         print("==============")
-        for (var i = 0; i < 65536; i += 2){
+        for i in stride(from: 0, to: 65536, by: 2){
             XCTAssert(c.contains(UInt16(i)), "c.contains(\(i))")
             XCTAssert( !c.contains(UInt16 (i + 1)), "!c.contains(\(i+1))")
             if !c.contains(UInt16(i)){
@@ -188,7 +189,7 @@ class ContainerTests: XCTestCase {
         // Bitmap to bitmap, full range
         
         var c:Container =  ArrayContainer()
-        for (var i = 0; i < ArrayContainer.DEFAULT_MAX_SIZE; i += 2){
+        for i in stride(from: 0, to: ArrayContainer.DEFAULT_MAX_SIZE, by: 2){
             if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         XCTAssert(!c.contains(UInt16( 3)) && c.contains(UInt16(4)),"")
@@ -196,7 +197,7 @@ class ContainerTests: XCTestCase {
         XCTAssert(c.contains(UInt16( 3)) && !c.contains(UInt16(4)),"")
         XCTAssertEqual(ArrayContainer.DEFAULT_MAX_SIZE / 2, c.cardinality)
         c = c.inot(rangeStart: 0, rangeEnd: ArrayContainer.DEFAULT_MAX_SIZE - 1)
-        for (var i = 0; i < ArrayContainer.DEFAULT_MAX_SIZE; i += 2){
+        for i in stride(from: 0, to: ArrayContainer.DEFAULT_MAX_SIZE, by: 2){
             XCTAssert(c.contains(UInt16(i)) && !c.contains(UInt16 (i + 1)),"")
         }
     }
@@ -224,7 +225,7 @@ class ContainerTests: XCTestCase {
             content[2] = 4
             content[3] = 6
             content[4] = 8
-        for (var i = 10; i <= 32767; i += 1){
+        for  i in 10...32767 {
             content[i - 10 + 5] = UInt16(i)
         }
         var c = ContainerTests.makeContainer(content)
@@ -245,7 +246,7 @@ class ContainerTests: XCTestCase {
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; i += 1){
+        for  i in 10...32767 {
             content[i - 10 + 5] = UInt16(i)
         }
         var c = ContainerTests.makeBitmapContainer(content)
@@ -269,7 +270,7 @@ class ContainerTests: XCTestCase {
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; i += 1){
+        for i in 10...32767{
             content[i - 10 + 5] = UInt16(i)
         }
         var c = ContainerTests.makeContainer(content)
@@ -290,7 +291,7 @@ class ContainerTests: XCTestCase {
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; i += 1){
+        for i in 10...32767{
             content[i - 10 + 5] = UInt16(i)
         }
         var c = ContainerTests.makeContainer(content)
@@ -347,7 +348,8 @@ class ContainerTests: XCTestCase {
         var pos = 0
         for i in 0..<65536{
             if content.index(of: UInt16(i)) == nil {
-                s[pos++] = UInt16(i)
+                s[pos] = UInt16(i)
+                pos+=1
             }
         }
         XCTAssert(ContainerTests.checkContent(c1, s: s), "")
@@ -424,7 +426,7 @@ class ContainerTests: XCTestCase {
     func testNot_3() {
         // Bitmap to bitmap, full range
         var c:Container =  ArrayContainer()
-        for (var i = 0; i < 65536; i += 2){
+        for i in stride(from: 0, to: 65536, by: 2){
             if let uw_c = c.add(UInt16(i)){ c = uw_c }
         }
         
@@ -432,7 +434,7 @@ class ContainerTests: XCTestCase {
         XCTAssert(c1.contains(UInt16( 3)) && !c1.contains(UInt16(4)),"")
         XCTAssertEqual(32768, c1.cardinality)
         let c2 = c1.not(rangeStart: 0, rangeEnd: 65535)
-        for (var i = 0; i < 65536; i += 2){
+        for i in stride(from: 0, to: 65536, by: 2){
             XCTAssert(c2.contains(UInt16(i)) && !c2.contains(UInt16 (i + 1)),"")
         }
 
@@ -460,7 +462,7 @@ class ContainerTests: XCTestCase {
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; i += 1){
+        for i in 10...32767{
             content[i - 10 + 5] = UInt16(i)
         }
         let c = ContainerTests.makeContainer(content)
@@ -483,7 +485,7 @@ class ContainerTests: XCTestCase {
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; i += 1){
+        for i in 10...32767{
             content[i - 10 + 5] = UInt16(i)
         }
         let c = ContainerTests.makeContainer(content)
@@ -505,7 +507,7 @@ class ContainerTests: XCTestCase {
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; i += 1){
+        for i in 10...32767{
             content[i - 10 + 5] = UInt16(i)
         }
         let c = ContainerTests.makeContainer(content)
@@ -535,7 +537,7 @@ class ContainerTests: XCTestCase {
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; i += 1){
+        for i in 10...32767{
             content[i - 10 + 5] = UInt16(i)
         }
         let c = ContainerTests.makeContainer(content)
@@ -559,7 +561,7 @@ class ContainerTests: XCTestCase {
         content[2] = 4
         content[3] = 6
         content[4] = 8
-        for (var i = 10; i <= 32767; i += 1){
+        for i in 10...32767{
             content[i - 10 + 5] = UInt16(i)
         }
         let c = ContainerTests.makeContainer(content)
@@ -592,7 +594,7 @@ class ContainerTests: XCTestCase {
     func testRangeOfOnes_2A() {
         let  c = ContainerDispatcher.rangeOfOnes(1000, lastIndex: 35000) // dense
         var s = [UInt16](repeating: 0, count: 35000 - 1000 + 1)
-        for (var i = 1000; i <= 35000; i += 1){
+        for i in 1000...35000{
             s[i - 1000] = UInt16(i)
         }
    
@@ -628,7 +630,7 @@ class ContainerTests: XCTestCase {
                 fail = true
                 break
             }
-            ++ctr
+            ctr+=1
         }
 
         if (ctr != s.count) {

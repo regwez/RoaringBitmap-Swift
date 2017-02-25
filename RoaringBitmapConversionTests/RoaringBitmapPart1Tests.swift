@@ -75,23 +75,26 @@ class RoaringBitmapTests: XCTestCase {
             XCTAssertEqual(0,selectBit(word:UInt64(5), bitIndex:0),"")
             XCTAssertEqual(2,selectBit(word:UInt64(5), bitIndex:1),"")
 
-            for (var gap:UInt32 = 1; gap <= 1024; gap *= 2) {
+            var gap:UInt32 = 1
+            while (gap <= 1024) {
                 let rb = RoaringBitmap()
-                for k:UInt32 in stride(from: 0, to: 100000, by: gap) {
+                for k:UInt32 in stride(from: UInt32(0), to: UInt32(100000), by: Int(gap)) {
                     rb.add(k)
                 }
                 for k:UInt32 in 0..<(100000/gap) {
                     XCTAssertEqual(k * gap, rb.select(atIndex: k),"")
                 }
+                gap *= 2
             }
     }
 
 
 
     func testLimit() {
-        for (var gap:UInt32 = 1; gap <= 1024; gap *= 2) {
+        var gap:UInt32 = 1
+        while ( gap <= 1024) {
             let rb = RoaringBitmap()
-            for k:UInt32 in stride(from: 0, to: 100000, by: gap){
+            for k:UInt32 in stride(from: UInt32(0), to: UInt32(100000), by: Int(gap)){
                 rb.add(k)
             }
             let thiscard = UInt32(rb.cardinality)
@@ -101,6 +104,7 @@ class RoaringBitmapTests: XCTestCase {
             }
             XCTAssertEqual(rb.limit(maxCardinality: thiscard).cardinality,Int(thiscard))
             XCTAssertEqual(rb.limit(maxCardinality: thiscard+1).cardinality,Int(thiscard))
+            gap *= 2
         }
     }
 
@@ -135,19 +139,19 @@ class RoaringBitmapTests: XCTestCase {
         for k:UInt32 in 65536..<65536+4000 {
             rr.add(k)
         }
-        for k:UInt32 in (3*65536)..<(3*65536+9000) {
+        for k:UInt32 in UInt32(3*65536)..<UInt32(3*65536+9000) {
             rr.add(k)
         }
-        for k:UInt32 in 4*65535..<4*65535+7000 {
+        for k:UInt32 in UInt32(4*65535)..<UInt32(4*65535+7000) {
             rr.add(k)
         }
-        for k:UInt32 in 6*65535..<6*65535+10000 {
+        for k:UInt32 in UInt32(6*65535)..<UInt32(6*65535+10000) {
             rr.add(k)
         }
-        for k:UInt32 in 8*65535..<8*65535+1000 {
+        for k:UInt32 in UInt32(8*65535)..<UInt32(8*65535+1000) {
             rr.add(k)
         }
-        for k:UInt32 in 9*65535..<9*65535+30000 {
+        for k:UInt32 in UInt32(9*65535)..<UInt32(9*65535+30000) {
             rr.add(k)
         }
 
@@ -158,19 +162,19 @@ class RoaringBitmapTests: XCTestCase {
         for k:UInt32 in 65536..<65536+4000 {
             XCTAssert(rr.contains(k))
         }
-        for k:UInt32 in 3 * 65536..<3*65536+9000 {
+        for k:UInt32 in UInt32(3 * 65536)..<UInt32(3*65536+9000) {
             XCTAssert(rr.contains(k))
         }
-        for k:UInt32 in 4 * 65535..<4*65535+7000 {
+        for k:UInt32 in UInt32(4 * 65535)..<UInt32(4*65535+7000) {
             XCTAssert(rr.contains(k))
         }
-        for k:UInt32 in 6 * 65535..<6*65535+10000 {
+        for k:UInt32 in UInt32(6 * 65535)..<UInt32(6*65535+10000) {
             XCTAssert(rr.contains(k))
         }
-        for k:UInt32 in 8 * 65535..<8*65535+1000 {
+        for k:UInt32 in UInt32(8 * 65535)..<UInt32(8*65535+1000) {
             XCTAssert(rr.contains(k))
         }
-        for k:UInt32 in 9 * 65535..<9*65535+30000 {
+        for k:UInt32 in UInt32(9 * 65535)..<UInt32(9*65535+30000) {
             XCTAssert(rr.contains(k))
         }
 
@@ -196,19 +200,19 @@ class RoaringBitmapTests: XCTestCase {
         for k:UInt32 in 65536 ..< 65536 + 4000 {
             rr.add(k);
         }
-        for k:UInt32 in 3 * 65536 ..< 3 * 65536 + 9000 {
+        for k:UInt32 in UInt32(3 * 65536)..<UInt32(3 * 65536 + 9000) {
             rr.add(k);
         }
-        for k:UInt32 in 4 * 65535 ..< 4 * 65535 + 7000 {
+        for k:UInt32 in UInt32(4 * 65535) ..< UInt32(4 * 65535 + 7000) {
             rr.add(k)
         }
-        for k:UInt32 in 6 * 65535 ..< 6 * 65535 + 10000 {
+        for k:UInt32 in UInt32(6 * 65535) ..< UInt32(6 * 65535 + 10000) {
             rr.add(k)
         }
-        for k:UInt32 in 8 * 65535 ..< 8 * 65535 + 1000 {
+        for k:UInt32 in UInt32(8 * 65535) ..< UInt32(8 * 65535 + 1000) {
             rr.add(k);
         }
-        for k:UInt32 in 9 * 65535 ..< 9 * 65535 + 30000 {
+        for k:UInt32 in UInt32(9 * 65535) ..< UInt32(9 * 65535 + 30000) {
             rr.add(k)
         }
         
@@ -222,13 +226,13 @@ class RoaringBitmapTests: XCTestCase {
         for k:UInt32 in UInt32(3 * 65536 + 2000)..<UInt32(3 * 65536 + 6000)  {
             rr2.add(k);
         }
-        for k:UInt32 in 6*65535..<6*65535+1000  {
+        for k:UInt32 in UInt32(6*65535)..<UInt32(6*65535+1000)  {
             rr2.add(k);
         }
-        for k:UInt32 in 7*65535..<7*65535+1000  {
+        for k:UInt32 in UInt32(7*65535)..<UInt32(7*65535+1000)  {
             rr2.add(k);
         }
-        for k:UInt32 in 10*65535..<10*65535+5000  {
+        for k:UInt32 in UInt32(10*65535)..<UInt32(10*65535+5000)  {
             rr2.add(k);
         }
         let correct = RoaringBitmap.andNot(lhs:rr, rhs:rr2)
@@ -240,10 +244,10 @@ class RoaringBitmapTests: XCTestCase {
         let  rb =  RoaringBitmap()
         let  rb2 =  RoaringBitmap()
         
-        for (var i:UInt32 = 0; i < 200000; i += 4){
+        for i:UInt32 in stride(from: 0, to: 200000, by: 4){
             rb2.add(i)
         }
-        for (var i:UInt32 = 200000; i < 400000; i += 14){
+        for i:UInt32 in stride(from: 200000, to: 400000, by: 14){
             rb2.add(i)
         }
         rb2.cardinality
@@ -292,19 +296,19 @@ class RoaringBitmapTests: XCTestCase {
         for k:UInt32 in 65536 ..< 65536 + 4000 {
             rr.add(k);
         }
-        for k:UInt32 in 3 * 65536 ..< 3 * 65536 + 9000 {
+        for k:UInt32 in UInt32(3 * 65536) ..< UInt32(3 * 65536 + 9000) {
             rr.add(k);
         }
-        for k:UInt32 in 4 * 65535 ..< 4 * 65535 + 7000 {
+        for k:UInt32 in UInt32(4 * 65535) ..< UInt32(4 * 65535 + 7000) {
             rr.add(k)
         }
-        for k:UInt32 in 6 * 65535 ..< 6 * 65535 + 10000 {
+        for k:UInt32 in UInt32(6 * 65535) ..< UInt32(6 * 65535 + 10000) {
             rr.add(k)
         }
-        for k:UInt32 in 8 * 65535 ..< 8 * 65535 + 1000 {
+        for k:UInt32 in UInt32(8 * 65535) ..< UInt32(8 * 65535 + 1000) {
             rr.add(k);
         }
-        for k:UInt32 in 9 * 65535 ..< 9 * 65535 + 30000 {
+        for k:UInt32 in UInt32(9 * 65535) ..< UInt32(9 * 65535 + 30000) {
             rr.add(k)
         }
         
@@ -318,13 +322,13 @@ class RoaringBitmapTests: XCTestCase {
         for k:UInt32 in UInt32(3 * 65536 + 2000) ..< UInt32(3 * 65536 + 6000)  {
             rr2.add(k);
         }
-        for k:UInt32 in 6 * 65535 ..< 6 * 65535 + 1000  {
+        for k:UInt32 in UInt32(6 * 65535) ..< UInt32(6 * 65535 + 1000)  {
             rr2.add(k);
         }
-        for k:UInt32 in 7 * 65535 ..< 7 * 65535 + 1000  {
+        for k:UInt32 in UInt32(7 * 65535) ..< UInt32(7 * 65535 + 1000)  {
             rr2.add(k);
         }
-        for k:UInt32 in 10 * 65535 ..< 10 * 65535 + 5000  {
+        for k:UInt32 in UInt32(10 * 65535) ..< UInt32(10 * 65535 + 5000)  {
             rr2.add(k);
         }
         let correct = RoaringBitmap.and(lhs:rr, rhs:rr2)
@@ -366,7 +370,7 @@ func testAnd_3() {
     for k:UInt32 in 65536 ..< 65536 + 4000 {
         rr.add(k);
     }
-    for k:UInt32 in 3 * 65536 ..< 3 * 65536 + 1000 {
+    for k:UInt32 in UInt32(3 * 65536) ..< UInt32(3 * 65536 + 1000) {
         rr.add(k);
     }
     for k:UInt32 in UInt32(3 * 65536 + 1000) ..< UInt32(3 * 65536 + 7000) {
@@ -375,16 +379,16 @@ func testAnd_3() {
     for k:UInt32 in UInt32(3 * 65536 + 7000) ..< UInt32(3 * 65536 + 9000) {
         rr.add(k);
     }
-    for k:UInt32 in 4 * 65536 ..< 4 * 65536 + 7000 {
+    for k:UInt32 in UInt32(4 * 65536) ..< UInt32(4 * 65536 + 7000) {
         rr.add(k);
     }
-    for k:UInt32 in 6 * 65536 ..< 6 * 65536 + 10000 {
+    for k:UInt32 in UInt32(6 * 65536) ..< UInt32(6 * 65536 + 10000) {
         rr.add(k);
     }
-    for k:UInt32 in 8 * 65536 ..< 8 * 65536 + 1000 {
+    for k:UInt32 in UInt32(8 * 65536) ..< UInt32(8 * 65536 + 1000) {
         rr.add(k);
     }
-    for k:UInt32 in 9 * 65536 ..< 9 * 65536 + 30000 {
+    for k:UInt32 in UInt32(9 * 65536) ..< UInt32(9 * 65536 + 30000) {
         rr.add(k);
     }
     
@@ -392,24 +396,29 @@ func testAnd_3() {
     let rr2 =  RoaringBitmap()
     for k:UInt32 in 4000 ..< 4256  {
         rr2.add(k);
-        arrayand[pos++] = k
+        arrayand[pos] = k
+        pos+=1
     }
     for k:UInt32 in 65536 ..< 65536 + 4000  {
         rr2.add(k);
-        arrayand[pos++] = k
+        arrayand[pos] = k
+        pos+=1
     }
     for k:UInt32 in UInt32(3 * 65536 + 1000) ..< UInt32(3 * 65536 + 7000)  {
         rr2.add(k);
-        arrayand[pos++] = k
+        arrayand[pos] = k
+        pos+=1
     }
-    for k:UInt32 in 6 * 65536 ..< 6 * 65536 + 1000  {
+    for k:UInt32 in UInt32(6 * 65536) ..< UInt32(6 * 65536 + 1000)  {
         rr2.add(k);
-        arrayand[pos++] = k
+        arrayand[pos] = k
+        pos+=1
     }
-    for k:UInt32 in 7 * 65536 ..< 7 * 65536 + 1000  {
+    for k:UInt32 in UInt32(7 * 65536) ..< UInt32(7 * 65536 + 1000)  {
         rr2.add(k);
     }
-    for k:UInt32 in 10 * 65536 ..< 10 * 65536 + 5000  {
+    for k:UInt32 in UInt32(10 * 65536) ..< UInt32(10 * 65536 + 5000)
+    {
         rr2.add(k);
     }
 
@@ -434,10 +443,10 @@ func testAnd_3() {
         let rb = RoaringBitmap()
         let rb2 = RoaringBitmap()
         
-        for (var i:UInt32 = 0; i < 200000; i += 4){
+        for i:UInt32 in stride(from: 0, to: 200000, by: 4){
             rb2.add(i)
         }
-        for (var i:UInt32 = 200000; i < 400000; i += 14){
+        for i:UInt32 in stride(from: 200000, to: 400000, by: 14){
             rb2.add(i)
         }
         
@@ -448,10 +457,10 @@ func testAnd_3() {
         
         XCTAssertEqual(0, andresult.cardinality)
         
-        for (var i:UInt32 = 500000; i < 600000; i += 14){
+        for i:UInt32 in stride(from: 500000, to: 600000, by: 14){
             rb.add(i)
         }
-        for (var i:UInt32 = 200000; i < 400000; i += 3){
+        for i:UInt32 in stride(from: 200000, to: 400000, by: 3){
             rb2.add(i)
         }
         // check or against an empty bitmap
@@ -459,10 +468,10 @@ func testAnd_3() {
         XCTAssertEqual(0, andresult.cardinality)
         
         XCTAssertEqual(0, andresult2.cardinality)
-        for (var i:UInt32 = 0; i < 200000; i += 4){
+        for i:UInt32 in stride(from: 0, to: 200000, by: 4){
             rb.add(i)
         }
-        for (var i:UInt32 = 200000; i < 400000; i += 14){
+        for i:UInt32 in stride(from: 200000, to: 400000, by: 14){
             rb.add(i)
         }
         XCTAssertEqual(0, andresult.cardinality)
@@ -477,7 +486,7 @@ func testAnd_3() {
         let ac:Container = ArrayContainer()
         for k:UInt16 in 0 ..< 100  {
             ac.add(k)
-            XCTAssertEqual(ac.cardinality, Int(k + 1))
+            XCTAssertEqual(ac.cardinality, Int(k + UInt16(1)))
         }
         for k:UInt16 in 0 ..< 100  {
             ac.add(k)
@@ -495,7 +504,7 @@ func testAnd_3() {
             for k:UInt16 in 0..<100{
                 ac.add(k)
                 ac.trim()
-                XCTAssertEqual(ac.cardinality, Int(k + 1))
+                XCTAssertEqual(ac.cardinality, Int(k + UInt16(1)))
             }
             for k:UInt16 in 0..<100{
                 ac.add(k)
@@ -515,7 +524,8 @@ func testAnd_3() {
         var array = [UInt16](repeating: 0, count: 3)
         var pos = 0
         for i in rr{
-            array[pos++] = i
+            array[pos] = i
+            pos+=1
         }
         XCTAssertEqual(array[0], UInt16(110))
         XCTAssertEqual(array[1], UInt16(114))
@@ -529,12 +539,15 @@ func testAnd_3() {
         var pos = 0
         for k:UInt32 in 0 ..< 4000  {
             rr.add(k)
-            a[pos++] = k
+            a[pos] = k
+            pos+=1
         }
         rr.add(100000)
-        a[pos++] = 100000
+        a[pos] = 100000
+        pos+=1
         rr.add(110000)
-        a[pos++] = 110000
+        a[pos] = 110000
+        pos+=1
         let array = rr.asArray
         for  i in 0..<array.count {
             if (array[i] != a[i]){
@@ -550,7 +563,7 @@ func testAnd_3() {
         let ac = BitmapContainer()
         for k:UInt16 in 0..<100{
             ac.add(k)
-            XCTAssertEqual(ac.cardinality, Int(k + 1))
+            XCTAssertEqual(ac.cardinality, Int(k + UInt16(1)))
         }
         for k:UInt16 in 0..<100{
             ac.add(k)
@@ -566,7 +579,8 @@ func testAnd_3() {
         var array = [UInt16](repeating: 0, count: 3)
         var pos = 0
         for i in rr{
-            array[pos++] = i
+            array[pos] = i
+            pos+=1
         }
         XCTAssertEqual(array[0], UInt16(110))
         XCTAssertEqual(array[1], UInt16(114))
@@ -578,13 +592,15 @@ func testAnd_3() {
     
     func testCardinality() {
         let N:UInt32 = 1024
-        for (var gap:UInt32 = 7; gap < 7000/*100000*/; gap *= 10) {
-            for (var offset:UInt32 = 2; offset <= 1024; offset *= 2) {
+        var gap:UInt32 = 7
+        while ( gap < 7000/*100000*/) {
+            var offset:UInt32 = 2
+            while (offset <= 1024) {
                 let rb = RoaringBitmap()
                 // check the add of values
                 for k:UInt32 in 0 ..< N {
                     rb.add(k * gap)
-                    XCTAssertEqual(rb.cardinality, Int(k + 1))
+                    XCTAssertEqual(rb.cardinality, Int(k + UInt32(1)))
                 }
                 XCTAssertEqual(rb.cardinality, Int(N))
                 // check the add of existing values
@@ -598,7 +614,7 @@ func testAnd_3() {
                 for k1:UInt32 in 0 ..< N {
                     let value = k1 * gap * offset
                     rb2.add(value)
-                    XCTAssertEqual(rb2.cardinality, Int(k1 + 1))
+                    XCTAssertEqual(rb2.cardinality, Int(k1 + UInt32(1)))
                 }
                 
                 XCTAssertEqual(rb2.cardinality, Int(N))
@@ -610,28 +626,30 @@ func testAnd_3() {
                 XCTAssertEqual(RoaringBitmap.and(lhs: rb, rhs: rb2).cardinality,Int( N / offset))
                 XCTAssertEqual(RoaringBitmap.or(lhs: rb, rhs: rb2).cardinality, Int(2 * N - N / offset))
                 XCTAssertEqual(RoaringBitmap.xor(lhs: rb, rhs: rb2).cardinality, Int(2 * N - 2 * N / offset))
+                offset *= 2
             }
+            gap *= 10
         }
     }
 
    
     func testClear() {
         let rb = RoaringBitmap()
-        for (var i:UInt32 = 0; i < 200000; i += 7){
+        for i:UInt32 in stride(from: 0, to: 200000, by: 7){
             // dense
             rb.add(i)
         }
-        for (var i:UInt32 = 200000; i < 400000; i += 177){
+        for i:UInt32 in stride(from: 200000, to: 400000, by: 177){
             // sparse
             rb.add(i)
         }
         
         let rb2 = RoaringBitmap()
         let rb3 = RoaringBitmap()
-        for (var i:UInt32 = 0; i < 200000; i += 4){
+        for i:UInt32 in stride(from: 0, to: 200000, by: 4){
             rb2.add(i)
         }
-        for (var i:UInt32 = 200000; i < 400000; i += 14){
+        for i:UInt32 in stride(from: 200000, to: 400000, by: 14){
             rb2.add(i)
         }
         
@@ -649,11 +667,11 @@ func testAnd_3() {
         XCTAssertEqual(1, andresult.cardinality)
         XCTAssertEqual(rb2.cardinality,orresult.cardinality);
         
-        for (var i:UInt32 = 0; i < 200000; i += 4) {
+        for i:UInt32 in stride(from: 0, to: 200000, by: 4) {
             rb.add(i)
             rb3.add(i)
         }
-        for (var i:UInt32 = 200000; i < 400000; i += 114) {
+        for i:UInt32 in stride(from: 200000, to: 400000, by: 114){
             rb.add(i)
             rb3.add(i)
         }
@@ -1112,19 +1130,19 @@ func testAnd_3() {
         for k:UInt32 in 65536 ..< 65536 + 4000 {
             rr.add(k)
         }
-        for k:UInt32 in 3 * 65536 ..< 3 * 65536 + 9000 {
+        for k:UInt32 in UInt32(3 * 65536) ..< UInt32(3 * 65536 + 9000) {
             rr.add(k)
         }
-        for k:UInt32 in 4 * 65535 ..< 4 * 65535 + 7000 {
+        for k:UInt32 in UInt32(4 * 65535) ..< UInt32(4 * 65535 + 7000) {
             rr.add(k)
         }
-        for k:UInt32 in 6 * 65535 ..< 6 * 65535 + 10000 {
+        for k:UInt32 in UInt32(6 * 65535) ..< UInt32(6 * 65535 + 10000) {
             rr.add(k)
         }
-        for k:UInt32 in 8 * 65535 ..< 8 * 65535 + 1000 {
+        for k:UInt32 in UInt32(8 * 65535) ..< UInt32(8 * 65535 + 1000) {
             rr.add(k)
         }
-        for k:UInt32 in 9 * 65535 ..< 9 * 65535 + 30000 {
+        for k:UInt32 in UInt32(9 * 65535) ..< UInt32(9 * 65535 + 30000) {
             rr.add(k)
         }
         
@@ -1138,13 +1156,13 @@ func testAnd_3() {
         for k:UInt32 in UInt32(3 * 65536 + 2000) ..< UInt32(3 * 65536 + 6000)  {
             rr2.add(k);
         }
-        for k:UInt32 in 6 * 65535 ..< 6 * 65535 + 1000  {
+        for k:UInt32 in UInt32(6 * 65535) ..< UInt32(6 * 65535 + 1000)  {
             rr2.add(k);
         }
-        for k:UInt32 in 7 * 65535 ..< 7 * 65535 + 1000  {
+        for k:UInt32 in UInt32(7 * 65535) ..< UInt32(7 * 65535 + 1000)  {
             rr2.add(k);
         }
-        for k:UInt32 in 10 * 65535 ..< 10 * 65535 + 5000  {
+        for k:UInt32 in UInt32(10 * 65535) ..< UInt32(10 * 65535 + 5000)  {
             rr2.add(k);
         }
         let correct = RoaringBitmap.or(lhs: rr, rhs: rr2)
@@ -1158,18 +1176,22 @@ func testAnd_3() {
         let rr = RoaringBitmap()
         for k:UInt32 in 0 ..< 4000  {
             rr.add(k)
-            arrayrr[pos++] = k
+            arrayrr[pos] = k
+            pos+=1
         }
         rr.add(100000);
         rr.add(110000);
         let rr2 = RoaringBitmap();
         for k:UInt32 in 4000 ..< 8000  {
             rr2.add(k);
-            arrayrr[pos++] = k
+            arrayrr[pos] = k
+            pos+=1
         }
         
-        arrayrr[pos++] = 100000;
-        arrayrr[pos++] = 110000;
+        arrayrr[pos] = 100000;
+        pos+=1
+        arrayrr[pos] = 110000;
+        pos+=1
         
         let rror = RoaringBitmap.or(lhs: rr, rhs: rr2);
         
@@ -1217,24 +1239,24 @@ func testAnd_3() {
         // In the 3rd node of each Roaring Bitmap, we have an
         // ArrayContainer, so, we will try the union between two
         // ArrayContainers.
-        for k:UInt32 in 4*65535..<4*65535+1000 {
+        for k:UInt32 in UInt32(4*65535)..<UInt32(4*65535+1000) {
             rr.add(k);
             V1.insert(k);
         }
         
-        for k:UInt32 in 4 * 65535..<4*65535+800 {
+        for k:UInt32 in UInt32(4 * 65535)..<UInt32(4*65535+800) {
             rr2.add(k);
             V1.insert(k);
         }
         
         // For the rest, we will check if the union will take them in
         // the result
-        for k:UInt32 in 6*65535..<6*65535+1000 {
+        for k:UInt32 in UInt32(6*65535)..<UInt32(6*65535+1000) {
             rr.add(k);
             V1.insert(k);
         }
         
-        for k:UInt32 in 7*65535..<7*65535+2000 {
+        for k:UInt32 in UInt32(7*65535)..<UInt32(7*65535+2000) {
             rr2.add(k);
             V1.insert(k);
         }
@@ -1274,10 +1296,10 @@ func testAnd_3() {
         let rb = RoaringBitmap()
         let rb2 = RoaringBitmap()
         
-        for (var i:UInt32 = 0 ; i < 200000; i += 4){
+        for i:UInt32 in stride(from: 0, to: 200000, by: 4){
             rb2.add(i)
         }
-        for (var i:UInt32 = 200000; i < 400000; i += 14){
+        for i:UInt32 in stride(from: 200000, to: 400000, by: 14){
             rb2.add(i)
         }
         let rb2card = rb2.cardinality
@@ -1289,10 +1311,10 @@ func testAnd_3() {
         
         XCTAssertEqual(rb2card, orresult.cardinality);
         
-        for (var i:UInt32 = 500000; i < 600000; i += 14){
+        for i:UInt32 in stride(from: 500000, to: 600000, by: 14){
             rb.add(i)
         }
-        for (var i:UInt32 = 200000; i < 400000; i += 3){
+        for i:UInt32 in stride(from: 200000, to: 400000, by: 3){
             rb2.add(i)
         }
         // check or against an empty bitmap
@@ -1472,7 +1494,7 @@ func testAnd_3() {
         let rb = RoaringBitmap()
         for k:UInt32 in 0..<N {
             rb.add(k * gap)
-            XCTAssertEqual(rb.cardinality, Int(k + 1))
+            XCTAssertEqual(rb.cardinality, Int(k + UInt32(1)))
         }
         XCTAssertEqual(rb.cardinality, Int(N))
         for k:UInt32 in 0..<N {
@@ -1492,19 +1514,19 @@ func testAnd_3() {
         for k:UInt32 in 65536..<65536+4000 {
             rr.add(k);
         }
-        for k:UInt32 in 3*65536..<3*65536+9000 {
+        for k:UInt32 in UInt32(3*65536)..<UInt32(3*65536+9000) {
             rr.add(k);
         }
-        for k:UInt32 in 4*65535..<4*65535+7000 {
+        for k:UInt32 in UInt32(4*65535)..<UInt32(4*65535+7000) {
             rr.add(k);
         }
-        for k:UInt32 in 6*65535..<6*65535+10000 {
+        for k:UInt32 in UInt32(6*65535)..<UInt32(6*65535+10000) {
             rr.add(k);
         }
-        for k:UInt32 in 8*65535..<8*65535+1000 {
+        for k:UInt32 in UInt32(8*65535)..<UInt32(8*65535+1000) {
             rr.add(k);
         }
-        for k:UInt32 in 9*65535..<9*65535+30000 {
+        for k:UInt32 in UInt32(9*65535)..<UInt32(9*65535+30000) {
             rr.add(k);
         }
         
@@ -1520,13 +1542,13 @@ func testAnd_3() {
         for k:UInt32 in UInt32(3 * 65536 + 2000)..<UInt32(3 * 65536 + 6000) {
             rr2.add(k);
         }
-        for k:UInt32 in 6*65535..<6*65535+1000 {
+        for k:UInt32 in UInt32(6*65535)..<UInt32(6*65535+1000) {
             rr2.add(k);
         }
-        for k:UInt32 in 7*65535..<7*65535+1000 {
+        for k:UInt32 in UInt32(7*65535)..<UInt32(7*65535+1000) {
             rr2.add(k);
         }
-        for k:UInt32 in 10*65535..<10*65535+5000 {
+        for k:UInt32 in UInt32(10*65535)..<UInt32(10*65535+5000) {
             rr2.add(k);
         }
         
@@ -1578,25 +1600,25 @@ func testAnd_3() {
         // In the 3rd node of each Roaring Bitmap, we have an
         // ArrayContainer. So, we will try the union between two
         // ArrayContainers.
-        for k:UInt32 in 4*65535..<4*65535+1000 {
+        for k:UInt32 in UInt32(4*65535)..<UInt32(4*65535+1000) {
             rr.add(k);
             if (k >= 4 * 65535 + 800){
                 V1.insert(k);
             }
         }
         
-        for k:UInt32 in 4 * 65535..<4*65535+800 {
+        for k:UInt32 in UInt32(4 * 65535)..<UInt32(4*65535+800) {
             rr2.add(k);
         }
         
         // For the rest, we will check if the union will take them in
         // the result
-        for k:UInt32 in 6*65535..<6*65535+1000 {
+        for k:UInt32 in UInt32(6*65535)..<UInt32(6*65535+1000) {
             rr.add(k)
             V1.insert(k)
         }
         
-        for k:UInt32 in 7*65535..<7*65535+2000 {
+        for k:UInt32 in UInt32(7*65535)..<UInt32(7*65535+2000) {
             rr2.add(k)
             V1.insert(k)
         }
@@ -1634,10 +1656,10 @@ func testAnd_3() {
         let rb = RoaringBitmap();
         let rb2 = RoaringBitmap();
         
-        for (var i:UInt32 = 0; i < 200000; i += 4){
+        for i:UInt32 in stride(from: 0, to: 200000, by: 4){
             rb2.add(i)
         }
-        for (var i:UInt32 = 200000; i < 400000; i += 14){
+        for i:UInt32 in stride(from: 200000, to: 400000, by: 14){
             rb2.add(i)
         }
         let rb2card = rb2.cardinality
@@ -1649,10 +1671,10 @@ func testAnd_3() {
         
         XCTAssertEqual(rb2card, xorresult.cardinality);
         
-        for (var i:UInt32 = 500000; i < 600000; i += 14){
+        for i:UInt32 in stride(from: 500000, to: 600000, by: 14){
             rb.add(i);
         }
-        for (var i:UInt32 = 200000; i < 400000; i += 3){
+        for i:UInt32 in stride(from: 200000, to: 400000, by: 3){
             rb2.add(i);
         }
         // check or against an empty bitmap
@@ -1697,10 +1719,13 @@ func testAnd_3() {
 
     func equals(_ bs:BitSet , rr:RoaringBitmap ) ->Bool{
         var a = [UInt32](repeating: 0, count: bs.cardinality())
-        var pos = 0;
-        for (var x = bs.nextSetBit(0); x >= 0; x = bs.nextSetBit(x + 1)){
+        var pos = 0
+        var x = bs.nextSetBit(0)
+        while ( x >= 0){
             let xu = UInt32(x)
-            a[pos++] = xu
+            a[pos] = xu
+            pos+=1
+            x = bs.nextSetBit(x + 1)
         }
         return (rr.asArray == a)
     }
@@ -1739,7 +1764,7 @@ func testAnd_3() {
             
             ewah[Int(index)].add(UInt32(k))
         }
-        for (var k = 3; k < ewahCount; k+=3){
+        for  k in stride(from: 3, to: ewahCount, by: 3) {
             ewah[k].flip(UInt32(13), rangeEnd: UInt32(howmany/2))
         }
         for N in 2..<ewahCount {
@@ -1763,7 +1788,8 @@ func testAnd_3() {
     //FIXME: FastAggregation.horizontal_or fails at howmany = 131072, 262144, and 524288
     func testMassiveOR() {
         let N = 128
-        for (var howmany:UInt64 = 512; howmany <= 1000000; howmany *= 2) {
+        var howmany:UInt64 = 512
+        while ( howmany <= 1000000 ) {
             var ewah = [RoaringBitmap]()
             for _ in 0..<N {
                 ewah.append(RoaringBitmap())
@@ -1772,7 +1798,7 @@ func testAnd_3() {
                 let index:UInt64 = (k + 2 * k * k) % UInt64(N)
                 ewah[Int(index)].add(UInt32(k))
             }
-            for (var k = 3; k < N; k+=3){
+            for k in stride(from: 3, to: N, by: 3){
                 ewah[k].flip(UInt32(13), rangeEnd: UInt32(howmany/2))
             }
     
@@ -1794,6 +1820,7 @@ func testAnd_3() {
             }
             XCTAssert(answer == answer2)
       //      XCTAssert(answer == answer3)
+            howmany *= 2
             
         }
     }
@@ -1804,7 +1831,8 @@ func testAnd_3() {
     //FIXME: FastAggregation.horizontal_or fails at howmany = ??
     func testMassiveXOr() {
         let N = 128
-        for (var howmany:UInt64 = 512; howmany <= 1000000; howmany *= 2) {
+        var howmany:UInt64 = 512
+        while (howmany <= 1000000) {
             var ewah = [RoaringBitmap]()
             for _ in 0..<N {
                 ewah.append(RoaringBitmap())
@@ -1815,7 +1843,7 @@ func testAnd_3() {
                 ewah[Int(index)].add(UInt32(k))
             }
 
-            for (var k = 3; k < N; k+=3){
+            for k in stride(from: 3, to: N, by: 3) {
                 ewah[k].flip(UInt32(13), rangeEnd: UInt32(howmany/2))
             }
             
@@ -1830,6 +1858,7 @@ func testAnd_3() {
                 print("failed on \(howmany)")
             }
            // XCTAssert(answer == answer3)
+           howmany *= 2
         }
     }
 
