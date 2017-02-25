@@ -249,6 +249,7 @@
 					};
 					055CB4AD1AB7CB4C0077D02A = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 46N24DKYTD;
 						LastSwiftMigration = 0820;
 						TestTargetID = 055CB4981AB7CB4C0077D02A;
 					};
@@ -394,7 +395,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -433,7 +434,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -473,6 +474,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 46N24DKYTD;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -486,7 +488,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.regwez.platform.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoaringBitmap-Swift.app/RoaringBitmap-Swift";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoaringBitmap.app/RoaringBitmap";
 			};
 			name = Debug;
 		};
@@ -494,6 +496,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 46N24DKYTD;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -503,7 +506,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.regwez.platform.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoaringBitmap-Swift.app/RoaringBitmap-Swift";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoaringBitmap.app/RoaringBitmap";
 			};
 			name = Release;
 		};

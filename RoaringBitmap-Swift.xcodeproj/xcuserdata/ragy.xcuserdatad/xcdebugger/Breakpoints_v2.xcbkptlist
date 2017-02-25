@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "679"
-            endingLineNumber = "679"
+            startingLineNumber = "685"
+            endingLineNumber = "685"
             landmarkName = "prevSetBit(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
             landmarkName = "BitmapContainer"
             landmarkType = "3">
          </BreakpointContent>
@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/ArrayContainer.swift"
-            timestampString = "448877788.489662"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "712"
-            endingLineNumber = "712"
+            startingLineNumber = "725"
+            endingLineNumber = "725"
             landmarkName = "next()"
             landmarkType = "7">
          </BreakpointContent>
@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "448876550.629229"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "509"
-            endingLineNumber = "509"
+            startingLineNumber = "518"
+            endingLineNumber = "518"
             landmarkName = "RoaringBitmapTests"
             landmarkType = "3">
          </BreakpointContent>
@@ -104,11 +104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "448876550.629229"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "558"
-            endingLineNumber = "558"
+            startingLineNumber = "571"
+            endingLineNumber = "571"
             landmarkName = "testBitmapContainerCardinality()"
             landmarkType = "7">
          </BreakpointContent>
@@ -120,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/ArrayContainer.swift"
-            timestampString = "448877788.489662"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "662"
-            endingLineNumber = "662"
+            startingLineNumber = "670"
+            endingLineNumber = "670"
             landmarkName = "negateRange(_:startIndex:lastIndex:startRange:lastRange:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/ArrayContainer.swift"
-            timestampString = "448877788.489662"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "661"
-            endingLineNumber = "661"
+            startingLineNumber = "669"
+            endingLineNumber = "669"
             landmarkName = "negateRange(_:startIndex:lastIndex:startRange:lastRange:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/ArrayContainer.swift"
-            timestampString = "448877788.489662"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "660"
-            endingLineNumber = "660"
+            startingLineNumber = "668"
+            endingLineNumber = "668"
             landmarkName = "negateRange(_:startIndex:lastIndex:startRange:lastRange:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "testiNot_3()"
             landmarkType = "7">
          </BreakpointContent>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "testiNot_3()"
             landmarkType = "7">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "638"
-            endingLineNumber = "638"
+            startingLineNumber = "640"
+            endingLineNumber = "640"
             landmarkName = "checkContent(_:s:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "testiNot_5()"
             landmarkType = "7">
             <Locations>
@@ -295,11 +295,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "testiNot_5()"
             landmarkType = "7">
          </BreakpointContent>
@@ -311,11 +311,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "881"
-            endingLineNumber = "881"
+            startingLineNumber = "889"
+            endingLineNumber = "889"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -327,11 +327,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
             landmarkName = "testiNot_8()"
             landmarkType = "7">
          </BreakpointContent>
@@ -343,11 +343,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "448876550.629229"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "416"
-            endingLineNumber = "416"
+            startingLineNumber = "425"
+            endingLineNumber = "425"
             landmarkName = "testAnd_3()"
             landmarkType = "7">
          </BreakpointContent>
@@ -359,11 +359,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "639"
-            endingLineNumber = "639"
+            startingLineNumber = "657"
+            endingLineNumber = "657"
             landmarkName = "testClear()"
             landmarkType = "7">
          </BreakpointContent>
@@ -375,11 +375,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "660"
-            endingLineNumber = "660"
+            startingLineNumber = "678"
+            endingLineNumber = "678"
             landmarkName = "testClear()"
             landmarkType = "7">
          </BreakpointContent>
@@ -391,11 +391,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "651"
-            endingLineNumber = "651"
+            startingLineNumber = "669"
+            endingLineNumber = "669"
             landmarkName = "testClear()"
             landmarkType = "7">
          </BreakpointContent>
@@ -407,11 +407,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1646"
-            endingLineNumber = "1646"
+            startingLineNumber = "1668"
+            endingLineNumber = "1668"
             landmarkName = "testXOR_4()"
             landmarkType = "7">
             <Locations>
@@ -455,11 +455,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "testiNot_3()"
             landmarkType = "7">
             <Locations>
@@ -503,11 +503,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "testiNot_3_Array()"
             landmarkType = "7">
          </BreakpointContent>
@@ -519,11 +519,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "793"
-            endingLineNumber = "793"
+            startingLineNumber = "801"
+            endingLineNumber = "801"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -535,11 +535,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "779"
-            endingLineNumber = "779"
+            startingLineNumber = "787"
+            endingLineNumber = "787"
             landmarkName = "loadData(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -551,11 +551,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "788"
-            endingLineNumber = "788"
+            startingLineNumber = "796"
+            endingLineNumber = "796"
             landmarkName = "loadData(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -663,11 +663,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "804"
-            endingLineNumber = "804"
+            startingLineNumber = "812"
+            endingLineNumber = "812"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -679,11 +679,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "testiNot_1()"
             landmarkType = "7">
             <Locations>
@@ -743,11 +743,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "759"
-            endingLineNumber = "759"
+            startingLineNumber = "766"
+            endingLineNumber = "766"
             landmarkName = "fillArray(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -759,11 +759,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "761"
-            endingLineNumber = "761"
+            startingLineNumber = "768"
+            endingLineNumber = "768"
             landmarkName = "fillArray(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -775,11 +775,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
+            startingLineNumber = "454"
+            endingLineNumber = "454"
             landmarkName = "remove(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -791,11 +791,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "888"
-            endingLineNumber = "888"
+            startingLineNumber = "896"
+            endingLineNumber = "896"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -807,7 +807,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "887"
+            endingLineNumber = "887"
+            landmarkName = "not(_:rangeStart:rangeEnd:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "879"
@@ -823,55 +839,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "871"
-            endingLineNumber = "871"
-            landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "870"
-            endingLineNumber = "870"
-            landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "880"
-            endingLineNumber = "880"
-            landmarkName = "not(_:rangeStart:rangeEnd:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "878"
@@ -886,12 +854,44 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "888"
+            endingLineNumber = "888"
+            landmarkName = "not(_:rangeStart:rangeEnd:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
+            timestampString = "509743234.497731"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "886"
+            endingLineNumber = "886"
+            landmarkName = "not(_:rangeStart:rangeEnd:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
+            timestampString = "509743234.497731"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "testiNot_5()"
             landmarkType = "7">
          </BreakpointContent>
@@ -903,11 +903,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "328"
-            endingLineNumber = "328"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
             landmarkName = "testiNot_8()"
             landmarkType = "7">
          </BreakpointContent>
@@ -919,11 +919,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "621"
-            endingLineNumber = "621"
+            startingLineNumber = "623"
+            endingLineNumber = "623"
             landmarkName = "checkContent(_:s:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -935,11 +935,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "622"
-            endingLineNumber = "622"
+            startingLineNumber = "624"
+            endingLineNumber = "624"
             landmarkName = "checkContent(_:s:)"
             landmarkType = "7">
             <Actions>
@@ -959,11 +959,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/ArrayContainer.swift"
-            timestampString = "448877788.489662"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "707"
-            endingLineNumber = "707"
+            startingLineNumber = "719"
+            endingLineNumber = "719"
             landmarkName = "init(content:cardinality:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -975,11 +975,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
             landmarkName = "testiNot_8()"
             landmarkType = "7">
             <Locations>
@@ -1023,11 +1023,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "593"
-            endingLineNumber = "593"
+            startingLineNumber = "595"
+            endingLineNumber = "595"
             landmarkName = "testRangeOfOnes_2A()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1039,11 +1039,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/ContainerTests.swift"
-            timestampString = "448954835.603647"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "592"
-            endingLineNumber = "592"
+            startingLineNumber = "594"
+            endingLineNumber = "594"
             landmarkName = "testRangeOfOnes_2A()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1055,11 +1055,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1148"
-            endingLineNumber = "1148"
+            startingLineNumber = "1166"
+            endingLineNumber = "1166"
             landmarkName = "testOR_1()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1071,11 +1071,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1172"
-            endingLineNumber = "1172"
+            startingLineNumber = "1193"
+            endingLineNumber = "1193"
             landmarkName = "testOR_2()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1087,11 +1087,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "448876550.629229"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "testAndNot_4()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1119,11 +1119,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "448876550.629229"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "testAndNot_4()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1135,11 +1135,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "448876550.629229"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "testAndNot_4()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1151,11 +1151,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "448876550.629229"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "418"
-            endingLineNumber = "418"
+            startingLineNumber = "427"
+            endingLineNumber = "427"
             landmarkName = "testAnd_3()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1167,11 +1167,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "448876550.629229"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
             landmarkName = "testAnd_3()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1183,11 +1183,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "and(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1199,11 +1199,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "and(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1215,11 +1215,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "and(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1231,11 +1231,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1532"
-            endingLineNumber = "1532"
+            startingLineNumber = "1554"
+            endingLineNumber = "1554"
             landmarkName = "testXOR_0()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1247,11 +1247,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1534"
-            endingLineNumber = "1534"
+            startingLineNumber = "1556"
+            endingLineNumber = "1556"
             landmarkName = "testXOR_0()"
             landmarkType = "7">
             <Locations>
@@ -1295,11 +1295,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1533"
-            endingLineNumber = "1533"
+            startingLineNumber = "1555"
+            endingLineNumber = "1555"
             landmarkName = "testXOR_0()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1311,11 +1311,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1462"
-            endingLineNumber = "1462"
+            startingLineNumber = "1484"
+            endingLineNumber = "1484"
             landmarkName = "testSequence()"
             landmarkType = "7">
             <Locations>
@@ -1359,11 +1359,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1459"
-            endingLineNumber = "1459"
+            startingLineNumber = "1481"
+            endingLineNumber = "1481"
             landmarkName = "testSequence()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1375,11 +1375,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/RoaringBitmap.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1120"
-            endingLineNumber = "1120"
+            startingLineNumber = "1121"
+            endingLineNumber = "1121"
             landmarkName = "next()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1391,11 +1391,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1458"
-            endingLineNumber = "1458"
+            startingLineNumber = "1480"
+            endingLineNumber = "1480"
             landmarkName = "testSequence()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1407,11 +1407,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1457"
-            endingLineNumber = "1457"
+            startingLineNumber = "1479"
+            endingLineNumber = "1479"
             landmarkName = "testSequence()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1423,11 +1423,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/RoaringBitmap.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1132"
-            endingLineNumber = "1132"
+            startingLineNumber = "1133"
+            endingLineNumber = "1133"
             landmarkName = "next()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1439,11 +1439,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1746"
-            endingLineNumber = "1746"
+            startingLineNumber = "1771"
+            endingLineNumber = "1771"
             landmarkName = "testMassiveAnd()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1455,11 +1455,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462414311.009543"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1793"
-            endingLineNumber = "1793"
+            startingLineNumber = "1819"
+            endingLineNumber = "1819"
             landmarkName = "testMassiveOR()"
             landmarkType = "7">
             <Locations>
@@ -1503,11 +1503,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1260"
-            endingLineNumber = "1260"
+            startingLineNumber = "1282"
+            endingLineNumber = "1282"
             landmarkName = "testOR_3()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1519,11 +1519,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "fillLeastSignificant16bits(_:index:mask:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1536,11 +1536,11 @@
             condition = "pos &gt; 74999"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "fillLeastSignificant16bits(_:index:mask:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1552,11 +1552,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1240"
-            endingLineNumber = "1240"
+            startingLineNumber = "1262"
+            endingLineNumber = "1262"
             landmarkName = "testOR_3()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1568,11 +1568,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "426"
-            endingLineNumber = "426"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
             landmarkName = "or(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1600,11 +1600,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462413091.353286"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1791"
-            endingLineNumber = "1791"
+            startingLineNumber = "1817"
+            endingLineNumber = "1817"
             landmarkName = "testMassiveOR()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1616,11 +1616,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462413091.353286"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1790"
-            endingLineNumber = "1790"
+            startingLineNumber = "1816"
+            endingLineNumber = "1816"
             landmarkName = "testMassiveOR()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1648,11 +1648,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462413091.353286"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1787"
-            endingLineNumber = "1787"
+            startingLineNumber = "1813"
+            endingLineNumber = "1813"
             landmarkName = "testMassiveOR()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1664,11 +1664,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462413091.353286"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1785"
-            endingLineNumber = "1785"
+            startingLineNumber = "1811"
+            endingLineNumber = "1811"
             landmarkName = "testMassiveOR()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1680,11 +1680,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462413091.353286"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1784"
-            endingLineNumber = "1784"
+            startingLineNumber = "1810"
+            endingLineNumber = "1810"
             landmarkName = "testMassiveOR()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1696,11 +1696,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462413091.353286"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1778"
-            endingLineNumber = "1778"
+            startingLineNumber = "1804"
+            endingLineNumber = "1804"
             landmarkName = "testMassiveOR()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1744,11 +1744,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "448950976.380878"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "413"
-            endingLineNumber = "413"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
             landmarkName = "or(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1840,11 +1840,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462414311.009543"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1828"
-            endingLineNumber = "1828"
+            startingLineNumber = "1856"
+            endingLineNumber = "1856"
             landmarkName = "testMassiveXOr()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1856,11 +1856,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "799"
-            endingLineNumber = "799"
+            startingLineNumber = "817"
+            endingLineNumber = "817"
             landmarkName = "testFlip_3A()"
             landmarkType = "7">
             <Locations>
@@ -1904,11 +1904,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "796"
-            endingLineNumber = "796"
+            startingLineNumber = "814"
+            endingLineNumber = "814"
             landmarkName = "testFlip_3A()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1920,11 +1920,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "798"
-            endingLineNumber = "798"
+            startingLineNumber = "806"
+            endingLineNumber = "806"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1936,11 +1936,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "846"
-            endingLineNumber = "846"
+            startingLineNumber = "854"
+            endingLineNumber = "854"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1952,11 +1952,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "874"
-            endingLineNumber = "874"
+            startingLineNumber = "882"
+            endingLineNumber = "882"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1968,11 +1968,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversion/RoaringBitmap/BitmapContainer.swift"
-            timestampString = "459502692.393145"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "875"
-            endingLineNumber = "875"
+            startingLineNumber = "883"
+            endingLineNumber = "883"
             landmarkName = "not(_:rangeStart:rangeEnd:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1984,11 +1984,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "795"
-            endingLineNumber = "795"
+            startingLineNumber = "813"
+            endingLineNumber = "813"
             landmarkName = "testFlip_3A()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2032,11 +2032,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "743"
-            endingLineNumber = "743"
+            startingLineNumber = "761"
+            endingLineNumber = "761"
             landmarkName = "testFlip_1A()"
             landmarkType = "7">
             <Locations>
@@ -2080,11 +2080,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "733"
-            endingLineNumber = "733"
+            startingLineNumber = "751"
+            endingLineNumber = "751"
             landmarkName = "testFlip_1A()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2096,11 +2096,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoaringBitmapConversionTests/RoaringBitmapPart1Tests.swift"
-            timestampString = "462412576.680294"
+            timestampString = "509743234.497731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "758"
-            endingLineNumber = "758"
+            startingLineNumber = "776"
+            endingLineNumber = "776"
             landmarkName = "RoaringBitmapTests"
             landmarkType = "3">
          </BreakpointContent>
